@@ -8,4 +8,19 @@ package modelo;
  * @since 01/05/2020
  * @version 1.0
  */
-public enum Sexo {Masculino,Femenino}	
+public enum Sexo {
+	
+	MASCULINO("Mascunino"),
+	FEMENINO("Femenino");
+	
+	private final String descripcion;
+	
+	Sexo (String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+	
+}	
