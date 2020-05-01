@@ -12,6 +12,7 @@ public enum Sexo {
 	
 	FEMENINO("Sexo femenino"),
 	MASCULINO("Sexo masculino");
+
 	
 	private final String descripcion;
 	
