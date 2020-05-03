@@ -61,11 +61,12 @@ public abstract class Participante {
 				+ ", sexo=" + sexo + "]";
 	}
 
-	public int getCodigo() {
+	// GETTERS & SETTERS
+	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 
@@ -92,6 +93,14 @@ public abstract class Participante {
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}
-	
+
+	public Pais getNacionalidad() {
+		return nacionalidad;
+	}
+
+	public void setNacionalidad(Pais nacionalidad) {
+		this.nacionalidad = nacionalidad;
+	}
+
 }
 

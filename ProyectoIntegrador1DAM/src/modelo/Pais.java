@@ -39,6 +39,7 @@ public class Pais {
 		return "Pais [codigo=" + codigo + ", descripcion=" + descripcion + "]";
 	}
 
+	//Métodos Getter y Setter
 	public Integer getCodigo() {
 		return codigo;
 	}

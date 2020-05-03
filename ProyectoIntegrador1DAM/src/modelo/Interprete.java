@@ -42,6 +42,7 @@ public class Interprete extends Participante{
 		return super.toString() + "Interprete [cache=" + cache + "]";
 	}
 
+	//Métodos Getter y Setter
 	public double getCache() {
 		return cache;
 	}
