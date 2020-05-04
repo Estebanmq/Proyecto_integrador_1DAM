@@ -43,10 +43,10 @@ public class Pelicula extends EjemplarAudiovisual {
 	 * @param interpretes
 	 */
 	public Pelicula(Integer codigo, String titulo, int anyo, Director director, String sinopsis, Pais nacionalidad,
-			GeneroPelicula genero, ArrayList<Interprete> interpretes) {
+			GeneroPelicula genero) {
 		super(codigo, titulo, anyo, director, sinopsis, nacionalidad);
 		this.genero = genero;
-		this.interpretes = interpretes;
+		this.interpretes = null;
 	}
 	
 	/**
@@ -76,7 +76,6 @@ public class Pelicula extends EjemplarAudiovisual {
 	}
 
 	//Métodos Getter y Setter
-	
 	public GeneroPelicula getGenero() {
 		return genero;
 	}
