@@ -11,7 +11,7 @@ package modelo;
 public enum Sexo {
 	
 	FEMENINO("Sexo Femenino"),
-	MASCULINO("Sexo Masculino");
+	MASCULINO("Masculino");
 	
 	private final String descripcion;
 	
