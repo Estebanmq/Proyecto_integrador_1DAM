@@ -40,7 +40,6 @@ public class Pelicula extends EjemplarAudiovisual {
 	 * @param sinopsis
 	 * @param nacionalidad
 	 * @param genero
-	 * @param interpretes
 	 */
 	public Pelicula(Integer codigo, String titulo, int anyo, Director director, String sinopsis, Pais nacionalidad,
 			GeneroPelicula genero) {
