@@ -19,7 +19,7 @@ public class Director extends Participante{
 	private GeneroPelicula generoPreferido;
 	
 	/** 
-	 * MÃ©todo constructor de director
+	 * Método constructor de director
 	 * @param codigo
 	 * @param nombre
 	 * @param fechaNacimiento
