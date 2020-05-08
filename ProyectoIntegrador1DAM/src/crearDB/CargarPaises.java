@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 import dao.Conexion;
 
-public class cargarPaises {
+public class CargarPaises {
 
 	public static void main(String[] args) {
 
