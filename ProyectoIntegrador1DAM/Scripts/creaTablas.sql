@@ -1,26 +1,24 @@
 /*
-/* Drop Indexes */
+-- Drop Indexes
 
-/*DROP INDEX codPelcodInt;
-/*DROP INDEX tituloIndex;
-
-
-
-/* Drop Tables */
-
-/*DROP TABLE Actuacion;
-/*DROP TABLE Documental;
-/*DROP TABLE Pelicula;
-/*DROP TABLE EjemplarAudiovisual;
-/*DROP TABLE Director;
-/*DROP TABLE Interprete;
-/*DROP TABLE Participante;
-/*DROP TABLE Pais;
+  DROP INDEX codPelcodInt;
+  DROP INDEX tituloIndex;
 
 
 
+-- Drop Tables 
 
-/* Create Tables */
+  DROP TABLE Actuacion;
+  DROP TABLE Documental;
+  DROP TABLE Pelicula;
+  DROP TABLE EjemplarAudiovisual;
+  DROP TABLE Director;
+  DROP TABLE Interprete;
+  DROP TABLE Participante;
+  DROP TABLE Pais;
+*/
+
+-- Create Tables
 
 -- Tabla de relación N:M entre Película e Interprete
 CREATE TABLE Actuacion
