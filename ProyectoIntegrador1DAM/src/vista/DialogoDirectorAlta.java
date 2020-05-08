@@ -30,8 +30,8 @@ public class DialogoDirectorAlta extends JDialog {
 		this.setBounds(100, 100, 537, 309);
 		this.getContentPane().setLayout(new BorderLayout());
 		this.setLocationRelativeTo(null);
-		contentPanel.setLayout(new FlowLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPanel().setLayout(new FlowLayout());
+		getContentPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -70,6 +70,10 @@ public class DialogoDirectorAlta extends JDialog {
 
 	public void setBtnCancelar(JButton btnCancelar) {
 		this.btnCancelar = btnCancelar;
+	}
+
+	private JPanel getContentPanel() {
+		return contentPanel;
 	}
 
 }

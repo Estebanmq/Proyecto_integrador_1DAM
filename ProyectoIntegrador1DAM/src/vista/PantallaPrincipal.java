@@ -84,7 +84,6 @@ public class PantallaPrincipal extends JFrame {
 		getMntmDirectorConsulta().setActionCommand("menuDirectorConsulta");
 		mnDirectores.add(getMntmDirectorConsulta());
 		
-		
 		JMenu mnInterpretes = new JMenu("Interpretes");
 		mnInterpretes.setActionCommand("Interpretes");
 		mnParticipantes.add(mnInterpretes);
@@ -103,8 +102,7 @@ public class PantallaPrincipal extends JFrame {
 		
 		setMntmInterpreteConsulta(new JMenuItem("Consulta"));
 		getMntmInterpreteConsulta().setActionCommand("menuInterpreteConsulta");
-		mnInterpretes.add(getMntmInterpreteConsulta());
-		
+		mnInterpretes.add(getMntmInterpreteConsulta());		
 		
 		JMenu mnEjemplaresAudiovisuales = new JMenu("EjemplaresAudiovisuales");
 		mnMantenimiento.add(mnEjemplaresAudiovisuales);

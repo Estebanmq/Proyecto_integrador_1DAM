@@ -9,10 +9,10 @@ import java.sql.SQLException;
 public class Conexion {
 
 	private static final String CLASECONEXION = "org.apache.derby.jdbc.EmbeddedDriver"; 
-	private static String proyecto;
-	private static String user;
-	private static String pass;
-	private static String url;
+	private static final String proyecto;
+	private static final String user;
+	private static final String pass;
+	private static final String url;
 	private static Connection conexion; 
 	
 	static {
@@ -20,9 +20,10 @@ public class Conexion {
 		pass = "root";
 		proyecto = System.getProperty("user.dir").concat(File.separator).concat("dbDerby");
 		url = "jdbc:derby:".concat(proyecto);
+		conexion = null;
 	}
 	
-	public static Connection conectar() throws ClassNotFoundException, SQLException {
+	public static Connection getConexion() throws ClassNotFoundException, SQLException {
 		
 		Class.forName(CLASECONEXION);
 		conexion = DriverManager.getConnection(url,user,pass);

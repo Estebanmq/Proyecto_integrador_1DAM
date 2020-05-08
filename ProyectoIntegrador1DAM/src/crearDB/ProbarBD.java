@@ -17,7 +17,7 @@ public class ProbarBD {
 		ResultSet rs;
 		
 		try {
-			conexion = Conexion.conectar();
+			conexion = Conexion.getConexion();
 			
 			query = "select * from pais";
 			

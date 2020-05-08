@@ -43,7 +43,7 @@ public class cargarPaises {
 		
 		query = String.format("insert into pais values (%d, '%s')", Integer.parseInt(valores[2]), valores[1]);
 
-		conexion = Conexion.conectar();
+		conexion = Conexion.getConexion();
 		st = conexion.createStatement();
 		resultado = st.executeUpdate(query);
 		System.out.format("%d filas actualizadas\n", resultado);

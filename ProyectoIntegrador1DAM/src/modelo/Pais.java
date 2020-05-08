@@ -21,6 +21,13 @@ public class Pais {
 	private String descripcion;
 	
 	/**
+	 * Método constructor de país sin parámetros
+	 */
+	public Pais() {
+		this.codigo = null;
+		this.descripcion = null;
+	}
+	/**
 	 * Método constructor de país
 	 * @param codigo
 	 * @param descripcion
