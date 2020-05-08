@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 import modelo.Pais;
 
-public class MantenimientoPaises {
+public class DaoPaisMantenimiento {
 
 	private String query;
 	private Connection conn;

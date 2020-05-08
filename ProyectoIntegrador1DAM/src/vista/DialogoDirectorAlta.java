@@ -18,7 +18,7 @@ public class DialogoDirectorAlta extends JDialog {
 	private JButton btnAceptar;
 	private JButton btnCancelar;
 	private JPanel panel;
-	private JLabel lblNewLabel;
+	private JLabel labelTexto;
 
 	/**
 	 * Create the dialog.
@@ -45,14 +45,12 @@ public class DialogoDirectorAlta extends JDialog {
 		setBtnCancelar(new JButton("Cancelar"));
 		getBtnCancelar().setActionCommand("btnCancelar");
 		buttonPane.add(getBtnCancelar());
-		{
-			panel = new JPanel();
-			getContentPane().add(panel, BorderLayout.CENTER);
-			{
-				lblNewLabel = new JLabel("New label");
-				panel.add(lblNewLabel);
-			}
-		}
+
+		this.setPanel(new JPanel());
+		this.getContentPane().add(getPanel(), BorderLayout.CENTER);
+
+		this.setLblLabelTexto(new JLabel("estamos en dialogo de alta de director"));
+		this.getPanel().add(this.getLblLabelTexto());
 
 	}
 
@@ -74,6 +72,22 @@ public class DialogoDirectorAlta extends JDialog {
 
 	private JPanel getContentPanel() {
 		return contentPanel;
+	}
+
+	private JPanel getPanel() {
+		return panel;
+	}
+
+	private void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
+	private JLabel getLblLabelTexto() {
+		return labelTexto;
+	}
+
+	private void setLblLabelTexto(JLabel lblLabelTexto) {
+		this.labelTexto = lblLabelTexto;
 	}
 
 }
