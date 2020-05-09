@@ -24,7 +24,7 @@ public class DaoPaisMantenimiento {
 		Pais pais = new Pais();
 		ArrayList<Pais> listaPaises =  new ArrayList<Pais>();
 		
-		this.setQuery("select * from PAIS order by CODIGO;");
+		this.setQuery("select * from PAIS order by CODIGO");
 		
 		try  {
 			
@@ -42,6 +42,7 @@ public class DaoPaisMantenimiento {
 			e.printStackTrace();
 		} finally {
 			try {
+				Conexion.cerrar();
 				this.getConn().close();
 			} catch (SQLException e) {
 				e.printStackTrace();

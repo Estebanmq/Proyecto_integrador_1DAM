@@ -11,7 +11,8 @@ import vista.DialogoPaisMantenimiento;
 public class CtrlPaisMantenimiento implements ActionListener  {
 	
 	private Pais pais;
-	private DialogoPaisMantenimiento dialogoMantPais;
+	private DialogoPaisMantenimiento dialogoPaisMant;
+
 	private DaoPaisMantenimiento daoPaisMantenimiento;
 
 	public CtrlPaisMantenimiento() {
@@ -21,22 +22,25 @@ public class CtrlPaisMantenimiento implements ActionListener  {
 											// Obtiene el array de países
 		daoPaisMantenimiento = new DaoPaisMantenimiento();
 		arrayPais = this.getDaoPaisMantenimiento().obtenerListaPaises();
-
-		this.getDialogoMantPais().crearFilas(arrayPais);
 		
-		this.setDialogoMantPais(new DialogoPaisMantenimiento());
 		
-		this.getDialogoMantPais().getPanelBtnsAceptarCancelar().getBtnAceptar().addActionListener(this);
-		this.getDialogoMantPais().getPanelBtnsAceptarCancelar().getBtnCancelar().addActionListener(this);
+		this.setDialogoPaisMant(new DialogoPaisMantenimiento());
+		this.getDialogoPaisMant().crearFilas(arrayPais);
 		
-		this.getDialogoMantPais().setVisible(true);
+		this.getDialogoPaisMant().getPanelBtnsAceptarCancelar().getBtnAceptar().addActionListener(this);
+		this.getDialogoPaisMant().getPanelBtnsAceptarCancelar().getBtnCancelar().addActionListener(this);
+		
+		this.getDialogoPaisMant().setVisible(true);
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		System.out.format("Ha pulsado algo: %s\n", e.getActionCommand());
+
+		System.out.format("Se ha pulsado: %s\n", e.getActionCommand());
+		if (e.getActionCommand().equals("Ok")) {
+			this.getDialogoPaisMant().dispose();			
+		}
 		
 	}
 
@@ -49,12 +53,12 @@ public class CtrlPaisMantenimiento implements ActionListener  {
 		this.pais = pais;
 	}
 
-	public DialogoPaisMantenimiento getDialogoMantPais() {
-		return dialogoMantPais;
+	public DialogoPaisMantenimiento getDialogoPaisMant() {
+		return dialogoPaisMant;
 	}
 
-	public void setDialogoMantPais(DialogoPaisMantenimiento dialogoMantPais) {
-		this.dialogoMantPais = dialogoMantPais;
+	public void setDialogoPaisMant(DialogoPaisMantenimiento dialogoPaisMant) {
+		this.dialogoPaisMant = dialogoPaisMant;
 	}
 	
 	public DaoPaisMantenimiento getDaoPaisMantenimiento() {

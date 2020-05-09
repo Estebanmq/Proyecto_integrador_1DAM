@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.util.ArrayList;
 
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,25 +22,33 @@ public class DialogoPaisMantenimiento extends JDialog {
 	private DefaultTableModel dtmModelo;
 	private final JPanel contentPanel = new JPanel();
 	private JTable tablaPaises;
-	
-	private ArrayList<Pais> listaPaises;
+	private JScrollPane scrollPane;
 	
 	private PanelBtnsAceptarCancelar panelBtnsAceptarCancelar;
 
-	public DialogoPaisMantenimiento() {
-		setModal(true); 
+	public DialogoPaisMantenimiento() {	
 		
-		setTitle("Mantenimiento de países");
-		setBounds(100, 100, 450, 300);
+		JLabel labelTexto = new JLabel("Relación de países existentes");
+		
+		this.setModal(true); 
+		
+		this.setTitle("Mantenimiento de países");
+		this.setBounds(100, 100, 386, 300);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.getContentPane().setLayout(new BorderLayout());
 		this.getContentPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.getContentPane().add(getContentPanel(), BorderLayout.CENTER);
 		this.getContentPanel().setLayout(null);
-		this.setLocationRelativeTo(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(39, 75, 327, 124);
-		getContentPanel().add(scrollPane);
+		labelTexto.setBounds(22, 54, 155, 14);
+		this.getContentPanel().add(labelTexto);
+
+		
+		this.setScrollPane(new JScrollPane());
+		this.getScrollPane().setBounds(22, 79, 327, 124);
+		
+		this.getContentPanel().add(getScrollPane());
 
 		this.setDtmModelo(new DefaultTableModel(this.getNOMCOLUMNAS(), 0));
 
@@ -48,13 +57,12 @@ public class DialogoPaisMantenimiento extends JDialog {
 		this.getTablaPaises().setCellSelectionEnabled(true);
 		this.getTablaPaises().setColumnSelectionAllowed(true);
 		
-		scrollPane.setViewportView(this.getTablaPaises());
+		this.getScrollPane().add(this.getTablaPaises());
+		this.getScrollPane().setViewportView(this.getTablaPaises());
 		
 		panelBtnsAceptarCancelar = new PanelBtnsAceptarCancelar();
 		getContentPane().add(panelBtnsAceptarCancelar, BorderLayout.SOUTH);
 		this.getRootPane().setDefaultButton(panelBtnsAceptarCancelar.getBtnAceptar());
-
-		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 	}
 	
@@ -87,20 +95,12 @@ public class DialogoPaisMantenimiento extends JDialog {
 		return NOMCOLUMNAS;
 	}
 
-	private DefaultTableModel getDtmModelo() {
+	public DefaultTableModel getDtmModelo() {
 		return dtmModelo;
 	}
 
-	private void setDtmModelo(DefaultTableModel dtmModelo) {
+	public void setDtmModelo(DefaultTableModel dtmModelo) {
 		this.dtmModelo = dtmModelo;
-	}
-
-	public ArrayList<Pais> getListaPaises() {
-		return listaPaises;
-	}
-
-	public void setListaPaises(ArrayList<Pais> listaPaises) {
-		this.listaPaises = listaPaises;
 	}
 
 	public PanelBtnsAceptarCancelar getPanelBtnsAceptarCancelar() {
@@ -110,5 +110,12 @@ public class DialogoPaisMantenimiento extends JDialog {
 	public void setPanelBtnsAceptarCancelar(PanelBtnsAceptarCancelar panelBtnsAceptarCancelar) {
 		this.panelBtnsAceptarCancelar = panelBtnsAceptarCancelar;
 	}
-	
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public void setScrollPane(JScrollPane scrollPane) {
+		this.scrollPane = scrollPane;
+	}
 }
