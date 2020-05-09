@@ -19,6 +19,8 @@ public class DialogoDirectorAlta extends JDialog {
 	private JButton btnCancelar;
 	private JPanel panel;
 	private JLabel labelTexto;
+	
+	private PanelBtnsAceptarCancelar panelBtnsAceptarCancelar;
 
 	/**
 	 * Create the dialog.
@@ -37,14 +39,9 @@ public class DialogoDirectorAlta extends JDialog {
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
-		setBtnAceptar(new JButton("Aceptar"));
-		getBtnAceptar().setActionCommand("btnAceptar");
-		buttonPane.add(getBtnAceptar());
-		getRootPane().setDefaultButton(getBtnAceptar());
-
-		setBtnCancelar(new JButton("Cancelar"));
-		getBtnCancelar().setActionCommand("btnCancelar");
-		buttonPane.add(getBtnCancelar());
+		setPanelBtnsAceptarCancelar(new PanelBtnsAceptarCancelar());
+		getContentPane().add(getPanelBtnsAceptarCancelar(), BorderLayout.SOUTH);
+		this.getRootPane().setDefaultButton(getPanelBtnsAceptarCancelar().getBtnAceptar());
 
 		this.setPanel(new JPanel());
 		this.getContentPane().add(getPanel(), BorderLayout.CENTER);
@@ -88,6 +85,14 @@ public class DialogoDirectorAlta extends JDialog {
 
 	private void setLblLabelTexto(JLabel lblLabelTexto) {
 		this.labelTexto = lblLabelTexto;
+	}
+
+	public PanelBtnsAceptarCancelar getPanelBtnsAceptarCancelar() {
+		return panelBtnsAceptarCancelar;
+	}
+
+	public void setPanelBtnsAceptarCancelar(PanelBtnsAceptarCancelar panelBtnsAceptarCancelar) {
+		this.panelBtnsAceptarCancelar = panelBtnsAceptarCancelar;
 	}
 
 }

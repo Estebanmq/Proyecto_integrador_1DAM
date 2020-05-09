@@ -24,7 +24,7 @@ public class DialogoPaisMantenimiento extends JDialog {
 	private JTable tablaPaises;
 	private JScrollPane scrollPane;
 	
-	private PanelBtnsAceptarCancelar panelBtnsAceptarCancelar;
+	private PanelBtnOk panelBtnOk;
 
 	public DialogoPaisMantenimiento() {	
 		
@@ -60,9 +60,9 @@ public class DialogoPaisMantenimiento extends JDialog {
 		this.getScrollPane().add(this.getTablaPaises());
 		this.getScrollPane().setViewportView(this.getTablaPaises());
 		
-		panelBtnsAceptarCancelar = new PanelBtnsAceptarCancelar();
-		getContentPane().add(panelBtnsAceptarCancelar, BorderLayout.SOUTH);
-		this.getRootPane().setDefaultButton(panelBtnsAceptarCancelar.getBtnAceptar());
+		this.setPanelBtnOk(new PanelBtnOk());
+		getContentPane().add(this.getPanelBtnOk(), BorderLayout.SOUTH);
+		this.getRootPane().setDefaultButton(this.getPanelBtnOk().getBtnOk());
 
 	}
 	
@@ -103,19 +103,19 @@ public class DialogoPaisMantenimiento extends JDialog {
 		this.dtmModelo = dtmModelo;
 	}
 
-	public PanelBtnsAceptarCancelar getPanelBtnsAceptarCancelar() {
-		return panelBtnsAceptarCancelar;
-	}
-
-	public void setPanelBtnsAceptarCancelar(PanelBtnsAceptarCancelar panelBtnsAceptarCancelar) {
-		this.panelBtnsAceptarCancelar = panelBtnsAceptarCancelar;
-	}
-
 	public JScrollPane getScrollPane() {
 		return scrollPane;
 	}
 
 	public void setScrollPane(JScrollPane scrollPane) {
 		this.scrollPane = scrollPane;
+	}
+
+	public PanelBtnOk getPanelBtnOk() {
+		return panelBtnOk;
+	}
+
+	public void setPanelBtnOk(PanelBtnOk panelBtnOk) {
+		this.panelBtnOk = panelBtnOk;
 	}
 }

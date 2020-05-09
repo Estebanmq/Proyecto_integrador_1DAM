@@ -27,8 +27,7 @@ public class CtrlPaisMantenimiento implements ActionListener  {
 		this.setDialogoPaisMant(new DialogoPaisMantenimiento());
 		this.getDialogoPaisMant().crearFilas(arrayPais);
 		
-		this.getDialogoPaisMant().getPanelBtnsAceptarCancelar().getBtnAceptar().addActionListener(this);
-		this.getDialogoPaisMant().getPanelBtnsAceptarCancelar().getBtnCancelar().addActionListener(this);
+		this.getDialogoPaisMant().getPanelBtnOk().getBtnOk().addActionListener(this);
 		
 		this.getDialogoPaisMant().setVisible(true);
 		
@@ -38,7 +37,7 @@ public class CtrlPaisMantenimiento implements ActionListener  {
 	public void actionPerformed(ActionEvent e) {
 
 		System.out.format("Se ha pulsado: %s\n", e.getActionCommand());
-		if (e.getActionCommand().equals("Ok")) {
+		if (e.getActionCommand().equals("btnOk")) {
 			this.getDialogoPaisMant().dispose();			
 		}
 		

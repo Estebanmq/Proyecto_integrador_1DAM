@@ -14,8 +14,8 @@ public class CtrlDirectorAlta implements ActionListener {
 	public CtrlDirectorAlta() {
 		
 		this.setDialogoDirectorAlta(new DialogoDirectorAlta());
-		this.getDialogoDirectorAlta().getBtnAceptar().addActionListener(this);
-		this.getDialogoDirectorAlta().getBtnCancelar().addActionListener(this);
+		this.getDialogoDirectorAlta().getPanelBtnsAceptarCancelar().getBtnAceptar().addActionListener(this);
+		this.getDialogoDirectorAlta().getPanelBtnsAceptarCancelar().getBtnCancelar().addActionListener(this);
 		
 		this.getDialogoDirectorAlta().setVisible(true);
 	}
