@@ -1,6 +1,6 @@
 package modelo;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 /** 
  * Esta clase define los atributos y métodos que va a tener cada pelicula 
@@ -12,27 +12,25 @@ import java.util.ArrayList;
  * @since 01/05/2020
  */
 public class Pelicula extends EjemplarAudiovisual {
-
-	
 	/** 
-	 * Atributos que consideramos importantes para identificar una pelicula
+	 * Atributos que consideramos importantes para identificar una película
 	 */
 	
 	/** 
-	 * Genero de la película
+	 * Género de la película
 	 * @see GeneroPelicula
 	 */
 	private GeneroPelicula genero;
 	
 	/**
 	 * ArrayList con los interpretes de una película
-	 * @see java.util.ArrayList
+	 * @see java.util.LinkedList
 	 * @see Interprete
 	 */
-	private ArrayList<Interprete> interpretes;
+	private LinkedList<Interprete> interpretes;
 
 	/**
-	 * Método constructor de pelicula
+	 * Método constructor de película
 	 * @param codigo
 	 * @param titulo
 	 * @param anyo
@@ -49,7 +47,7 @@ public class Pelicula extends EjemplarAudiovisual {
 	}
 	
 	/**
-	 * Método para añadir un interprete
+	 * Método para añadir un intérprete
 	 * @param i
 	 * @see Interprete
 	 */
@@ -58,7 +56,7 @@ public class Pelicula extends EjemplarAudiovisual {
 	}
 	
 	/**
-	 * Método para eliminar un interprete
+	 * Método para eliminar un intérprete
 	 * @param codInter
 	 */
 	public void eliminarInterprete(Integer codInter) {
@@ -83,11 +81,11 @@ public class Pelicula extends EjemplarAudiovisual {
 		this.genero = genero;
 	}
 
-	public ArrayList<Interprete> getInterpretes() {
+	public LinkedList<Interprete> getInterpretes() {
 		return interpretes;
 	}
 
-	public void setInterpretes(ArrayList<Interprete> interpretes) {
+	public void setInterpretes(LinkedList<Interprete> interpretes) {
 		this.interpretes = interpretes;
 	} 
 	
