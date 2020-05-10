@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 
 /** 
@@ -24,10 +25,10 @@ public class Pelicula extends EjemplarAudiovisual {
 	
 	/**
 	 * ArrayList con los interpretes de una película
-	 * @see java.util.LinkedList
+	 * @see java.util.HashSet
 	 * @see Interprete
 	 */
-	private LinkedList<Interprete> interpretes;
+	private HashSet<Interprete> interpretes;
 
 	/**
 	 * Método constructor de película
@@ -43,7 +44,7 @@ public class Pelicula extends EjemplarAudiovisual {
 			GeneroPelicula genero) {
 		super(codigo, titulo, anyo, director, sinopsis, nacionalidad);
 		this.genero = genero;
-		this.interpretes = null;
+		this.interpretes = new HashSet<Interprete>();
 	}
 	
 	/**
@@ -81,12 +82,12 @@ public class Pelicula extends EjemplarAudiovisual {
 		this.genero = genero;
 	}
 
-	public LinkedList<Interprete> getInterpretes() {
+	public HashSet<Interprete> getInterpretes() {
 		return interpretes;
 	}
 
-	public void setInterpretes(LinkedList<Interprete> interpretes) {
+	public void setInterpretes(HashSet<Interprete> interpretes) {
 		this.interpretes = interpretes;
-	} 
+	}
 	
 }
