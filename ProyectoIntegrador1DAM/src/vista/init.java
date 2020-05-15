@@ -6,8 +6,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
-
 import controlador.CtrlPrincipal;
 
 /**
