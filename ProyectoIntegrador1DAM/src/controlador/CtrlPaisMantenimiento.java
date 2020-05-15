@@ -19,16 +19,18 @@ public class CtrlPaisMantenimiento implements ActionListener  {
 		
 		ArrayList<Pais> arrayPais;
 		
-											// Obtiene el array de países
+											// Instancia al DAO y obtiene el array de países
 		daoPaisMantenimiento = new DaoPaisMantenimiento();
 		arrayPais = this.getDaoPaisMantenimiento().obtenerListaPaises();
 		
-		
+											// Instancia al diálogo y le pasa el array de países 
 		this.setDialogoPaisMant(new DialogoPaisMantenimiento());
 		this.getDialogoPaisMant().crearFilas(arrayPais);
 		
+											// Añade el listener a los botones del dialogo
 		this.getDialogoPaisMant().getPanelBtnOk().getBtnOk().addActionListener(this);
-		
+
+											// Hace visible el dialogo
 		this.getDialogoPaisMant().setVisible(true);
 		
 	}

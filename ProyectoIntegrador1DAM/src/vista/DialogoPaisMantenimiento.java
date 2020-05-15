@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.Pais;
+import javax.swing.ListSelectionModel;
 
 public class DialogoPaisMantenimiento extends JDialog {
 
@@ -20,45 +21,43 @@ public class DialogoPaisMantenimiento extends JDialog {
 	private final String NOMCOLUMNAS[] = new String[] {"Código", "Descripción"};
 	
 	private DefaultTableModel dtmModelo;
-	private final JPanel contentPanel = new JPanel();
 	private JTable tablaPaises;
-	private JScrollPane scrollPane;
 	
 	private PanelBtnOk panelBtnOk;
 
 	public DialogoPaisMantenimiento() {	
-		
+
+		JPanel contentPanel = new JPanel();
+		JScrollPane scrollPane = new JScrollPane();
+
 		JLabel labelTexto = new JLabel("Relación de países existentes");
+
 		
-		this.setModal(true); 
-		
+		this.setModal(true); 		
 		this.setTitle("Mantenimiento de países");
 		this.setBounds(100, 100, 386, 300);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.getContentPane().setLayout(new BorderLayout());
-		this.getContentPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.getContentPane().add(getContentPanel(), BorderLayout.CENTER);
-		this.getContentPanel().setLayout(null);
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 		
-		labelTexto.setBounds(22, 54, 155, 14);
-		this.getContentPanel().add(labelTexto);
+		labelTexto.setBounds(22, 54, 190, 14);
+		contentPanel.add(labelTexto);
 
-		
-		this.setScrollPane(new JScrollPane());
-		this.getScrollPane().setBounds(22, 79, 327, 124);
-		
-		this.getContentPanel().add(getScrollPane());
+				
+		scrollPane.setBounds(22, 79, 327, 124);
+	
+		contentPanel.add(scrollPane);
 
 		this.setDtmModelo(new DefaultTableModel(this.getNOMCOLUMNAS(), 0));
 
 		this.setTablaPaises(new JTable(this.getDtmModelo()));
 		this.getTablaPaises().setToolTipText("Relación de países");
-		this.getTablaPaises().setCellSelectionEnabled(true);
-		this.getTablaPaises().setColumnSelectionAllowed(true);
 		
-		this.getScrollPane().add(this.getTablaPaises());
-		this.getScrollPane().setViewportView(this.getTablaPaises());
+		scrollPane.add(this.getTablaPaises());
+		scrollPane.setViewportView(this.getTablaPaises());
 		
 		this.setPanelBtnOk(new PanelBtnOk());
 		getContentPane().add(this.getPanelBtnOk(), BorderLayout.SOUTH);
@@ -79,9 +78,6 @@ public class DialogoPaisMantenimiento extends JDialog {
 	}
 	
 	// GETTERS & SETTERS
-	public JPanel getContentPanel() {
-		return contentPanel;
-	}
 
 	public JTable getTablaPaises() {
 		return tablaPaises;
@@ -89,6 +85,9 @@ public class DialogoPaisMantenimiento extends JDialog {
 
 	public void setTablaPaises(JTable tablaPaises) {
 		this.tablaPaises = tablaPaises;
+		tablaPaises.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tablaPaises.setRowSelectionAllowed(false);
+		tablaPaises.setEnabled(false);
 	}
 
 	private String[] getNOMCOLUMNAS() {
@@ -101,14 +100,6 @@ public class DialogoPaisMantenimiento extends JDialog {
 
 	public void setDtmModelo(DefaultTableModel dtmModelo) {
 		this.dtmModelo = dtmModelo;
-	}
-
-	public JScrollPane getScrollPane() {
-		return scrollPane;
-	}
-
-	public void setScrollPane(JScrollPane scrollPane) {
-		this.scrollPane = scrollPane;
 	}
 
 	public PanelBtnOk getPanelBtnOk() {
