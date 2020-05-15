@@ -104,7 +104,7 @@ public class PantallaPrincipal extends JFrame {
 		getMntmInterpreteConsulta().setActionCommand("menuInterpreteConsulta");
 		mnInterpretes.add(getMntmInterpreteConsulta());		
 		
-		JMenu mnEjemplaresAudiovisuales = new JMenu("EjemplaresAudiovisuales");
+		JMenu mnEjemplaresAudiovisuales = new JMenu("Ejemplares Audiovisuales");
 		mnMantenimiento.add(mnEjemplaresAudiovisuales);
 		
 		JMenu mnPeliculas = new JMenu("Películas");

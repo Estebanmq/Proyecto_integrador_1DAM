@@ -7,11 +7,16 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import modelo.Pelicula;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JSlider;
+import javax.swing.JTextPane;
 
 public class DialogoPeliculaAlta extends JDialog {
 	
@@ -54,6 +59,29 @@ public class DialogoPeliculaAlta extends JDialog {
 		JLabel labelDirector = new JLabel("Director:");
 		labelDirector.setBounds(6, 61, 55, 16);
 		contentPanel.add(labelDirector);
+		
+		JLabel labelAnyo = new JLabel("Año:");
+		labelAnyo.setBounds(12, 107, 44, 16);
+		contentPanel.add(labelAnyo);
+		
+		JSlider sliderAnyo = new JSlider();
+		sliderAnyo.setPaintTicks(true);
+		sliderAnyo.setMajorTickSpacing(20);
+		sliderAnyo.setPaintLabels(true);
+		sliderAnyo.setValue(2020);
+		sliderAnyo.setMinimum(1900);
+		sliderAnyo.setMaximum(2020);
+		sliderAnyo.setBounds(68, 94, 304, 45);
+		contentPanel.add(sliderAnyo);
+		
+		JLabel labelValorAnyo = new JLabel();
+		labelValorAnyo.setBounds(171, 140, 82, 16);
+		contentPanel.add(labelValorAnyo);
+		sliderAnyo.addChangeListener(new ChangeListener() {
+		      public void stateChanged(ChangeEvent e) {
+		    	  labelValorAnyo.setText("Año: "+sliderAnyo.getValue());
+		      }
+		});
 		
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

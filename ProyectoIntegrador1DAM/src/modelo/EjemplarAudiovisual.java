@@ -2,7 +2,7 @@ package modelo;
 /** 
  * Esta clase define los atributos y métodos comunes a los documental y pelicula
  * 
- * @author 
+ * @author Esteban Martinez Quintanar
  * @see Director
  * @since 01/05/2020
  */
@@ -65,6 +65,8 @@ public abstract class EjemplarAudiovisual {
 		this.nacionalidad = nacionalidad;
 	}
 
+	
+	
 	/**
 	 * Método para ver los atributos
 	 * @returns una cadena de caracteres con todos los atributos
