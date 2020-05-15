@@ -2,20 +2,22 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import modelo.Pelicula;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.JSlider;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
 public class DialogoPeliculaAlta extends JDialog {
@@ -32,7 +34,10 @@ public class DialogoPeliculaAlta extends JDialog {
 	private JTextField fieldTitulo;
 
 	public DialogoPeliculaAlta() {
-
+		Date sysDate = new Date();
+		int max = Calendar.getInstance().get(Calendar.YEAR);
+		SpinnerModel model = new SpinnerNumberModel(1900,1900,max,1);
+		
 		setTitle("Alta de películas");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
@@ -52,44 +57,48 @@ public class DialogoPeliculaAlta extends JDialog {
 		contentPanel.add(getFieldTitulo());
 		getFieldTitulo().setColumns(33);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(68, 56, 156, 26);
-		contentPanel.add(comboBox);
+		JComboBox comboBoxDirector = new JComboBox();
+		comboBoxDirector.setBounds(68, 102, 156, 26);
+		contentPanel.add(comboBoxDirector);
 		
 		JLabel labelDirector = new JLabel("Director:");
-		labelDirector.setBounds(6, 61, 55, 16);
+		labelDirector.setBounds(6, 106, 55, 16);
 		contentPanel.add(labelDirector);
 		
 		JLabel labelAnyo = new JLabel("Año:");
-		labelAnyo.setBounds(12, 107, 44, 16);
+		labelAnyo.setBounds(6, 53, 44, 16);
 		contentPanel.add(labelAnyo);
 		
-		JSlider sliderAnyo = new JSlider();
-		sliderAnyo.setPaintTicks(true);
-		sliderAnyo.setMajorTickSpacing(20);
-		sliderAnyo.setPaintLabels(true);
-		sliderAnyo.setValue(2020);
-		sliderAnyo.setMinimum(1900);
-		sliderAnyo.setMaximum(2020);
-		sliderAnyo.setBounds(68, 94, 304, 45);
-		contentPanel.add(sliderAnyo);
+		JSpinner spinnerAnyo = new JSpinner(model);
+		spinnerAnyo.setBounds(68, 48, 72, 26);
+		spinnerAnyo.setValue(2020);
+		contentPanel.add(spinnerAnyo);
 		
-		JLabel labelValorAnyo = new JLabel();
-		labelValorAnyo.setBounds(171, 140, 82, 16);
-		contentPanel.add(labelValorAnyo);
-		sliderAnyo.addChangeListener(new ChangeListener() {
-		      public void stateChanged(ChangeEvent e) {
-		    	  labelValorAnyo.setText("Año: "+sliderAnyo.getValue());
-		      }
-		});
+		JLabel labelPais = new JLabel("País:");
+		labelPais.setBounds(6, 81, 61, 16);
+		contentPanel.add(labelPais);
 		
-		JPanel buttonPane = new JPanel();
-		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		getContentPane().add(buttonPane, BorderLayout.SOUTH);
-
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(68, 75, 156, 27);
+		contentPanel.add(comboBox);
+		
+		JLabel lblSinopsis = new JLabel("Sinopsis: ");
+		lblSinopsis.setBounds(6, 140, 61, 16);
+		contentPanel.add(lblSinopsis);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setLineWrap(true);
+		textArea.setRows(1);
+		textArea.setBounds(68, 140, 218, 93);
+		contentPanel.add(textArea);
+		
 		setPanelBtnsAceptarCancelar(new PanelBtnsAceptarCancelar());
-		getContentPane().add(getPanelBtnsAceptarCancelar(), BorderLayout.SOUTH);
 		this.getRootPane().setDefaultButton(getPanelBtnsAceptarCancelar().getBtnAceptar());
+		panelBtnsAceptarCancelar.setLayout(null);
+		
+		JLabel labelMensaje = new JLabel("");
+		labelMensaje.setBounds(6, 6, 236, 21);
+		panelBtnsAceptarCancelar.add(labelMensaje);
 	}
 
 	public JButton getBtnAceptar() {
@@ -114,6 +123,10 @@ public class DialogoPeliculaAlta extends JDialog {
 
 	public void setPanelBtnsAceptarCancelar(PanelBtnsAceptarCancelar panelBtnsAceptarCancelar) {
 		this.panelBtnsAceptarCancelar = panelBtnsAceptarCancelar;
+		panelBtnsAceptarCancelar.setBounds(0, 240, 450, 38);
+		contentPanel.add(panelBtnsAceptarCancelar);
+		panelBtnsAceptarCancelar.getBtnCancelar().setBounds(346, 5, 98, 29);
+		panelBtnsAceptarCancelar.getBtnAceptar().setBounds(254, 5, 92, 29);
 	}
 
 	public Pelicula getPelicula() {
