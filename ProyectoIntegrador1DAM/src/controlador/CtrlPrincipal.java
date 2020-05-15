@@ -96,7 +96,7 @@ public class CtrlPrincipal implements ActionListener {
 				new CtrlPaisMantenimiento();
 				break;
 			case "menuListadosParticipantes" :
-				System.out.format("%s\n", e.getActionCommand());
+				new CtrlListadoParticipantes();
 				break;
 			case "menuListadosEjemplares" :
 				System.out.format("%s\n", e.getActionCommand());

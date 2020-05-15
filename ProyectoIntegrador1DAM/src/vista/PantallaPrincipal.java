@@ -44,9 +44,9 @@ public class PantallaPrincipal extends JFrame {
 				
 		this.setTitle("Gestión de videoteca");
 		this.setResizable(false);
-		this.setBounds(100, 100, 811, 489);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBounds(100, 100, 900, 600);
 		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
 		this.setJMenuBar(menuBar);

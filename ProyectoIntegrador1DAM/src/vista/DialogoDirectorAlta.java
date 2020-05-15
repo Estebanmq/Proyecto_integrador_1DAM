@@ -26,6 +26,7 @@ public class DialogoDirectorAlta extends JDialog {
 	 * Create the dialog.
 	 */
 	public DialogoDirectorAlta() {
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 		this.setTitle("Alta de directores");
 		this.setModal(true);
