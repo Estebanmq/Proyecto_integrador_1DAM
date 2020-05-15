@@ -15,11 +15,11 @@ public class DialogoDirectorAlta extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
-	private JButton btnAceptar;
-	private JButton btnCancelar;
 	private JPanel panel;
 	private JLabel labelTexto;
 	
+	private JButton btnAceptar;
+	private JButton btnCancelar;
 	private PanelBtnsAceptarCancelar panelBtnsAceptarCancelar;
 
 	/**

@@ -22,8 +22,6 @@ public class CtrlDirectorAlta implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-		System.out.format("Se ha pulsado algo: %s\n", e.getActionCommand());
 		
 		switch (e.getActionCommand()) {
 			case "btnAceptar" :
