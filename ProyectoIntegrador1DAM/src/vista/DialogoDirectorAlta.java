@@ -8,6 +8,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import javax.swing.JRadioButton;
+import javax.swing.JComboBox;
 
 public class DialogoDirectorAlta extends JDialog {
 
@@ -16,20 +19,21 @@ public class DialogoDirectorAlta extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 
 	private JPanel panel;
-	private JLabel labelTexto;
 	
 	private JButton btnAceptar;
 	private JButton btnCancelar;
 	private PanelBtnsAceptarCancelar panelBtnsAceptarCancelar;
+	private JLabel labelNombre;
+	private JTextField textField;
 
 	/**
 	 * Create the dialog.
 	 */
 	public DialogoDirectorAlta() {
+		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 		this.setTitle("Alta de directores");
-		this.setModal(true);
 		this.setBounds(100, 100, 537, 309);
 		this.getContentPane().setLayout(new BorderLayout());
 		this.setLocationRelativeTo(null);
@@ -46,9 +50,30 @@ public class DialogoDirectorAlta extends JDialog {
 
 		this.setPanel(new JPanel());
 		this.getContentPane().add(getPanel(), BorderLayout.CENTER);
-
-		this.setLblLabelTexto(new JLabel("estamos en dialogo de alta de director"));
-		this.getPanel().add(this.getLblLabelTexto());
+		panel.setLayout(null);
+		{
+			labelNombre = new JLabel("Nombre:");
+			labelNombre.setBounds(6, 27, 91, 16);
+			panel.add(labelNombre);
+		}
+		{
+			textField = new JTextField();
+			textField.setBounds(109, 21, 184, 28);
+			panel.add(textField);
+			textField.setColumns(33);
+		}
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Masculino");
+		rdbtnNewRadioButton.setBounds(34, 81, 91, 18);
+		panel.add(rdbtnNewRadioButton);
+		
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Femenino");
+		rdbtnNewRadioButton_1.setBounds(138, 81, 115, 18);
+		panel.add(rdbtnNewRadioButton_1);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(44, 111, 123, 26);
+		panel.add(comboBox);
 
 	}
 
@@ -80,14 +105,6 @@ public class DialogoDirectorAlta extends JDialog {
 		this.panel = panel;
 	}
 
-	private JLabel getLblLabelTexto() {
-		return labelTexto;
-	}
-
-	private void setLblLabelTexto(JLabel lblLabelTexto) {
-		this.labelTexto = lblLabelTexto;
-	}
-
 	public PanelBtnsAceptarCancelar getPanelBtnsAceptarCancelar() {
 		return panelBtnsAceptarCancelar;
 	}
@@ -95,5 +112,4 @@ public class DialogoDirectorAlta extends JDialog {
 	public void setPanelBtnsAceptarCancelar(PanelBtnsAceptarCancelar panelBtnsAceptarCancelar) {
 		this.panelBtnsAceptarCancelar = panelBtnsAceptarCancelar;
 	}
-
 }
