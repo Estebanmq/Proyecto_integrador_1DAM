@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 
@@ -25,7 +26,7 @@ public class init {
 	public static void main(String[] args) {
 		
 		try {
-			UIManager.setLookAndFeel(new WindowsLookAndFeel());
+			UIManager.setLookAndFeel(new NimbusLookAndFeel());
 			
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
