@@ -3,14 +3,14 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import dao.DaoListadoParticipantes;
+import dao.DaoDirectorMantenimiento;
 import vista.DialogoListadoParticipantes;
 
 public class CtrlListadoParticipantes implements ActionListener {
 
 	private DialogoListadoParticipantes dialogoListadoPart;
 
-	private DaoListadoParticipantes daoListadoPart;
+	private DaoDirectorMantenimiento daoListadoPart;
 
 	public CtrlListadoParticipantes() {
 		
@@ -57,12 +57,12 @@ public class CtrlListadoParticipantes implements ActionListener {
 	}
 
 
-	public DaoListadoParticipantes getDaoListadoPart() {
+	public DaoDirectorMantenimiento getDaoListadoPart() {
 		return daoListadoPart;
 	}
 
 
-	public void setDaoListadoPart(DaoListadoParticipantes daoListadoPart) {
+	public void setDaoListadoPart(DaoDirectorMantenimiento daoListadoPart) {
 		this.daoListadoPart = daoListadoPart;
 	}
 
