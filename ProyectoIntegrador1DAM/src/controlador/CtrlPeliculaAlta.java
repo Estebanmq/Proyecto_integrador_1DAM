@@ -26,14 +26,25 @@ public class CtrlPeliculaAlta implements ActionListener {
 		
 		switch (e.getActionCommand()) {
 		case "btnAceptar" :
+			comprobarTitulo(); //Llamada a comprobarTitulo
 			System.out.format("Ha pulsado: %s\n", e.getActionCommand());
-			pelicula.setTitulo(dialogoAltaPelicula.getFieldTitulo().getText());
+			//pelicula.setTitulo(dialogoAltaPelicula.getFieldTitulo().getText());
 			break;
 		case "btnCancelar" :
 			dialogoAltaPelicula.dispose();
 			break;
-	}
+		}
 		
+	}
+	
+	public void comprobarTitulo() {
+		System.out.format("%s\n", dialogoAltaPelicula.getFieldTitulo().getText());
+		if (dialogoAltaPelicula.getFieldTitulo().getText().equals("")) {
+			dialogoAltaPelicula.mensajeError("El titulo no debe de estar vacio");
+		} 
+//		if (dialogoAltaPelicula.get) {
+//			
+//		}
 	}
 
 	public DialogoPeliculaAlta getDialogoAltaPelicula() {

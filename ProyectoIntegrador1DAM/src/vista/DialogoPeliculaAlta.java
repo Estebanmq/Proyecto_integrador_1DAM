@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,7 +33,7 @@ public class DialogoPeliculaAlta extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField fieldTitulo;
-
+	
 	public DialogoPeliculaAlta() {
 		Date sysDate = new Date();
 		int max = Calendar.getInstance().get(Calendar.YEAR);
@@ -41,7 +42,7 @@ public class DialogoPeliculaAlta extends JDialog {
 		setTitle("Alta de películas");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 486, 381);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -82,9 +83,9 @@ public class DialogoPeliculaAlta extends JDialog {
 		comboBox.setBounds(68, 75, 156, 27);
 		contentPanel.add(comboBox);
 		
-		JLabel lblSinopsis = new JLabel("Sinopsis: ");
-		lblSinopsis.setBounds(6, 140, 61, 16);
-		contentPanel.add(lblSinopsis);
+		JLabel labelSinopsis = new JLabel("Sinopsis: ");
+		labelSinopsis.setBounds(6, 140, 61, 16);
+		contentPanel.add(labelSinopsis);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setLineWrap(true);
@@ -97,8 +98,14 @@ public class DialogoPeliculaAlta extends JDialog {
 		panelBtnsAceptarCancelar.setLayout(null);
 		
 		JLabel labelMensaje = new JLabel("");
-		labelMensaje.setBounds(6, 6, 236, 21);
+		labelMensaje.setBounds(6, 6, 280, 21);
 		panelBtnsAceptarCancelar.add(labelMensaje);
+		labelMensaje.setForeground(Color.RED);
+		
+	}
+	
+	public void mensajeError(String s) {
+		
 	}
 
 	public JButton getBtnAceptar() {
@@ -123,10 +130,10 @@ public class DialogoPeliculaAlta extends JDialog {
 
 	public void setPanelBtnsAceptarCancelar(PanelBtnsAceptarCancelar panelBtnsAceptarCancelar) {
 		this.panelBtnsAceptarCancelar = panelBtnsAceptarCancelar;
-		panelBtnsAceptarCancelar.setBounds(0, 240, 450, 38);
+		panelBtnsAceptarCancelar.setBounds(0, 321, 486, 38);
 		contentPanel.add(panelBtnsAceptarCancelar);
-		panelBtnsAceptarCancelar.getBtnCancelar().setBounds(346, 5, 98, 29);
-		panelBtnsAceptarCancelar.getBtnAceptar().setBounds(254, 5, 92, 29);
+		panelBtnsAceptarCancelar.getBtnCancelar().setBounds(382, 5, 98, 29);
+		panelBtnsAceptarCancelar.getBtnAceptar().setBounds(294, 5, 92, 29);
 	}
 
 	public Pelicula getPelicula() {
