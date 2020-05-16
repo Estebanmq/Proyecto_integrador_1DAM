@@ -4,6 +4,11 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Dimension;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Font;
 
 public class PanelBtnsAceptarCancelar extends JPanel {
 	
@@ -11,10 +16,18 @@ public class PanelBtnsAceptarCancelar extends JPanel {
 
 	private JButton btnAceptar;
 	private JButton btnCancelar;
+	private JLabel labelTextoError;
 	
 	public PanelBtnsAceptarCancelar() {
 
 		this.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		
+		setLabelTextoError(new JLabel(""));
+		getLabelTextoError().setFont(new Font("SansSerif", Font.BOLD, 12));
+		getLabelTextoError().setForeground(Color.RED);
+		getLabelTextoError().setHorizontalAlignment(SwingConstants.RIGHT);
+		getLabelTextoError().setPreferredSize(new Dimension(270, 16));
+		add(getLabelTextoError());
 	
 		this.setBtnAceptar(new JButton("Aceptar"));
 		this.getBtnAceptar().setActionCommand("btnAceptar");
@@ -40,6 +53,14 @@ public class PanelBtnsAceptarCancelar extends JPanel {
 
 	public void setBtnCancelar(JButton btnCancelar) {
 		this.btnCancelar = btnCancelar;
+	}
+
+	public JLabel getLabelTextoError() {
+		return labelTextoError;
+	}
+
+	public void setLabelTextoError(JLabel labelTextoError) {
+		this.labelTextoError = labelTextoError;
 	}
 	
 }
