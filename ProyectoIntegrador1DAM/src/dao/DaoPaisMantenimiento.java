@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import modelo.Pais;
 
 public class DaoPaisMantenimiento {
@@ -19,35 +17,24 @@ public class DaoPaisMantenimiento {
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
-	public ArrayList<Pais> obtenerListaPaises () {
+	public ArrayList<Pais> obtenerListaPaises () throws ClassNotFoundException, SQLException {
 		
 		Pais pais = new Pais();
 		ArrayList<Pais> listaPaises =  new ArrayList<Pais>();
 		
+												// Monta la query a ejecutar
 		this.setQuery("select * from PAIS order by CODIGO");
+			
+		this.setConn(Conexion.getConexion());
+		this.setPs(this.getConn().prepareStatement(this.getQuery()));
+		this.setRs(this.getPs().executeQuery());
 		
-		try  {
-			
-			this.setConn(Conexion.getConexion());
-			this.setPs(this.getConn().prepareStatement(this.getQuery()));
-			this.setRs(this.getPs().executeQuery());
-			
-			while (this.getRs().next()) {
-				pais = new Pais(this.getRs().getInt(1), this.getRs().getString(2));
-				listaPaises.add(pais);
-			}
-			
-		} catch (ClassNotFoundException | SQLException e) {
-			JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
-		} finally {
-			try {
-				Conexion.cerrar();
-				this.getConn().close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		while (this.getRs().next()) {
+			pais = new Pais(this.getRs().getInt(1), this.getRs().getString(2));
+			listaPaises.add(pais);
 		}
+		
+		Conexion.cerrar();
 		
 		return listaPaises;
 		

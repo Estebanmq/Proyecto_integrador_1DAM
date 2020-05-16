@@ -2,7 +2,10 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import dao.DaoPaisMantenimiento;
 import modelo.Pais;
@@ -21,11 +24,19 @@ public class CtrlPaisMantenimiento implements ActionListener  {
 		
 											// Instancia al DAO y obtiene el array de países
 		daoPaisMantenimiento = new DaoPaisMantenimiento();
-		arrayPais = this.getDaoPaisMantenimiento().obtenerListaPaises();
 		
-											// Instancia al diálogo y le pasa el array de países 
-		this.setDialogoPaisMant(new DialogoPaisMantenimiento());
-		this.getDialogoPaisMant().crearFilas(arrayPais);
+		try {
+			
+			arrayPais = this.getDaoPaisMantenimiento().obtenerListaPaises();
+			
+						// Instancia al diálogo y le pasa el array de países 
+			this.setDialogoPaisMant(new DialogoPaisMantenimiento());
+			this.getDialogoPaisMant().crearFilas(arrayPais);
+			
+		} catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
 		
 											// Añade el listener a los botones del dialogo
 		this.getDialogoPaisMant().getPanelBtnOk().getBtnOk().addActionListener(this);
