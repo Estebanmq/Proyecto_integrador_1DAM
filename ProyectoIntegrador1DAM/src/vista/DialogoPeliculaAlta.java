@@ -134,10 +134,6 @@ public class DialogoPeliculaAlta extends JDialog {
 
 	public void setPanelBtnsAceptarCancelar(PanelBtnsAceptarCancelar panelBtnsAceptarCancelar) {
 		this.panelBtnsAceptarCancelar = panelBtnsAceptarCancelar;
-		panelBtnsAceptarCancelar.setBounds(0, 304, 486, 55);
-		contentPanel.add(panelBtnsAceptarCancelar);
-		panelBtnsAceptarCancelar.getBtnCancelar().setBounds(382, 5, 98, 29);
-		panelBtnsAceptarCancelar.getBtnAceptar().setBounds(282, 5, 92, 29);
 	}
 
 	public Pelicula getPelicula() {
