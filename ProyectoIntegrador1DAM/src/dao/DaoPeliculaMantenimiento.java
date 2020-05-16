@@ -27,6 +27,7 @@ public class DaoPeliculaMantenimiento {
 		rs.next();
 		maxCod = rs.getInt(1);
 		System.out.format("%s\n", maxCod);
+		
 //		String query = " insert into users (first_name, last_name, date_created, is_admin, num_points)"
 //		        + " values (?, ?, ?, ?, ?)";
 //	
