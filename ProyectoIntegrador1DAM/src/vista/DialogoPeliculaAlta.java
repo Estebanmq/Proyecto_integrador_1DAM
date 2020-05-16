@@ -33,7 +33,10 @@ public class DialogoPeliculaAlta extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField fieldTitulo;
+	private JLabel labelMensaje;
 	
+
+
 	public DialogoPeliculaAlta() {
 		Date sysDate = new Date();
 		int max = Calendar.getInstance().get(Calendar.YEAR);
@@ -84,13 +87,13 @@ public class DialogoPeliculaAlta extends JDialog {
 		contentPanel.add(comboBox);
 		
 		JLabel labelSinopsis = new JLabel("Sinopsis: ");
-		labelSinopsis.setBounds(6, 140, 61, 16);
+		labelSinopsis.setBounds(6, 216, 61, 16);
 		contentPanel.add(labelSinopsis);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		textArea.setRows(1);
-		textArea.setBounds(68, 140, 218, 93);
+		textArea.setBounds(68, 216, 218, 93);
 		contentPanel.add(textArea);
 		
 		setPanelBtnsAceptarCancelar(new PanelBtnsAceptarCancelar());
@@ -98,14 +101,6 @@ public class DialogoPeliculaAlta extends JDialog {
 		panelBtnsAceptarCancelar.setLayout(null);
 		
 		
-		
-	}
-	
-	public void mensajeError(String s) {
-		JLabel labelMensaje = new JLabel(s);
-		labelMensaje.setBounds(6, 6, 280, 21);
-		panelBtnsAceptarCancelar.add(labelMensaje);
-		labelMensaje.setForeground(Color.RED);
 	}
 
 	public JButton getBtnAceptar() {
@@ -150,5 +145,13 @@ public class DialogoPeliculaAlta extends JDialog {
 
 	public void setFieldTitulo(JTextField fieldTitulo) {
 		this.fieldTitulo = fieldTitulo;
+	}
+	
+	public JLabel getLabelMensaje() {
+		return labelMensaje;
+	}
+
+	public void setLabelMensaje(JLabel labelMensaje) {
+		this.labelMensaje = labelMensaje;
 	}
 }

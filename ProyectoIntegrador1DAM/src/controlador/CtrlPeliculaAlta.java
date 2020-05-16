@@ -40,7 +40,8 @@ public class CtrlPeliculaAlta implements ActionListener {
 	public void comprobarTitulo() {
 		System.out.format("%s\n", dialogoAltaPelicula.getFieldTitulo().getText());
 		if (dialogoAltaPelicula.getFieldTitulo().getText().equals("")) {
-			dialogoAltaPelicula.mensajeError("El titulo no debe de estar vacio");
+			//dialogoAltaPelicula.mensajeError("El titulo no debe de estar vacio");
+			dialogoAltaPelicula.getPanelBtnsAceptarCancelar().getLabelTextoError().setText("Titulo no puede estar vacio");
 		} 
 //		if (dialogoAltaPelicula.get) {
 //			
