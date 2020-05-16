@@ -11,9 +11,9 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class PanelBtnsAceptarCancelar extends JPanel {
-	
-	private static final long serialVersionUID = -2916018382013617038L;
 
+	private static final long serialVersionUID = 1L;
+	
 	private JButton btnAceptar;
 	private JButton btnCancelar;
 	private JLabel labelTextoError;

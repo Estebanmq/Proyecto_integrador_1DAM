@@ -11,9 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class PanelBtnOk extends JPanel {
-	
-	private static final long serialVersionUID = -2916018382013617038L;
 
+	private static final long serialVersionUID = 1L;
+	
 	private JButton btnOk;
 	private JLabel labelTextoError;
 	
