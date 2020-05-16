@@ -97,15 +97,15 @@ public class DialogoPeliculaAlta extends JDialog {
 		this.getRootPane().setDefaultButton(getPanelBtnsAceptarCancelar().getBtnAceptar());
 		panelBtnsAceptarCancelar.setLayout(null);
 		
-		JLabel labelMensaje = new JLabel("");
-		labelMensaje.setBounds(6, 6, 280, 21);
-		panelBtnsAceptarCancelar.add(labelMensaje);
-		labelMensaje.setForeground(Color.RED);
+		
 		
 	}
 	
 	public void mensajeError(String s) {
-		
+		JLabel labelMensaje = new JLabel(s);
+		labelMensaje.setBounds(6, 6, 280, 21);
+		panelBtnsAceptarCancelar.add(labelMensaje);
+		labelMensaje.setForeground(Color.RED);
 	}
 
 	public JButton getBtnAceptar() {
