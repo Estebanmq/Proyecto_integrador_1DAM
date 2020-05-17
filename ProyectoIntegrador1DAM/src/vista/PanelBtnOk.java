@@ -25,7 +25,7 @@ public class PanelBtnOk extends JPanel {
 		this.getLabelTextoError().setFont(new Font("SansSerif", Font.BOLD, 12));
 		this.getLabelTextoError().setForeground(Color.RED);
 		this.getLabelTextoError().setHorizontalAlignment(SwingConstants.RIGHT);
-		this.getLabelTextoError().setPreferredSize(new Dimension(270, 16));
+		this.getLabelTextoError().setPreferredSize(new Dimension(300, 16));
 		this.add(getLabelTextoError());
 	
 		this.setBtnOk(new JButton("Ok"));
