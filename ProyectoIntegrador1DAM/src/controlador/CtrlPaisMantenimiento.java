@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import dao.Conexion;
 import dao.DaoPaisMantenimiento;
 import modelo.Pais;
 import vista.DialogoPaisMantenimiento;
@@ -22,10 +23,11 @@ public class CtrlPaisMantenimiento implements ActionListener  {
 		
 		ArrayList<Pais> arrayPais;
 		
-											// Instancia al DAO y obtiene el array de países
-		daoPaisMantenimiento = new DaoPaisMantenimiento();
-		
 		try {
+
+			// Instancia al DAO y obtiene el array de países
+			daoPaisMantenimiento = new DaoPaisMantenimiento();
+
 			
 			arrayPais = this.getDaoPaisMantenimiento().obtenerListaPaises();
 			
@@ -36,6 +38,12 @@ public class CtrlPaisMantenimiento implements ActionListener  {
 		} catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
+        } finally {
+        	try {
+				Conexion.cerrar();
+			} catch (SQLException e) {
+	            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
         }
 		
 											// Añade el listener a los botones del dialogo
