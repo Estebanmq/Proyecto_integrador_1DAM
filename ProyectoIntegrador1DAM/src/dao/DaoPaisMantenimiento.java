@@ -47,11 +47,13 @@ public class DaoPaisMantenimiento {
 												// Monta la query a ejecutar
 		this.setQuery("select * from PAIS where CODIGO = ?");
 			
+												// Obtiene la conexión y ejecuta la query
 		this.setConn(Conexion.getConexion());
 		this.setPs(this.getConn().prepareStatement(this.getQuery()));
 		this.getPs().setInt(1, codigo);
 		this.setRs(this.getPs().executeQuery());
-		
+
+												// Carga en Pais los datos devuelvos
 		while (this.getRs().next()) {
 			pais = new Pais(this.getRs().getInt(1), this.getRs().getString(2));
 		}
