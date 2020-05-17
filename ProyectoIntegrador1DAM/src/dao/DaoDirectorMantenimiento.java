@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import vista.DialogoDirectorAlta;
 
@@ -16,7 +17,7 @@ public class DaoDirectorMantenimiento {
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
-	public void darAltaDirector (DialogoDirectorAlta dAlta) throws ClassNotFoundException, SQLException {
+public void darAltaDirector (DialogoDirectorAlta dAlta) throws ClassNotFoundException, SQLException {
 		
 		int codigo=0;
 		//monta la query
@@ -47,47 +48,67 @@ public class DaoDirectorMantenimiento {
 		
 	}
 	
-	
-	//Getter y setter
-
-	public String getQuery() {
-		return query;
+	public ArrayList<String> obtenerNombreDirectores () throws ClassNotFoundException, SQLException {
+		
+		String direc;
+		ArrayList<String> directores =  new ArrayList<String>();
+		
+												// Monta la query a ejecutar
+		this.setQuery("SELECT participante.nombre FROM director INNER JOIN participante ON director.codigo = participante.codigo");
+			
+		this.setConn(Conexion.getConexion());
+		this.setPs(this.getConn().prepareStatement(this.getQuery()));
+		this.setRs(this.getPs().executeQuery());
+		
+		while (this.getRs().next()) {
+			direc=this.getRs().getString(1);
+			directores.add(direc);
+		}
+		
+		Conexion.cerrar();
+		
+		return directores;
+		
 	}
 
-	public void setQuery(String query) {
-		this.query = query;
-	}
-
-	public Connection getConn() {
+	// GETTERS & SETTERS
+	private Connection getConn() {
 		return conn;
 	}
 
-	public void setConn(Connection conn) {
+	private void setConn(Connection conn) {
 		this.conn = conn;
 	}
 
-	public Statement getSt() {
+	private String getQuery() {
+		return query;
+	}
+
+	private void setQuery(String query) {
+		this.query = query;
+	}
+
+	private Statement getSt() {
 		return st;
 	}
 
-	public void setSt(Statement st) {
+	private void setSt(Statement st) {
 		this.st = st;
 	}
 
-	public PreparedStatement getPs() {
+	private PreparedStatement getPs() {
 		return ps;
 	}
 
-	public void setPs(PreparedStatement ps) {
+	private void setPs(PreparedStatement ps) {
 		this.ps = ps;
 	}
 
-	public ResultSet getRs() {
+	private ResultSet getRs() {
 		return rs;
 	}
 
-	public void setRs(ResultSet rs) {
+	private void setRs(ResultSet rs) {
 		this.rs = rs;
 	}
-
 }
