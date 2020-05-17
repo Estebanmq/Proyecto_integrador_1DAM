@@ -72,6 +72,7 @@ public class CtrlPrincipal implements ActionListener {
 				new CtrlPeliculaAlta();
 				break;
 			case "menuPeliculaBaja" :
+				new CtrlPeliculaBaja();
 				System.out.format("%s\n", e.getActionCommand());
 				break;
 			case "menuPeliculaModificación" :

@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 import modelo.GeneroPelicula;
 import modelo.Pais;
 import modelo.Pelicula;
+import javax.swing.JTable;
 
 public class DialogoPeliculaBaja extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -34,12 +35,10 @@ public class DialogoPeliculaBaja extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField fieldTitulo;
 	private JLabel labelMensaje;
-	private JSpinner spinnerAnyo;
-	private JComboBox comboBoxGenero;
-	private JComboBox<String> comboBoxPais;
-	private JTextArea textAreaSinopsis;
-	private JComboBox<String> comboBoxDirector; 
-	
+	private JTextField textFieldCodPeli;
+	private JTable table;
+	private JButton btnEliminar;
+	private JButton btnBuscar;
 
 	public DialogoPeliculaBaja() {
 
@@ -53,50 +52,52 @@ public class DialogoPeliculaBaja extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
+		JLabel labelTextoCodigo = new JLabel("Código de la película:");
+		labelTextoCodigo.setBounds(6, 24, 145, 16);
+		contentPanel.add(labelTextoCodigo);
 		
+		textFieldCodPeli = new JTextField();
+		textFieldCodPeli.setBounds(163, 19, 130, 26);
+		contentPanel.add(textFieldCodPeli);
+		textFieldCodPeli.setColumns(10);
+		
+		table = new JTable();
+		table.setBounds(16, 60, 462, 199);
+		contentPanel.add(table);
+		
+		btnEliminar = new JButton("Eliminar pelicula");
+		btnEliminar.setBounds(6, 271, 136, 29);
+		btnEliminar.setActionCommand("btnEliminar");
+		contentPanel.add(btnEliminar);
+		
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(303, 19, 75, 29);
+		btnBuscar.setActionCommand("btnBuscar");
+		contentPanel.add(btnBuscar);
 		
 		setPanelBtnsAceptarCancelar(new PanelBtnsAceptarCancelar());
 		getContentPane().add(getPanelBtnsAceptarCancelar(), BorderLayout.SOUTH);
-		this.getRootPane().setDefaultButton(getPanelBtnsAceptarCancelar().getBtnAceptar());
-
-		
-	
-		
-		
+		this.getRootPane().setDefaultButton(getPanelBtnsAceptarCancelar().getBtnAceptar());		
 	}
 	
-	public JTextArea getTextAreaSinopsis() {
-		return textAreaSinopsis;
-	}
-
-	public void setTextAreaSinopsis(JTextArea textAreaSinopsis) {
-		this.textAreaSinopsis = textAreaSinopsis;
-	}
 	
-	public JSpinner getSpinnerAnyo() {
-		return spinnerAnyo;
+
+	public JButton getBtnEliminar() {
+		return btnEliminar;
 	}
 
-	public void setSpinnerAnyo(JSpinner spinnerAnyo) {
-		this.spinnerAnyo = spinnerAnyo;
+	public void setBtnEliminar(JButton btnEliminar) {
+		this.btnEliminar = btnEliminar;
 	}
 
-	public JComboBox getComboBoxPais() {
-		return comboBoxPais;
+	public JButton getBtnBuscar() {
+		return btnBuscar;
 	}
 
-	public void setComboBoxPais(JComboBox comboBoxPais) {
-		this.comboBoxPais = comboBoxPais;
+	public void setBtnBuscar(JButton btnBuscar) {
+		this.btnBuscar = btnBuscar;
 	}
 
-	public JComboBox getComboBoxDirector() {
-		return comboBoxDirector;
-	}
-
-	public void setComboBoxDirector(JComboBox comboBoxDirector) {
-		this.comboBoxDirector = comboBoxDirector;
-	}
-	
 	public JButton getBtnAceptar() {
 		return btnAceptar;
 	}
@@ -145,12 +146,4 @@ public class DialogoPeliculaBaja extends JDialog {
 		this.labelMensaje = labelMensaje;
 	}
 	
-	public JComboBox getComboBoxGenero() {
-		return comboBoxGenero;
-	}
-
-	public void setComboBoxGenero(JComboBox comboBoxGenero) {
-		this.comboBoxGenero = comboBoxGenero;
-	}
-
 }
