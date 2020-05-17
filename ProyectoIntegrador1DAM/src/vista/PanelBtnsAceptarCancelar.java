@@ -11,9 +11,9 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class PanelBtnsAceptarCancelar extends JPanel {
-
-	private static final long serialVersionUID = 1L;
 	
+	private static final long serialVersionUID = -2916018382013617038L;
+
 	private JButton btnAceptar;
 	private JButton btnCancelar;
 	private JLabel labelTextoError;
@@ -22,12 +22,12 @@ public class PanelBtnsAceptarCancelar extends JPanel {
 
 		this.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
-		this.setLabelTextoError(new JLabel(""));
-		this.getLabelTextoError().setFont(new Font("SansSerif", Font.BOLD, 12));
-		this.getLabelTextoError().setForeground(Color.RED);
-		this.getLabelTextoError().setHorizontalAlignment(SwingConstants.RIGHT);
-		this.getLabelTextoError().setPreferredSize(new Dimension(270, 16));
-		this.add(getLabelTextoError());
+		setLabelTextoError(new JLabel(""));
+		getLabelTextoError().setFont(new Font("SansSerif", Font.BOLD, 12));
+		getLabelTextoError().setForeground(Color.RED);
+		getLabelTextoError().setHorizontalAlignment(SwingConstants.RIGHT);
+		getLabelTextoError().setPreferredSize(new Dimension(270, 16));
+		add(getLabelTextoError());
 	
 		this.setBtnAceptar(new JButton("Aceptar"));
 		this.getBtnAceptar().setActionCommand("btnAceptar");

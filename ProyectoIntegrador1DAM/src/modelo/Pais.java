@@ -29,8 +29,8 @@ public class Pais {
 	}
 	/**
 	 * Método constructor de país
-	 * @param codigo Código de país
-	 * @param descripcion Descripción de país
+	 * @param codigo
+	 * @param descripcion
 	 */
 	public Pais(Integer codigo, String descripcion) {
 		this.codigo = codigo;

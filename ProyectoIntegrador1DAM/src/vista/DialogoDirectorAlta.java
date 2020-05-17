@@ -3,14 +3,15 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
 import javax.swing.JRadioButton;
-import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class DialogoDirectorAlta extends JDialog {
 
@@ -24,7 +25,12 @@ public class DialogoDirectorAlta extends JDialog {
 	private JButton btnCancelar;
 	private PanelBtnsAceptarCancelar panelBtnsAceptarCancelar;
 	private JLabel labelNombre;
-	private JTextField textField;
+	private JTextField textNombre;
+	private JTextField textFecha;
+	private JTextField textGenero;
+	private ButtonGroup bg;
+	private JComboBox comboBoxPais;
+
 
 	/**
 	 * Create the dialog.
@@ -34,7 +40,7 @@ public class DialogoDirectorAlta extends JDialog {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 		this.setTitle("Alta de directores");
-		this.setBounds(100, 100, 537, 309);
+		this.setBounds(100, 100, 537, 400);
 		this.getContentPane().setLayout(new BorderLayout());
 		this.setLocationRelativeTo(null);
 		getContentPanel().setLayout(new FlowLayout());
@@ -52,29 +58,93 @@ public class DialogoDirectorAlta extends JDialog {
 		this.getContentPane().add(getPanel(), BorderLayout.CENTER);
 		panel.setLayout(null);
 		{
-			labelNombre = new JLabel("Nombre:");
+			labelNombre = new JLabel("Nombre*:");
 			labelNombre.setBounds(6, 27, 91, 16);
 			panel.add(labelNombre);
 		}
 		{
-			textField = new JTextField();
-			textField.setBounds(109, 21, 184, 28);
-			panel.add(textField);
-			textField.setColumns(33);
+			textNombre = new JTextField();
+			textNombre.setToolTipText("");
+			textNombre.setBounds(62, 21, 184, 28);
+			panel.add(textNombre);
+			textNombre.setColumns(33);
 		}
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Masculino");
-		rdbtnNewRadioButton.setBounds(34, 81, 91, 18);
-		panel.add(rdbtnNewRadioButton);
+		JRadioButton rdbtnSexoM = new JRadioButton("Masculino");
+		rdbtnSexoM.setSelected(true);
+		rdbtnSexoM.setActionCommand("Masculino");
+		rdbtnSexoM.setBounds(34, 135, 91, 18);
+		panel.add(rdbtnSexoM);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Femenino");
-		rdbtnNewRadioButton_1.setBounds(138, 81, 115, 18);
-		panel.add(rdbtnNewRadioButton_1);
+		JRadioButton rdbtnSexoF = new JRadioButton("Femenino");
+		rdbtnSexoF.setActionCommand("Femenino");
+		rdbtnSexoF.setBounds(131, 135, 115, 18);
+		panel.add(rdbtnSexoF);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(44, 111, 123, 26);
-		panel.add(comboBox);
+		bg = new ButtonGroup();
+		bg.add(rdbtnSexoM);
+		bg.add(rdbtnSexoF);
 
+		comboBoxPais = new JComboBox();
+		comboBoxPais.setEditable(true);
+		comboBoxPais.setBounds(88, 169, 123, 26);
+		panel.add(comboBoxPais);
+		
+		JLabel labelFecha = new JLabel("Fecha*:");
+		labelFecha.setBounds(6, 70, 46, 14);
+		panel.add(labelFecha);
+		
+		JLabel labelSexo = new JLabel("Sexo*:");
+		labelSexo.setBounds(6, 114, 46, 14);
+		panel.add(labelSexo);
+		
+		JLabel labelNacionalidad = new JLabel("Nacionalidad:");
+		labelNacionalidad.setBounds(6, 175, 71, 14);
+		panel.add(labelNacionalidad);
+		
+		JLabel labelGenero = new JLabel("Genero preferido:");
+		labelGenero.setBounds(6, 241, 91, 14);
+		panel.add(labelGenero);
+		
+		textFecha = new JTextField();
+		textFecha.setBounds(62, 63, 185, 28);
+		panel.add(textFecha);
+		textFecha.setColumns(10);
+		
+		textGenero = new JTextField();
+		textGenero.setBounds(100, 234, 164, 28);
+		panel.add(textGenero);
+		textGenero.setColumns(15);
+		
+		JLabel labelObligatorio = new JLabel("* Campos obligatorios.");
+		labelObligatorio.setBounds(10, 289, 115, 16);
+		panel.add(labelObligatorio);
+
+	}
+//	getters y setters
+
+	public JTextField getTextNombre() {
+		return textNombre;
+	}
+
+	public void setTextNombre(JTextField textNombre) {
+		this.textNombre = textNombre;
+	}
+
+	public JTextField getTextFecha() {
+		return textFecha;
+	}
+
+	public void setTextFecha(JTextField textFecha) {
+		this.textFecha = textFecha;
+	}
+
+	public JTextField getTextGenero() {
+		return textGenero;
+	}
+
+	public void setTextGenero(JTextField textGenero) {
+		this.textGenero = textGenero;
 	}
 
 	public JButton getBtnAceptar() {
@@ -111,5 +181,20 @@ public class DialogoDirectorAlta extends JDialog {
 
 	public void setPanelBtnsAceptarCancelar(PanelBtnsAceptarCancelar panelBtnsAceptarCancelar) {
 		this.panelBtnsAceptarCancelar = panelBtnsAceptarCancelar;
+	}
+	public JComboBox getComboBoxPais() {
+		return comboBoxPais;
+	}
+
+	public void setComboBoxPais(JComboBox comboBoxPais) {
+		this.comboBoxPais = comboBoxPais;
+	}
+
+	public ButtonGroup getBg() {
+		return bg;
+	}
+
+	public void setBg(ButtonGroup bg) {
+		this.bg = bg;
 	}
 }

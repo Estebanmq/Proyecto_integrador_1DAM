@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 
 import dao.DaoDirectorMantenimiento;
 import dao.DaoPaisMantenimiento;
-import dao.DaoPeliculaMantenimiento;
 import modelo.Pelicula;
 import vista.DialogoPeliculaAlta;
 
@@ -20,7 +19,6 @@ public class CtrlPeliculaAlta implements ActionListener {
 	
 	private DaoPaisMantenimiento daoPaisMantenimiento;
 	private DaoDirectorMantenimiento daoDirectorMantenimiento;
-	private DaoPeliculaMantenimiento daoPeliculaMantenimiento;
 	
 	public CtrlPeliculaAlta() {
 		daoPaisMantenimiento = new DaoPaisMantenimiento();
@@ -42,18 +40,9 @@ public class CtrlPeliculaAlta implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		daoPeliculaMantenimiento = new DaoPeliculaMantenimiento();
 		switch (e.getActionCommand()) {
 		case "btnAceptar" :
-			if(comprobarTitulo())
-				try {
-					daoPeliculaMantenimiento.insertarPelicula(dialogoAltaPelicula.getFieldTitulo().getText(),(Integer) dialogoAltaPelicula.getSpinnerAnyo().getValue(),
-						dialogoAltaPelicula.getComboBoxDirector().getSelectedItem().toString(), dialogoAltaPelicula.getComboBoxPais().getSelectedItem().toString(),
-						dialogoAltaPelicula.getTextAreaSinopsis().getText(), dialogoAltaPelicula.getComboBoxGenero().getSelectedItem().toString());
-				} catch (ClassNotFoundException | SQLException i) {
-		            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.ERROR_MESSAGE);
-		            i.printStackTrace();
-		        }
+			comprobarTitulo(); //Llamada a comprobarTitulo
 			System.out.format("Ha pulsado: %s\n", e.getActionCommand());
 			
 			//pelicula.setTitulo(dialogoAltaPelicula.getFieldTitulo().getText());
@@ -65,23 +54,19 @@ public class CtrlPeliculaAlta implements ActionListener {
 		
 	}
 	
-	public boolean comprobarTitulo() {
+	public void comprobarTitulo() {
 		String mensaje="";
 		System.out.format("%s\n", dialogoAltaPelicula.getFieldTitulo().getText());
 		if (dialogoAltaPelicula.getFieldTitulo().getText().equals("")) {
 			mensaje = "Titulo no puede estar vacio";
-		} else if (dialogoAltaPelicula.getComboBoxPais().getSelectedItem( ).equals("--Seleccionar País--")) {
+		} else if (dialogoAltaPelicula.getComboBoxPais().getSelectedItem().equals("--Seleccionar País--")) {
 			mensaje = "Tiene que seleccionar un pais valido";
 		} else if (dialogoAltaPelicula.getComboBoxDirector().getSelectedItem().equals("--Seleccionar Director--")) {
 			mensaje = "Tiene que seleccionar un director valido";
 		} else if (dialogoAltaPelicula.getComboBoxGenero().getSelectedItem().equals("--Seleccionar Género--")) {
 			mensaje = "Tiene que seleccionar un genero valido";
-		} else {
-			dialogoAltaPelicula.getPanelBtnsAceptarCancelar().getLabelTextoError().setText("");
-			return true;
 		}
 		dialogoAltaPelicula.getPanelBtnsAceptarCancelar().getLabelTextoError().setText(mensaje);
-		return false;
 	}
 
 	public DialogoPeliculaAlta getDialogoAltaPelicula() {

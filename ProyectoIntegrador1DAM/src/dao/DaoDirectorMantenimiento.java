@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import modelo.Director;
+import vista.DialogoDirectorAlta;
 
 public class DaoDirectorMantenimiento {
 	
@@ -16,6 +16,37 @@ public class DaoDirectorMantenimiento {
 	private Statement st;
 	private PreparedStatement ps;
 	private ResultSet rs;
+	
+public void darAltaDirector (DialogoDirectorAlta dAlta) throws ClassNotFoundException, SQLException {
+		
+		int codigo=0;
+		//monta la query
+		this.setQuery("select max(codigo) from participante");
+		
+		this.setConn(Conexion.getConexion());
+		this.setPs(this.getConn().prepareStatement(this.getQuery()));
+		this.setRs(this.getPs().executeQuery());
+		
+		if(this.getRs().next()) {
+			codigo=this.getRs().getInt(1)+1;
+		}
+		
+		String nombre = dAlta.getTextNombre().getText();
+		String fecha = dAlta.getTextFecha().getText();
+		String sexo = dAlta.getBg().getSelection().getActionCommand();
+		String generoPreferido = dAlta.getTextGenero().getText();
+		//String nacionalidad = dAlta.getComboBoxPais().getSelectedItem();
+		
+		
+		this.setQuery("INSERT INTO PARTICIPANTE (CODIGO, NOMBRE, FECHANACIMIENTO, SEXO, NACIONALIDAD) " + 
+				"VALUES (4, 'Pepito', '1984-02-13', 'MASCULINO', 32);");
+		
+		this.setPs(this.getConn().prepareStatement(this.getQuery()));
+		this.getPs().executeQuery();
+		
+		Conexion.cerrar();
+		
+	}
 	
 	public ArrayList<String> obtenerNombreDirectores () throws ClassNotFoundException, SQLException {
 		
