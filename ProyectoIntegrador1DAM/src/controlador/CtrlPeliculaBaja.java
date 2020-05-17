@@ -23,12 +23,13 @@ public class CtrlPeliculaBaja implements ActionListener{
 	private DaoPeliculaMantenimiento daoPeliculaMantenimiento;
 	
 	public CtrlPeliculaBaja() {
-		daoPaisMantenimiento = new DaoPaisMantenimiento();
 		daoDirectorMantenimiento = new DaoDirectorMantenimiento();
 		
 		dialogoBajaPelicula = new DialogoPeliculaBaja();
 		dialogoBajaPelicula.getPanelBtnsAceptarCancelar().getBtnAceptar().addActionListener(this);
 		dialogoBajaPelicula.getPanelBtnsAceptarCancelar().getBtnCancelar().addActionListener(this);
+		dialogoBajaPelicula.getBtnBuscar().addActionListener(this);
+		dialogoBajaPelicula.getBtnEliminar().addActionListener(this);
 //		try {
 //			
 //		} catch (ClassNotFoundException | SQLException e) {
@@ -41,9 +42,10 @@ public class CtrlPeliculaBaja implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		daoPaisMantenimiento = new DaoPaisMantenimiento();
 		switch (e.getActionCommand()) {
 		case "btnBuscar":
-			System.out.format("%s\n", "Boton de buscar");
+			daoPeliculaMantenimiento.buscarPeli(dialogoBajaPelicula.getFieldTitulo().getText());
 			break;
 		case "btnEliminar":
 			System.out.format("%s\n", "Boton de eliminar");
@@ -52,7 +54,7 @@ public class CtrlPeliculaBaja implements ActionListener{
 			System.out.format("%s\n", "Boton de aceptar");
 			break;
 		case "btnCancelar":
-			System.out.format("%s\n", "Boton de cancelar");
+			dialogoBajaPelicula.dispose();
 			break;
 		}
 		

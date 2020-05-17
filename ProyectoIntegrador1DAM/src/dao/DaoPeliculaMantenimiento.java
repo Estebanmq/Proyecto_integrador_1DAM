@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import modelo.Pais;
+import modelo.Pelicula;
 
 public class DaoPeliculaMantenimiento {
 
@@ -50,6 +51,13 @@ public class DaoPeliculaMantenimiento {
 		Conexion.cerrar();
 		return true;
 	}
+	
+	
+	public Pelicula buscarPeli(String cod) {
+		Pelicula p  = null;
+		return p;
+	}
+
 	
 	// GETTERS & SETTERS
 	private Connection getConn() {
