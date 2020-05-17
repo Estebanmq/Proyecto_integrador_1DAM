@@ -19,7 +19,7 @@ public class DaoDirectorMantenimiento {
 	
 public void darAltaDirector (DialogoDirectorAlta dAlta) throws ClassNotFoundException, SQLException {
 		
-		int codigo=0;
+		int codigo = 0;
 		//monta la query
 		this.setQuery("select max(codigo) from participante");
 		
@@ -39,7 +39,7 @@ public void darAltaDirector (DialogoDirectorAlta dAlta) throws ClassNotFoundExce
 		
 		
 		this.setQuery("INSERT INTO PARTICIPANTE (CODIGO, NOMBRE, FECHANACIMIENTO, SEXO, NACIONALIDAD) " + 
-				"VALUES (4, 'Pepito', '1984-02-13', 'MASCULINO', 32);");
+				"VALUES ("+codigo+ ",'" +nombre+ "','" +fecha+ "', 'MASCULINO', 32);");
 		
 		this.setPs(this.getConn().prepareStatement(this.getQuery()));
 		this.getPs().executeQuery();

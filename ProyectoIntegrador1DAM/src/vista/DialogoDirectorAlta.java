@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -12,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Pais;
 
 public class DialogoDirectorAlta extends JDialog {
 
@@ -87,8 +90,10 @@ public class DialogoDirectorAlta extends JDialog {
 
 		comboBoxPais = new JComboBox();
 		comboBoxPais.setEditable(true);
-		comboBoxPais.setBounds(88, 169, 123, 26);
+		comboBoxPais.setBounds(88, 169, 158, 26);
 		panel.add(comboBoxPais);
+		comboBoxPais.addItem("--Seleccionar País--");
+		comboBoxPais.setSelectedItem("--Seleccionar País--");
 		
 		JLabel labelFecha = new JLabel("Fecha*:");
 		labelFecha.setBounds(6, 70, 46, 14);
@@ -103,7 +108,7 @@ public class DialogoDirectorAlta extends JDialog {
 		panel.add(labelNacionalidad);
 		
 		JLabel labelGenero = new JLabel("Genero preferido:");
-		labelGenero.setBounds(6, 241, 91, 14);
+		labelGenero.setBounds(6, 241, 106, 14);
 		panel.add(labelGenero);
 		
 		textFecha = new JTextField();
@@ -112,15 +117,22 @@ public class DialogoDirectorAlta extends JDialog {
 		textFecha.setColumns(10);
 		
 		textGenero = new JTextField();
-		textGenero.setBounds(100, 234, 164, 28);
+		textGenero.setBounds(119, 234, 164, 28);
 		panel.add(textGenero);
 		textGenero.setColumns(15);
 		
 		JLabel labelObligatorio = new JLabel("* Campos obligatorios.");
-		labelObligatorio.setBounds(10, 289, 115, 16);
+		labelObligatorio.setBounds(10, 289, 135, 16);
 		panel.add(labelObligatorio);
 
 	}
+	
+	public void mostrarPaises(ArrayList<Pais>paises) {
+		for (int i = 0; i < paises.size(); i++) {
+			comboBoxPais.addItem(paises.get(i).getDescripcion());
+		}
+	}
+	
 //	getters y setters
 
 	public JTextField getTextNombre() {
