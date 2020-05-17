@@ -16,15 +16,18 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import modelo.GeneroPelicula;
 import modelo.Pais;
 import modelo.Pelicula;
 import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class DialogoPeliculaBaja extends JDialog {
 	private static final long serialVersionUID = 1L;
 	
+
 
 	private Pelicula pelicula;
 	
@@ -35,45 +38,104 @@ public class DialogoPeliculaBaja extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField fieldTitulo;
 	private JLabel labelMensaje;
-	private JTextField textFieldCodPeli;
-	private JTable table;
+	private JTextField fieldCodPeli;
 	private JButton btnEliminar;
 	private JButton btnBuscar;
+	private JLabel labelTitulo;
+	private JLabel labelTituloResul;
+	private JLabel labelPais;
+	private JLabel labelPaisResul;
+	private JLabel labelAnyo;
+	private JLabel labelAnyoResul;
+	private JLabel labelDirector;
+	private JLabel labelGenero;
+	private JLabel labelGeneroResul;
+	private JLabel labelSinopsis;
 
 	public DialogoPeliculaBaja() {
-
+		
+		JLabel labelTextoCodigo = new JLabel("Código de la película:");
+		fieldCodPeli = new JTextField();
+		btnEliminar = new JButton("Eliminar pelicula");
+		btnBuscar = new JButton("Buscar");
+		labelTitulo = new JLabel("Titulo: ");
+		labelTituloResul = new JLabel("");
+		labelPais = new JLabel("País:");
+		labelPaisResul = new JLabel("");
+		labelAnyo = new JLabel("Año:");
+		labelAnyoResul = new JLabel("");
+		labelDirector = new JLabel("Director:");
+		labelAnyoResul = new JLabel("");
+		labelGenero = new JLabel("Genero:");
+		labelGeneroResul = new JLabel("");
+		labelSinopsis = new JLabel("Sinopsis:");
+		JScrollPane scrollPane = new JScrollPane();
+		JLabel labelSinopsisResul = new JLabel("");
+		
 		setTitle("Baja de películas");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
-		setBounds(100, 100, 495, 381);
+		setBounds(100, 100, 541, 381);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JLabel labelTextoCodigo = new JLabel("Código de la película:");
 		labelTextoCodigo.setBounds(6, 24, 145, 16);
 		contentPanel.add(labelTextoCodigo);
 		
-		textFieldCodPeli = new JTextField();
-		textFieldCodPeli.setBounds(163, 19, 130, 26);
-		contentPanel.add(textFieldCodPeli);
-		textFieldCodPeli.setColumns(10);
+		fieldCodPeli.setBounds(163, 19, 130, 26);
+		contentPanel.add(fieldCodPeli);
+		fieldCodPeli.setColumns(10);
 		
-		table = new JTable();
-		table.setBounds(16, 60, 462, 199);
-		contentPanel.add(table);
 		
-		btnEliminar = new JButton("Eliminar pelicula");
-		btnEliminar.setBounds(6, 271, 136, 29);
+		btnEliminar.setBounds(376, 19, 137, 29);
 		btnEliminar.setActionCommand("btnEliminar");
 		contentPanel.add(btnEliminar);
 		
-		btnBuscar = new JButton("Buscar");
 		btnBuscar.setBounds(303, 19, 75, 29);
 		btnBuscar.setActionCommand("btnBuscar");
 		contentPanel.add(btnBuscar);
+		
+		
+		labelTitulo.setBounds(6, 52, 61, 16);
+		contentPanel.add(labelTitulo);
+		
+		labelTituloResul.setBounds(81, 52, 212, 16);
+		contentPanel.add(labelTituloResul);
+		
+		labelPais.setBounds(6, 80, 61, 16);
+		contentPanel.add(labelPais);
+		
+		labelPaisResul.setBounds(81, 80, 212, 16);
+		contentPanel.add(labelPaisResul);
+		
+		labelAnyo.setBounds(6, 108, 61, 16);
+		contentPanel.add(labelAnyo);
+		
+		labelAnyoResul.setBounds(81, 108, 212, 16);
+		contentPanel.add(labelAnyoResul);
+		
+		labelDirector.setBounds(6, 136, 61, 16);
+		contentPanel.add(labelDirector);
+		
+		labelAnyoResul.setBounds(81, 136, 212, 16);
+		contentPanel.add(labelAnyoResul);
+		
+		labelGenero.setBounds(6, 164, 61, 16);
+		contentPanel.add(labelGenero);
+		
+		labelGeneroResul.setBounds(81, 164, 212, 16);
+		contentPanel.add(labelGeneroResul);
+		
+		labelSinopsis.setBounds(6, 192, 61, 16);
+		contentPanel.add(labelSinopsis);
+		
+		scrollPane.setBounds(81, 192, 432, 122);
+		contentPanel.add(scrollPane);
+		
+		scrollPane.setViewportView(labelSinopsisResul);
 		
 		setPanelBtnsAceptarCancelar(new PanelBtnsAceptarCancelar());
 		getContentPane().add(getPanelBtnsAceptarCancelar(), BorderLayout.SOUTH);
@@ -81,7 +143,7 @@ public class DialogoPeliculaBaja extends JDialog {
 	}
 	
 	
-
+	
 	public JButton getBtnEliminar() {
 		return btnEliminar;
 	}
@@ -145,5 +207,38 @@ public class DialogoPeliculaBaja extends JDialog {
 	public void setLabelMensaje(JLabel labelMensaje) {
 		this.labelMensaje = labelMensaje;
 	}
+
+	public JLabel getLabelTituloResul() {
+		return labelTituloResul;
+	}
+
+	public void setLabelTituloResul(JLabel labelTituloResul) {
+		this.labelTituloResul = labelTituloResul;
+	}
+
+	public JLabel getLabelPaisResul() {
+		return labelPaisResul;
+	}
+
+	public void setLabelPaisResul(JLabel labelPaisResul) {
+		this.labelPaisResul = labelPaisResul;
+	}
+
+	public JLabel getLabelAnyoResul() {
+		return labelAnyoResul;
+	}
+
+	public void setLabelAnyoResul(JLabel labelAnyoResul) {
+		this.labelAnyoResul = labelAnyoResul;
+	}
+
+	public JLabel getLabelGeneroResul() {
+		return labelGeneroResul;
+	}
+
+	public void setLabelGeneroResul(JLabel labelGeneroResul) {
+		this.labelGeneroResul = labelGeneroResul;
+	}
+	
 	
 }
