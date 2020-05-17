@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,17 +34,19 @@ public void darAltaDirector (DialogoDirectorAlta dAlta) throws ClassNotFoundExce
 		
 		String nombre = dAlta.getTextNombre().getText();
 		String fecha = dAlta.getTextFecha().getText();
+		//Date date = Date.valueOf(fecha);
 		String sexo = dAlta.getBg().getSelection().getActionCommand();
 		String generoPreferido = dAlta.getTextGenero().getText();
-		//String nacionalidad = dAlta.getComboBoxPais().getSelectedItem();
+		String nacionalidad = dAlta.getComboBoxPais().getSelectedItem().toString();
 		
+		String insertParticipante = "INSERT INTO PARTICIPANTE VALUES ("+codigo+ ",'" +nombre+ "',DATE('" + fecha + "'),'" +sexo+ "', (SELECT codigo FROM PAIS WHERE descripcion='"+nacionalidad+"'))";
+		this.setQuery(insertParticipante);
+		st = conn.createStatement();
+		st.executeUpdate(this.getQuery());
 		
-		this.setQuery("INSERT INTO PARTICIPANTE (CODIGO, NOMBRE, FECHANACIMIENTO, SEXO, NACIONALIDAD) " + 
-				"VALUES ("+codigo+ ",'" +nombre+ "','" +fecha+ "', 'MASCULINO', 32);");
-		
-		this.setPs(this.getConn().prepareStatement(this.getQuery()));
-		this.getPs().executeQuery();
-		
+		String insertDirector = "INSERT INTO DIRECTOR VALUES ("+codigo+ ",'" +generoPreferido+ "')";
+		this.setQuery(insertDirector);
+		st.executeUpdate(this.getQuery());
 		Conexion.cerrar();
 		
 	}
