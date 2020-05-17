@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import modelo.Pais;
-import modelo.Pelicula;
 
 public class DaoPaisMantenimiento {
 
@@ -38,6 +37,22 @@ public class DaoPaisMantenimiento {
 		Conexion.cerrar();
 		
 		return listaPaises;
+		
+	}
+	
+	public Pais obtenerPais(Integer codigo) throws ClassNotFoundException, SQLException {
+		
+												// Monta la query a ejecutar
+		this.setQuery("select * from PAIS where CODIGO = ?");
+			
+		this.setConn(Conexion.getConexion());
+		this.setPs(this.getConn().prepareStatement(this.getQuery()));
+		this.getPs().setInt(1, codigo);
+		this.setRs(this.getPs().executeQuery());
+		
+		Conexion.cerrar();
+		
+		return new Pais(this.getRs().getInt(1), this.getRs().getString(2));
 		
 	}
 
