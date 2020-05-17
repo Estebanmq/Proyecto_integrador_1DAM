@@ -45,15 +45,15 @@ public class CtrlDirectorAlta implements ActionListener {
 				if(!validar) {
 					break;
 				}
-				//crear codigo director
+				//si todo ok meter director bbdd
 				try {
 					daoDirectorMantenimiento.darAltaDirector(dialogoDirectorAlta);
 				}catch (ClassNotFoundException | SQLException ex) {
 		            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.ERROR_MESSAGE);
 		            ex.printStackTrace();
 		        }
-				//si todo ok meter director bbdd
 				System.out.format("Ha pulsado: %s\n", e.getActionCommand());
+				this.getDialogoDirectorAlta().dispose();
 				break;
 			case "btnCancelar" :
 				this.getDialogoDirectorAlta().dispose();

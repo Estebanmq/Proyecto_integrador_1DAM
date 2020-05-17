@@ -75,12 +75,12 @@ public class DialogoDirectorAlta extends JDialog {
 		
 		JRadioButton rdbtnSexoM = new JRadioButton("Masculino");
 		rdbtnSexoM.setSelected(true);
-		rdbtnSexoM.setActionCommand("Masculino");
+		rdbtnSexoM.setActionCommand("MASCULINO");
 		rdbtnSexoM.setBounds(34, 135, 91, 18);
 		panel.add(rdbtnSexoM);
 		
 		JRadioButton rdbtnSexoF = new JRadioButton("Femenino");
-		rdbtnSexoF.setActionCommand("Femenino");
+		rdbtnSexoF.setActionCommand("FEMENINO");
 		rdbtnSexoF.setBounds(131, 135, 115, 18);
 		panel.add(rdbtnSexoF);
 		
@@ -90,7 +90,7 @@ public class DialogoDirectorAlta extends JDialog {
 
 		comboBoxPais = new JComboBox();
 		comboBoxPais.setEditable(true);
-		comboBoxPais.setBounds(88, 169, 158, 26);
+		comboBoxPais.setBounds(103, 169, 158, 26);
 		panel.add(comboBoxPais);
 		comboBoxPais.addItem("--Seleccionar País--");
 		comboBoxPais.setSelectedItem("--Seleccionar País--");
@@ -104,7 +104,7 @@ public class DialogoDirectorAlta extends JDialog {
 		panel.add(labelSexo);
 		
 		JLabel labelNacionalidad = new JLabel("Nacionalidad:");
-		labelNacionalidad.setBounds(6, 175, 71, 14);
+		labelNacionalidad.setBounds(6, 175, 91, 14);
 		panel.add(labelNacionalidad);
 		
 		JLabel labelGenero = new JLabel("Genero preferido:");
