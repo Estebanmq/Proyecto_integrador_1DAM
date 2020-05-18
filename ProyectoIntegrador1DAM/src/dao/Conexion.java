@@ -5,7 +5,13 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+/**
+ * 
+ * Clase para realizar las conexiones
+ * 
+ * @author Jose Manuel
+ * @version 1.0
+ */
 public class Conexion {
 
 	private static final String CLASECONEXION = "org.apache.derby.jdbc.EmbeddedDriver"; 
@@ -22,7 +28,13 @@ public class Conexion {
 		url = "jdbc:derby:".concat(proyecto);
 		conexion = null;
 	}
-	
+	/**
+	 * Método que genera una nueva conexión y la retorna
+	 * 
+	 * @return Connection
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public static Connection getConexion() throws ClassNotFoundException, SQLException {
 		
 		Class.forName(CLASECONEXION);
@@ -30,7 +42,11 @@ public class Conexion {
 		return conexion;
 		
 	}
-	
+	/**
+	 * Método para cerrar la conexión
+	 * 
+	 * @throws SQLException
+	 */
 	public static void cerrar() throws SQLException {
 		conexion.close();
 	}

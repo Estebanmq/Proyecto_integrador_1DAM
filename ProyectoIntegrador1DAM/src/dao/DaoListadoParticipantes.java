@@ -11,7 +11,12 @@ import java.util.HashMap;
 import modelo.FiltroListadoParticipantes;
 import modelo.ListaParticipante;
 import modelo.Pais;
-
+/**
+ * 
+ * @author Jose Manuel
+ * @version 1.0
+ * @see 
+ */
 public class DaoListadoParticipantes {
 	
 	private String query;
