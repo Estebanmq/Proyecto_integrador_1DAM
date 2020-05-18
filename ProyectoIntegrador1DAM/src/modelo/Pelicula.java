@@ -31,6 +31,25 @@ public class Pelicula extends EjemplarAudiovisual {
 	private HashSet<Interprete> interpretes;
 
 	/**
+	 * Método constructor de película sin parametros
+	 */
+	public Pelicula() {
+		super();
+		this.genero = null;
+		this.interpretes = null;
+	}
+	
+	/**
+	 * Método constructor de copia
+	 * @param p Objeto de tipo pelicula
+	 */
+	public Pelicula(Pelicula p) {
+		super(p.getCodigo(),p.getTitulo(),p.getAnyo(),p.getDirector(),p.getSinopsis(),p.getNacionalidad());
+		this.genero = p.genero;
+		this.interpretes = p.interpretes;
+	}
+	
+	/**
 	 * Método constructor de película
 	 * @param codigo
 	 * @param titulo

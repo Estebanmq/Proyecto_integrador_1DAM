@@ -45,6 +45,17 @@ public abstract class EjemplarAudiovisual {
 	 */
 	private Pais nacionalidad;
 
+	/**
+	 * Método constructor de ejemplar sin parametros
+	 */
+	public EjemplarAudiovisual() {
+		this.codigo = 0;
+		this.titulo = "";
+		this.anyo = 0;
+		this.director = null;
+		this.sinopsis = "";
+		this.nacionalidad = null;
+	}
 	
 	/**
 	 * Método constructor de ejemplar

@@ -1,6 +1,10 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,6 +12,7 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
@@ -17,6 +22,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
 import modelo.GeneroPelicula;
 import modelo.Pais;
@@ -52,10 +58,11 @@ public class DialogoPeliculaBaja extends JDialog {
 	private JLabel labelGeneroResul;
 	private JLabel labelSinopsis;
 
+	
 	public DialogoPeliculaBaja() {
 		
 		JLabel labelTextoCodigo = new JLabel("Código de la película:");
-		fieldCodPeli = new JTextField();
+		fieldCodPeli = new JTextField(3);
 		btnEliminar = new JButton("Eliminar pelicula");
 		btnBuscar = new JButton("Buscar");
 		labelTitulo = new JLabel("Titulo: ");
@@ -71,6 +78,8 @@ public class DialogoPeliculaBaja extends JDialog {
 		labelSinopsis = new JLabel("Sinopsis:");
 		JScrollPane scrollPane = new JScrollPane();
 		JLabel labelSinopsisResul = new JLabel("");
+		
+		
 		
 		setTitle("Baja de películas");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -88,6 +97,20 @@ public class DialogoPeliculaBaja extends JDialog {
 		fieldCodPeli.setBounds(163, 19, 130, 26);
 		contentPanel.add(fieldCodPeli);
 		fieldCodPeli.setColumns(10);
+		fieldCodPeli.addKeyListener(new KeyAdapter() {
+			 public void keyTyped(KeyEvent e)
+			   {
+			      char caracter = e.getKeyChar();
+
+			      // Verificar si la tecla pulsada no es un digito
+			      if(((caracter < '0') ||
+			         (caracter > '9')) &&
+			         (caracter != '\b' /*corresponde a BACK_SPACE*/))
+			      {
+			         e.consume();  // ignorar el evento de teclado
+			      }
+			   }
+		});
 		
 		
 		btnEliminar.setBounds(376, 19, 137, 29);
@@ -239,6 +262,13 @@ public class DialogoPeliculaBaja extends JDialog {
 	public void setLabelGeneroResul(JLabel labelGeneroResul) {
 		this.labelGeneroResul = labelGeneroResul;
 	}
-	
+
+	public JTextField getFieldCodPeli() {
+		return fieldCodPeli;
+	}
+
+	public void setFieldCodPeli(JTextField fieldCodPeli) {
+		this.fieldCodPeli = fieldCodPeli;
+	}
 	
 }
