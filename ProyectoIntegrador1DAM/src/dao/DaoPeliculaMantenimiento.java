@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.Normalizer;
 
 import modelo.Director;
 import modelo.GeneroPelicula;
@@ -48,11 +49,6 @@ public class DaoPeliculaMantenimiento {
 	 * @see java.sql.ResultSet
 	 */
 	private ResultSet rs;
-	
-	/**
-	 * Atributo para trabajar con los datos de paises
-	 */
-	private DaoPaisMantenimiento daoPaisMantenimiento;
 	
 	/**
 	 * Método para insertar una película en la BBDD
@@ -112,46 +108,41 @@ public class DaoPeliculaMantenimiento {
 	 */
 	public Pelicula buscarPeli(int cod) throws ClassNotFoundException, SQLException {
 		DaoPaisMantenimiento daoPaisMantenimiento = new DaoPaisMantenimiento();
+		DaoDirectorMantenimiento daoDirectorMantenimiento = new DaoDirectorMantenimiento();
 		Pelicula p = new Pelicula();
 		int codDirec;
+		String selPeli;
+		String aux;
 		
 		conn=Conexion.getConexion();
 		st=conn.createStatement();
-		
-		rs = st.executeQuery("SELECT ejemplaraudiovisual.TITULO , ejemplaraudiovisual.ANYO , participante.CODIGO, ejemplaraudiovisual.SIPNOSIS , "+
+		selPeli = "SELECT ejemplaraudiovisual.TITULO , ejemplaraudiovisual.ANYO , participante.CODIGO, ejemplaraudiovisual.SIPNOSIS , "+
 				"ejemplaraudiovisual.NACIONALIDAD, pelicula.GENEROPELICULA FROM EJEMPLARAUDIOVISUAL " + 
 				"INNER JOIN PELICULA ON ejemplaraudiovisual.CODIGO = PELICULA.CODIGO " + 
-				"INNER JOIN PARTICIPANTE ON participante.CODIGO = ejemplaraudiovisual.DIRECTOR WHERE ejemplaraudiovisual.codigo="+cod);
+				"INNER JOIN PARTICIPANTE ON participante.CODIGO = ejemplaraudiovisual.DIRECTOR WHERE ejemplaraudiovisual.codigo="+cod;
+		rs = st.executeQuery(selPeli);
 		rs.next();
+		
+		
 		p.setCodigo(cod);
 		p.setTitulo(rs.getString(1));
 		p.setAnyo(rs.getInt(2));
 		codDirec = rs.getInt(3);
 		p.setSinopsis(rs.getString(4));
 		
-		p.setGenero(GeneroPelicula.valueOf(rs.getString(6)));
+		//Formateo el String del genero pelicula para quitar todas las tildes
+		aux = Normalizer.normalize(rs.getString(6).toUpperCase(), Normalizer.Form.NFD);
+	    aux = aux.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+		p.setGenero(GeneroPelicula.valueOf(aux));
 		p.setNacionalidad(daoPaisMantenimiento.obtenerPais(rs.getInt(5)));
-		p.setDirector(obtenerDirector(codDirec));
+		p.setDirector(daoDirectorMantenimiento.obtenerDirector(codDirec));
 		Conexion.cerrar();
 		
 		return p;
 	}
-
-	public Director obtenerDirector(int codigo) throws ClassNotFoundException, SQLException {
-		DaoPaisMantenimiento daoPaisMantenimiento = new DaoPaisMantenimiento();
-		Director direc;
-		
-		conn = Conexion.getConexion();
-		st=conn.createStatement();
-		rs = st.executeQuery("SELECT participante.NOMBRE, participante.FECHANACIMIENTO , participante.SEXO , director.GENEROPREFERIDO, participante.NACIONALIDAD "
-				+ "FROM participante INNER JOIN director ON participante.codigo = director.CODIGO WHERE director.codigo="+codigo);
-		rs.next();
-		direc = new Director(codigo,rs.getString(1),rs.getDate(2),Sexo.valueOf(rs.getString(3).toUpperCase()),GeneroPelicula.valueOf(rs.getString(4).toUpperCase()),daoPaisMantenimiento.obtenerPais(rs.getInt(5)));
-		
-		Conexion.cerrar();
-		
-		return direc;
-		
+	
+	public void borrarPelicula(int cod) {
+		System.out.format("%s\n", cod);
 	}
 	
 	// GETTERS & SETTERS

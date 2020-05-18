@@ -29,11 +29,11 @@ import modelo.Pais;
 import modelo.Pelicula;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DialogoPeliculaBaja extends JDialog {
 	private static final long serialVersionUID = 1L;
-	
-
 
 	private Pelicula pelicula;
 	
@@ -41,138 +41,138 @@ public class DialogoPeliculaBaja extends JDialog {
 	private JButton btnCancelar;
 	private PanelBtnsAceptarCancelar panelBtnsAceptarCancelar;
 
-	private final JPanel contentPanel = new JPanel();
-	private JTextField fieldTitulo;
-	private JLabel labelMensaje;
-	private JTextField fieldCodPeli;
-	private JButton btnEliminar;
+	private JTextField textFieldBuscarCodigo;
 	private JButton btnBuscar;
-	private JLabel labelTitulo;
-	private JLabel labelTituloResul;
-	private JLabel labelPais;
+	private JPanel panelResultado;
+	
+	private JLabel labelTitResul;
 	private JLabel labelPaisResul;
-	private JLabel labelAnyo;
 	private JLabel labelAnyoResul;
-	private JLabel labelDirector;
-	private JLabel labelGenero;
+	private JLabel labelDirectorResul;
 	private JLabel labelGeneroResul;
-	private JLabel labelSinopsis;
-
+	private JLabel labelSinopsisResul;
 	
 	public DialogoPeliculaBaja() {
-		
-		JLabel labelTextoCodigo = new JLabel("Código de la película:");
-		fieldCodPeli = new JTextField(3);
-		btnEliminar = new JButton("Eliminar pelicula");
+		//Panel para buscar por codigo
+		JPanel panelBuscar = new JPanel();
+		JLabel labelCodigo = new JLabel("Código de la película: ");
+		textFieldBuscarCodigo = new JTextField();
 		btnBuscar = new JButton("Buscar");
-		labelTitulo = new JLabel("Titulo: ");
-		labelTituloResul = new JLabel("");
-		labelPais = new JLabel("País:");
+
+		//Panel resultado
+		panelResultado = new JPanel();
+		JLabel labelTitulo = new JLabel("Título: ");
+		labelTitResul = new JLabel("");
+		JLabel labelPais = new JLabel("País: ");
 		labelPaisResul = new JLabel("");
-		labelAnyo = new JLabel("Año:");
+		JLabel labelAnyo = new JLabel("Año: ");
 		labelAnyoResul = new JLabel("");
-		labelDirector = new JLabel("Director:");
-		labelAnyoResul = new JLabel("");
-		labelGenero = new JLabel("Genero:");
+		JLabel labelDirector = new JLabel("Director: ");
+		labelDirectorResul = new JLabel("");
+		JLabel labelGenero = new JLabel("Género: ");
 		labelGeneroResul = new JLabel("");
-		labelSinopsis = new JLabel("Sinopsis:");
-		JScrollPane scrollPane = new JScrollPane();
-		JLabel labelSinopsisResul = new JLabel("");
+		JLabel labelSinopsis = new JLabel("Sinopsis: ");
+		labelSinopsisResul = new JLabel("");
 		
-		
+		panelBtnsAceptarCancelar = new PanelBtnsAceptarCancelar();
 		
 		setTitle("Baja de películas");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setBounds(100, 100, 541, 381);
 		this.setLocationRelativeTo(null);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
+		getContentPane().setLayout(null);
 		
-		labelTextoCodigo.setBounds(6, 24, 145, 16);
-		contentPanel.add(labelTextoCodigo);
+		btnBuscar.setActionCommand("btnBuscar");
 		
-		fieldCodPeli.setBounds(163, 19, 130, 26);
-		contentPanel.add(fieldCodPeli);
-		fieldCodPeli.setColumns(10);
-		fieldCodPeli.addKeyListener(new KeyAdapter() {
-			 public void keyTyped(KeyEvent e)
-			   {
+		panelBuscar.setBounds(0, 6, 541, 50);
+		getContentPane().add(panelBuscar);
+		panelBuscar.setLayout(null);
+		
+		
+		labelCodigo.setBounds(6, 11, 146, 16);
+		panelBuscar.add(labelCodigo);
+		
+		
+		textFieldBuscarCodigo.setBounds(145, 11, 108, 24);
+		panelBuscar.add(textFieldBuscarCodigo);
+		textFieldBuscarCodigo.setColumns(10);
+		
+		textFieldBuscarCodigo.addKeyListener(new KeyAdapter() {
+			 public void keyTyped(KeyEvent e) {
 			      char caracter = e.getKeyChar();
-
-			      // Verificar si la tecla pulsada no es un digito
-			      if(((caracter < '0') ||
-			         (caracter > '9')) &&
-			         (caracter != '\b' /*corresponde a BACK_SPACE*/))
-			      {
-			         e.consume();  // ignorar el evento de teclado
+			      // Verifico si la tecla pulsada no es un digito
+			      if(((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
+			         e.consume();  // No escribe el caracter
 			      }
 			   }
 		});
 		
+		btnBuscar.setBounds(251, 10, 85, 29);
+		panelBuscar.add(btnBuscar);
 		
-		btnEliminar.setBounds(376, 19, 137, 29);
-		btnEliminar.setActionCommand("btnEliminar");
-		contentPanel.add(btnEliminar);
-		
-		btnBuscar.setBounds(303, 19, 75, 29);
-		btnBuscar.setActionCommand("btnBuscar");
-		contentPanel.add(btnBuscar);
+		panelResultado.setBounds(0, 53, 541, 265);
+		getContentPane().add(panelResultado);
+		panelResultado.setLayout(null);
 		
 		
-		labelTitulo.setBounds(6, 52, 61, 16);
-		contentPanel.add(labelTitulo);
+		labelTitulo.setBounds(6, 6, 61, 16);
+		panelResultado.add(labelTitulo);
 		
-		labelTituloResul.setBounds(81, 52, 212, 16);
-		contentPanel.add(labelTituloResul);
+		labelPais.setBounds(6, 34, 61, 16);
+		panelResultado.add(labelPais);
 		
-		labelPais.setBounds(6, 80, 61, 16);
-		contentPanel.add(labelPais);
+		labelAnyo.setBounds(6, 62, 61, 16);
+		panelResultado.add(labelAnyo);
 		
-		labelPaisResul.setBounds(81, 80, 212, 16);
-		contentPanel.add(labelPaisResul);
+		labelDirector.setBounds(6, 90, 61, 16);
+		panelResultado.add(labelDirector);
 		
-		labelAnyo.setBounds(6, 108, 61, 16);
-		contentPanel.add(labelAnyo);
+		labelGenero.setBounds(6, 118, 61, 16);
+		panelResultado.add(labelGenero);
 		
-		labelAnyoResul.setBounds(81, 108, 212, 16);
-		contentPanel.add(labelAnyoResul);
+		labelSinopsis.setBounds(6, 146, 61, 16);
+		panelResultado.add(labelSinopsis);
 		
-		labelDirector.setBounds(6, 136, 61, 16);
-		contentPanel.add(labelDirector);
+		labelTitResul.setBounds(79, 6, 296, 16);
+		panelResultado.add(labelTitResul);
 		
-		labelAnyoResul.setBounds(81, 136, 212, 16);
-		contentPanel.add(labelAnyoResul);
+		labelPaisResul.setBounds(79, 34, 296, 16);
+		panelResultado.add(labelPaisResul);
 		
-		labelGenero.setBounds(6, 164, 61, 16);
-		contentPanel.add(labelGenero);
+		labelAnyoResul.setBounds(79, 62, 296, 16);
+		panelResultado.add(labelAnyoResul);
 		
-		labelGeneroResul.setBounds(81, 164, 212, 16);
-		contentPanel.add(labelGeneroResul);
+		labelDirectorResul.setBounds(79, 90, 296, 16);
+		panelResultado.add(labelDirectorResul);
 		
-		labelSinopsis.setBounds(6, 192, 61, 16);
-		contentPanel.add(labelSinopsis);
 		
-		scrollPane.setBounds(81, 192, 432, 122);
-		contentPanel.add(scrollPane);
+		labelGeneroResul.setBounds(79, 118, 296, 16);
+		panelResultado.add(labelGeneroResul);
 		
-		scrollPane.setViewportView(labelSinopsisResul);
 		
-		setPanelBtnsAceptarCancelar(new PanelBtnsAceptarCancelar());
-		getContentPane().add(getPanelBtnsAceptarCancelar(), BorderLayout.SOUTH);
-		this.getRootPane().setDefaultButton(getPanelBtnsAceptarCancelar().getBtnAceptar());		
-	}
-	
-	
-	
-	public JButton getBtnEliminar() {
-		return btnEliminar;
+		labelSinopsisResul.setBounds(79, 146, 296, 113);
+		panelResultado.add(labelSinopsisResul);
+		
+		panelBtnsAceptarCancelar.setBounds(0, 320, 541, 39);
+		getContentPane().add(panelBtnsAceptarCancelar);
 	}
 
-	public void setBtnEliminar(JButton btnEliminar) {
-		this.btnEliminar = btnEliminar;
+	public void mostrarPelicula(Pelicula p) {
+		labelTitResul.setText(p.getTitulo());
+		labelPaisResul.setText(p.getNacionalidad().getDescripcion());
+		labelAnyoResul.setText(Integer.toString(p.getAnyo()));
+		labelDirectorResul.setText(p.getDirector().getNombre());
+		labelGeneroResul.setText(p.getGenero().getDescripcion());
+		labelSinopsisResul.setText(p.getSinopsis());
+	}
+	
+	public JTextField getTextFieldBuscarCodigo() {
+		return textFieldBuscarCodigo;
+	}
+
+	public void setTextFieldBuscarCodigo(JTextField textFieldBuscarCodigo) {
+		this.textFieldBuscarCodigo = textFieldBuscarCodigo;
 	}
 
 	public JButton getBtnBuscar() {
@@ -182,10 +182,14 @@ public class DialogoPeliculaBaja extends JDialog {
 	public void setBtnBuscar(JButton btnBuscar) {
 		this.btnBuscar = btnBuscar;
 	}
-
-	public JButton getBtnAceptar() {
-		return btnAceptar;
+	public JPanel getPanelResultado() {
+		return panelResultado;
 	}
+
+	public void setPanelResultado(JPanel panelResultado) {
+		this.panelResultado = panelResultado;
+	}
+
 
 	public void setBtnAceptar(JButton btnAceptar) {
 		this.btnAceptar = btnAceptar;
@@ -206,69 +210,4 @@ public class DialogoPeliculaBaja extends JDialog {
 	public void setPanelBtnsAceptarCancelar(PanelBtnsAceptarCancelar panelBtnsAceptarCancelar) {
 		this.panelBtnsAceptarCancelar = panelBtnsAceptarCancelar;
 	}
-
-	public Pelicula getPelicula() {
-		return pelicula;
-	}
-
-	public void setPelicula(Pelicula pelicula) {
-		this.pelicula = pelicula;
-	}
-
-	public JTextField getFieldTitulo() {
-		return fieldTitulo;
-	}
-
-	public void setFieldTitulo(JTextField fieldTitulo) {
-		this.fieldTitulo = fieldTitulo;
-	}
-	
-	public JLabel getLabelMensaje() {
-		return labelMensaje;
-	}
-
-	public void setLabelMensaje(JLabel labelMensaje) {
-		this.labelMensaje = labelMensaje;
-	}
-
-	public JLabel getLabelTituloResul() {
-		return labelTituloResul;
-	}
-
-	public void setLabelTituloResul(JLabel labelTituloResul) {
-		this.labelTituloResul = labelTituloResul;
-	}
-
-	public JLabel getLabelPaisResul() {
-		return labelPaisResul;
-	}
-
-	public void setLabelPaisResul(JLabel labelPaisResul) {
-		this.labelPaisResul = labelPaisResul;
-	}
-
-	public JLabel getLabelAnyoResul() {
-		return labelAnyoResul;
-	}
-
-	public void setLabelAnyoResul(JLabel labelAnyoResul) {
-		this.labelAnyoResul = labelAnyoResul;
-	}
-
-	public JLabel getLabelGeneroResul() {
-		return labelGeneroResul;
-	}
-
-	public void setLabelGeneroResul(JLabel labelGeneroResul) {
-		this.labelGeneroResul = labelGeneroResul;
-	}
-
-	public JTextField getFieldCodPeli() {
-		return fieldCodPeli;
-	}
-
-	public void setFieldCodPeli(JTextField fieldCodPeli) {
-		this.fieldCodPeli = fieldCodPeli;
-	}
-	
 }

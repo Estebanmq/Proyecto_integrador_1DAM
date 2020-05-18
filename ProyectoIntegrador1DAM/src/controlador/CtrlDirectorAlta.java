@@ -11,13 +11,36 @@ import dao.DaoPaisMantenimiento;
 import modelo.Director;
 import vista.DialogoDirectorAlta;
 
+/**
+ * Esta clase está dedicada al control de la interfaz gráfica de alta de directores y del acceso a la base de datos para añadir directores
+ * @author Sergio Fernández Rivera
+ * @since 16/05/2020
+ * @version 1.0
+ * 
+ */
+
 public class CtrlDirectorAlta implements ActionListener {
 	
+	/**
+	 * Ventana DialogoDirector
+	 */
 	private DialogoDirectorAlta dialogoDirectorAlta;
+	/**
+	 * Objeto para director
+	 */
 	private Director Director;
+	/**
+	 * Atributo para trabajar con los datos de directores
+	 */
 	private DaoDirectorMantenimiento daoDirectorMantenimiento;
+	/**
+	 * Atributo para trabajar con los datos de países  
+	 */
 	private DaoPaisMantenimiento daoPaisMantenimiento;
 	
+	/**
+	 * Método constructor del control para dar de alta directores
+	 */
 	public CtrlDirectorAlta() {
 		
 		daoPaisMantenimiento = new DaoPaisMantenimiento();
@@ -35,6 +58,12 @@ public class CtrlDirectorAlta implements ActionListener {
 		this.getDialogoDirectorAlta().setVisible(true);
 	}
 
+	
+	/** 
+	 * Método para capturar las acciones del usuario en la interfaz gráfica de alta de directores
+	 * @param ActionEvent
+	 * @see java.awt.event.ActionEvent
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -60,6 +89,10 @@ public class CtrlDirectorAlta implements ActionListener {
 				break;
 		}
 	}
+	
+	/**
+	 * Método para validar los campos y que no esten vacios
+	 */
 	private boolean validarCampos() {
 		
 		boolean validar = true;
@@ -77,6 +110,7 @@ public class CtrlDirectorAlta implements ActionListener {
 		return validar;
 	}
 
+	//GETTERS Y SETTERS
 	public DialogoDirectorAlta getDialogoDirectorAlta() {
 		return dialogoDirectorAlta;
 	}

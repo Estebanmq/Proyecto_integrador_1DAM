@@ -8,17 +8,57 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import modelo.Director;
+import modelo.GeneroPelicula;
+import modelo.Sexo;
 import vista.DialogoDirectorAlta;
+
+/**
+ * Esta clase está dedicada al manejo de datos de directores en la base de datos
+ * @author Sergio Fernández Rivera
+ * @since 16/05/2020
+ * @version 1.0
+ * 
+ */
 
 public class DaoDirectorMantenimiento {
 	
+	/**
+	 * Query a ejecutar 
+	 */
 	private String query;
+	/**
+	 * Conexión a la BBDD
+	 * @see java.sql.Connection
+	 */
 	private Connection conn;
+	/**
+	 * Statement para ejecutar sentencias SQL
+	 * @see java.sql.Statement 
+	 */
 	private Statement st;
+	/**
+	 * PreparedStatement para ejecutar comandos SQL ya precompilados
+	 * @see java.sql.PreparedStatement
+	 */
 	private PreparedStatement ps;
+	/**
+	 * ResultSet para almacenar el resultado de la sentencia SQL
+	 * @see java.sql.ResultSet
+	 */
 	private ResultSet rs;
 	
-public void darAltaDirector (DialogoDirectorAlta dAlta) throws ClassNotFoundException, SQLException {
+	/**
+	 * Método para insertar una película en la BBDD
+	 * @param nombre nombre del director
+	 * @param fecha fecha en que nació
+	 * @param sexo sexo del director
+	 * @param generoPreferido su genero preferido de peliculas
+	 * @param nacionalidad país de nacimiento
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
+	public void darAltaDirector (DialogoDirectorAlta dAlta) throws ClassNotFoundException, SQLException {
 		
 		int codigo = 0;
 		//monta la query
@@ -51,6 +91,14 @@ public void darAltaDirector (DialogoDirectorAlta dAlta) throws ClassNotFoundExce
 		
 	}
 	
+	/** 
+	 * Método que busca el código del director y lo guarda
+	 * @param direc 
+	 * @param directores array donde se almacena
+	 * @return Array con los directores
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public ArrayList<String> obtenerNombreDirectores () throws ClassNotFoundException, SQLException {
 		
 		String direc;
@@ -71,6 +119,29 @@ public void darAltaDirector (DialogoDirectorAlta dAlta) throws ClassNotFoundExce
 		Conexion.cerrar();
 		
 		return directores;
+		
+	}
+	/** 
+	 * Método que busca el director con un codigo especifico y lo devuelve creando un objeto
+	 * @param codigo del director
+	 * @return Un objeto director con los datos de la consulta
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public Director obtenerDirector(int codigo) throws ClassNotFoundException, SQLException {
+		DaoPaisMantenimiento daoPaisMantenimiento = new DaoPaisMantenimiento();
+		Director direc;
+		
+		conn = Conexion.getConexion();
+		st=conn.createStatement();
+		rs = st.executeQuery("SELECT participante.NOMBRE, participante.FECHANACIMIENTO , participante.SEXO , director.GENEROPREFERIDO, participante.NACIONALIDAD "
+				+ "FROM participante INNER JOIN director ON participante.codigo = director.CODIGO WHERE director.codigo="+codigo);
+		rs.next();
+		direc = new Director(codigo,rs.getString(1),rs.getDate(2),Sexo.valueOf(rs.getString(3).toUpperCase()),GeneroPelicula.valueOf(rs.getString(4).toUpperCase()),daoPaisMantenimiento.obtenerPais(rs.getInt(5)));
+		
+		Conexion.cerrar();
+		
+		return direc;
 		
 	}
 

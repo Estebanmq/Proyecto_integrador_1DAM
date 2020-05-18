@@ -41,14 +41,7 @@ public class CtrlPeliculaBaja implements ActionListener{
 		dialogoBajaPelicula.getPanelBtnsAceptarCancelar().getBtnAceptar().addActionListener(this);
 		dialogoBajaPelicula.getPanelBtnsAceptarCancelar().getBtnCancelar().addActionListener(this);
 		dialogoBajaPelicula.getBtnBuscar().addActionListener(this);
-		dialogoBajaPelicula.getBtnEliminar().addActionListener(this);
 		
-//		try {
-//			
-//		} catch (ClassNotFoundException | SQLException e) {
-//            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.ERROR_MESSAGE);
-//            e.printStackTrace();
-//        }
 		dialogoBajaPelicula.setVisible(true);
 		
 	}
@@ -61,22 +54,22 @@ public class CtrlPeliculaBaja implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		DaoPeliculaMantenimiento daoPeliculaMantenimiento = new DaoPeliculaMantenimiento();
+		int cod=0;
 		switch (e.getActionCommand()) {
 		case "btnBuscar":
-			int cod = Integer.parseInt(dialogoBajaPelicula.getFieldCodPeli().getText());
+			cod = Integer.parseInt(dialogoBajaPelicula.getTextFieldBuscarCodigo().getText());
 			try {
-				Pelicula p = new Pelicula(daoPeliculaMantenimiento.buscarPeli(cod));
-				System.out.format("%s\n", p.toString());
+				Pelicula p = new Pelicula(daoPeliculaMantenimiento.buscarPeli(cod)); //Creo un objeto pelicula para poder mostrar posteriormente los datos
+				dialogoBajaPelicula.mostrarPelicula(p); //Llamo al metodo con la pelicula que me devuelve la select
 			} catch (ClassNotFoundException | SQLException i) {
 	            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.PLAIN_MESSAGE);
 	            i.printStackTrace();
 	        }
 			break;
-		case "btnEliminar":
-			System.out.format("%s\n", "Boton de eliminar");
-			break;
 		case "btnAceptar":
+			daoPeliculaMantenimiento.borrarPelicula(cod);
 			System.out.format("%s\n", "Boton de aceptar");
+			
 			break;
 		case "btnCancelar":
 			dialogoBajaPelicula.dispose();

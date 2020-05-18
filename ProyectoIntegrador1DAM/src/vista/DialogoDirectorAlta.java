@@ -15,9 +15,17 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import modelo.Pais;
-
+/**
+ * Esta clase está dedicada al control de la interfaz gráfica de alta de películas y del acceso a la base de datos para añadir películas
+ * @author Sergio Fernández Rivera
+ * @since 15/05/2020
+ * @version 1.0
+ *
+ */
 public class DialogoDirectorAlta extends JDialog {
-
+	/**
+	 * Atributos de la interfaz
+	 */
 	private static final long serialVersionUID = 5428825630214882590L;
 
 	private final JPanel contentPanel = new JPanel();
@@ -36,7 +44,7 @@ public class DialogoDirectorAlta extends JDialog {
 
 
 	/**
-	 * Create the dialog.
+	 * Creacion del dialogo
 	 */
 	public DialogoDirectorAlta() {
 		setModal(true);
@@ -127,13 +135,18 @@ public class DialogoDirectorAlta extends JDialog {
 
 	}
 	
+	/**
+	 * Recorre el array de paises para sacar todos y introducirlos en comboBox
+	 * @see comboBox
+	 * @param paises
+	 */
 	public void mostrarPaises(ArrayList<Pais>paises) {
 		for (int i = 0; i < paises.size(); i++) {
 			comboBoxPais.addItem(paises.get(i).getDescripcion());
 		}
 	}
 	
-//	getters y setters
+	//Getters y setters
 
 	public JTextField getTextNombre() {
 		return textNombre;
