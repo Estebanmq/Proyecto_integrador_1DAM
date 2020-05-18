@@ -10,6 +10,7 @@ import modelo.Director;
 import modelo.GeneroPelicula;
 import modelo.Pais;
 import modelo.Pelicula;
+import modelo.Sexo;
 /**
  * Esta clase está dedicada al manejo de datos de películas en la base de datos
  * @author Esteban Martínez
@@ -130,12 +131,28 @@ public class DaoPeliculaMantenimiento {
 		
 		p.setGenero(GeneroPelicula.valueOf(rs.getString(6)));
 		p.setNacionalidad(daoPaisMantenimiento.obtenerPais(rs.getInt(5)));
-		
+		p.setDirector(obtenerDirector(codDirec));
 		Conexion.cerrar();
 		
 		return p;
 	}
 
+	public Director obtenerDirector(int codigo) throws ClassNotFoundException, SQLException {
+		DaoPaisMantenimiento daoPaisMantenimiento = new DaoPaisMantenimiento();
+		Director direc;
+		
+		conn = Conexion.getConexion();
+		st=conn.createStatement();
+		rs = st.executeQuery("SELECT participante.NOMBRE, participante.FECHANACIMIENTO , participante.SEXO , director.GENEROPREFERIDO, participante.NACIONALIDAD "
+				+ "FROM participante INNER JOIN director ON participante.codigo = director.CODIGO WHERE director.codigo="+codigo);
+		rs.next();
+		direc = new Director(codigo,rs.getString(1),rs.getDate(2),Sexo.valueOf(rs.getString(3).toUpperCase()),GeneroPelicula.valueOf(rs.getString(4).toUpperCase()),daoPaisMantenimiento.obtenerPais(rs.getInt(5)));
+		
+		Conexion.cerrar();
+		
+		return direc;
+		
+	}
 	
 	// GETTERS & SETTERS
 	private Connection getConn() {

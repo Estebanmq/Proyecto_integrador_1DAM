@@ -44,11 +44,12 @@ public abstract class Participante {
 	 * @param fechaNacimiento
 	 * @param sexo
 	 */
-	public Participante(int codigo, String nombre, Date fechaNacimiento, Sexo sexo) {
+	public Participante(int codigo, String nombre, Date fechaNacimiento, Sexo sexo, Pais nacionalidad) {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
 		this.sexo = sexo;
+		this.nacionalidad = nacionalidad;
 	}
 
 	/**

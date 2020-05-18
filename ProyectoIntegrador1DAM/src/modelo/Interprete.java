@@ -27,8 +27,8 @@ public class Interprete extends Participante{
 	 * @param sexo
 	 * @param cache
 	 */
-	public Interprete(int codigo, String nombre, Date fechaNacimiento, Sexo sexo, double cache) {
-		super(codigo, nombre, fechaNacimiento, sexo);
+	public Interprete(int codigo, String nombre, Date fechaNacimiento, Sexo sexo, double cache, Pais nacionalidad) {
+		super(codigo, nombre, fechaNacimiento, sexo, nacionalidad);
 		this.cache = cache;
 	}
 
