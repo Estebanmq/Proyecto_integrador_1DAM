@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +30,7 @@ public class DialogoListadoParticipantes extends JDialog {
 	private final String NOMCOLUMNAS[] = new String[] {"Código", "Nombre", "Nacionalidad"};
 	
 	private DefaultTableModel dtmModelo;
-	private JTable tableParticipantes;
+	private JTable tablaParticipantes;
 	
 	private PanelBtnOk panelBtnOk;
 
@@ -44,6 +45,12 @@ public class DialogoListadoParticipantes extends JDialog {
 	private JToggleButton tglbtnFemenino;
 	private JToggleButton tglbtnMasculino;
 	
+	private JTextField fieldNacionalidadSelected;
+	private JTextField fieldCodigoSelected;
+	private JTextField fieldNombreSelected;
+	private JTextField fieldFNacimientoSelected;
+	private JTextField fieldSexoSelected;
+	
 	public DialogoListadoParticipantes() {
 		
 		JPanel contentPanel = new JPanel();
@@ -51,6 +58,13 @@ public class DialogoListadoParticipantes extends JDialog {
 		JLabel labelNombre = new JLabel("Nombre:");
 		JLabel labelEjemplar = new JLabel("Ejemplar audiovisual:");
 		JLabel labelNacionalidad = new JLabel("Nacionalidad:");
+		JPanel panelDatos = new JPanel();
+		JLabel labelCodigoSelected = new JLabel("Código:");
+		JLabel labelNombreSelected = new JLabel("Nombre:");
+		JLabel labelFnacSelected = new JLabel("F. nacimiento:");
+		JLabel labelSexoSelected = new JLabel("Sexo:");
+		JLabel labelNacionalidadSelected = new JLabel("Nacionalidad:");
+
 
 		JScrollPane scrollPane = new JScrollPane();
 		
@@ -58,7 +72,7 @@ public class DialogoListadoParticipantes extends JDialog {
 		this.setModal(true); 		
 		this.setTitle("Listado de participantes");
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		this.setBounds(100, 100, 664, 480);
+		this.setBounds(100, 100, 670, 500);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -72,18 +86,18 @@ public class DialogoListadoParticipantes extends JDialog {
 		
 		setChkDirectores(new JCheckBox("Directores."));
 		getChkDirectores().setSelected(true);
-		getChkDirectores().setBounds(27, 17, 97, 23);
+		getChkDirectores().setBounds(27, 17, 104, 23);
 		panelFiltro.add(getChkDirectores());
 		
 		setChkParticipantes(new JCheckBox("Participantes."));
 		getChkParticipantes().setSelected(true);
-		getChkParticipantes().setBounds(154, 17, 97, 23);
+		getChkParticipantes().setBounds(154, 17, 117, 23);
 		panelFiltro.add(getChkParticipantes());
 		
-		labelNombre.setBounds(27, 80, 97, 14);
+		labelNombre.setBounds(27, 80, 127, 14);
 		panelFiltro.add(labelNombre);
 		
-		labelEjemplar.setBounds(27, 47, 120, 14);
+		labelEjemplar.setBounds(27, 47, 127, 14);
 		panelFiltro.add(labelEjemplar);
 		
 		setComboPelicula(new JComboBox<Actuacion>());
@@ -96,7 +110,7 @@ public class DialogoListadoParticipantes extends JDialog {
 		panelFiltro.add(getFieldNombre());
 		this.getFieldNombre().setColumns(10);
 		
-		labelNacionalidad.setBounds(27, 113, 117, 14);
+		labelNacionalidad.setBounds(27, 113, 127, 14);
 		panelFiltro.add(labelNacionalidad);
 		
 		setComboNacionalidad(new JComboBox<PaisComboBox>());
@@ -121,27 +135,84 @@ public class DialogoListadoParticipantes extends JDialog {
 		this.btnAplicar.setActionCommand("btnAplicarFiltros");
 		panelFiltro.add(btnAplicar);
 		
-		scrollPane.setBounds(10, 162, 552, 235);
+		scrollPane.setBounds(10, 162, 552, 120);
 		contentPanel.add(scrollPane);
 		
 		this.setDtmModelo(new DefaultTableModel(this.getNOMCOLUMNAS(), 0));
 		
-		this.setTableParticipantes(new JTable(this.getDtmModelo()));
-		this.getTableParticipantes().getColumnModel().getColumn(1).setResizable(false);
-		this.getTableParticipantes().getColumnModel().getColumn(1).setPreferredWidth(80);
-		this.getTableParticipantes().getColumnModel().getColumn(2).setResizable(false);
-		this.getTableParticipantes().getColumnModel().getColumn(2).setPreferredWidth(170);
-		this.getTableParticipantes().getColumnModel().getColumn(2).setResizable(false);
-		this.getTableParticipantes().getColumnModel().getColumn(2).setPreferredWidth(120);
-		this.getTableParticipantes().setToolTipText("Relación de participantes");
-		this.getTableParticipantes().setShowHorizontalLines(false);
-		scrollPane.setViewportView(getTableParticipantes());
+		this.setTablaParticipantes(new JTable(this.getDtmModelo()));
+		this.getTablaParticipantes().getColumnModel().getColumn(0).setResizable(false);
+		this.getTablaParticipantes().getColumnModel().getColumn(0).setPreferredWidth(60);
+		this.getTablaParticipantes().getColumnModel().getColumn(1).setResizable(false);
+		this.getTablaParticipantes().getColumnModel().getColumn(1).setPreferredWidth(270);
+		this.getTablaParticipantes().getColumnModel().getColumn(2).setResizable(false);
+		this.getTablaParticipantes().getColumnModel().getColumn(2).setPreferredWidth(220);
+		this.getTablaParticipantes().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.getTablaParticipantes().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		this.getTablaParticipantes().setToolTipText("Relación de participantes");
+		this.getTablaParticipantes().setShowHorizontalLines(false);
+		scrollPane.setViewportView(getTablaParticipantes());
 		
 		btnExportar = new JButton("Exportar");
 		btnExportar.setEnabled(false);
-		btnExportar.setBounds(574, 360, 55, 23);
+		btnExportar.setBounds(573, 250, 55, 23);
 		btnExportar.setActionCommand("btnExportar");
 		contentPanel.add(btnExportar);
+		
+		panelDatos.setBorder(new TitledBorder(null, "Datos del participante seleccionado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelDatos.setBounds(10, 282, 632, 135);
+		contentPanel.add(panelDatos);
+		panelDatos.setLayout(null);
+		
+		labelCodigoSelected.setBounds(27, 23, 73, 16);
+		panelDatos.add(labelCodigoSelected);
+		
+		labelNombreSelected.setBounds(27, 51, 83, 14);
+		panelDatos.add(labelNombreSelected);
+		
+		this.setFieldNombreSelected(new JTextField());
+		this.getFieldNombreSelected().setEnabled(false);
+		this.getFieldNombreSelected().setDragEnabled(true);
+		this.getFieldNombreSelected().setColumns(33);
+		this.getFieldNombreSelected().setBounds(112, 44, 262, 28);
+		panelDatos.add(this.getFieldNombreSelected());
+		
+		labelNacionalidadSelected.setBounds(27, 77, 83, 16);
+		panelDatos.add(labelNacionalidadSelected);
+		
+		this.setFieldNacionalidadSelected(new JTextField());
+		this.getFieldNacionalidadSelected().setEnabled(false);
+		this.getFieldNacionalidadSelected().setDragEnabled(true);
+		this.getFieldNacionalidadSelected().setColumns(25);
+		this.getFieldNacionalidadSelected().setBounds(112, 71, 207, 28);
+		panelDatos.add(this.getFieldNacionalidadSelected());
+		
+		this.setFieldCodigoSelected(new JTextField());
+		this.getFieldCodigoSelected().setEnabled(false);
+		this.getFieldCodigoSelected().setDragEnabled(true);
+		this.getFieldCodigoSelected().setColumns(25);
+		this.getFieldCodigoSelected().setBounds(112, 17, 83, 28);
+		panelDatos.add(this.getFieldCodigoSelected());
+		
+		labelFnacSelected.setBounds(439, 50, 96, 16);
+		panelDatos.add(labelFnacSelected);
+		
+		this.setFieldFNacimientoSelected(new JTextField());
+		this.getFieldFNacimientoSelected().setEnabled(false);
+		this.getFieldFNacimientoSelected().setDragEnabled(true);
+		this.getFieldFNacimientoSelected().setColumns(10);
+		this.getFieldFNacimientoSelected().setBounds(532, 44, 83, 28);
+		panelDatos.add(this.getFieldFNacimientoSelected());
+		
+		labelSexoSelected.setBounds(439, 77, 96, 16);
+		panelDatos.add(labelSexoSelected);
+		
+		this.setFieldSexoSelected(new JTextField());
+		this.getFieldSexoSelected().setEnabled(false);
+		this.getFieldSexoSelected().setDragEnabled(true);
+		this.getFieldSexoSelected().setColumns(10);
+		this.getFieldSexoSelected().setBounds(532, 71, 83, 28);
+		panelDatos.add(this.getFieldSexoSelected());
 
 		this.setPanelBtnOk(new PanelBtnOk());
 		getContentPane().add(this.getPanelBtnOk(), BorderLayout.SOUTH);
@@ -200,42 +271,30 @@ public class DialogoListadoParticipantes extends JDialog {
 		this.dtmModelo = dtmModelo;
 	}
 
-	public JTable getTableParticipantes() {
-		return tableParticipantes;
+	public JTable getTablaParticipantes() {
+		return tablaParticipantes;
 	}
 
-	public void setTableParticipantes(JTable tableParticipantes) {
-		this.tableParticipantes = tableParticipantes;
+	public void setTablaParticipantes(JTable tableParticipantes) {
+		this.tablaParticipantes = tableParticipantes;
 	}
 
 	public String[] getNOMCOLUMNAS() {
 		return NOMCOLUMNAS;
 	}
 
-	/**
-	 * @return the btnAplicar
-	 */
 	public JButton getBtnAplicar() {
 		return btnAplicar;
 	}
 
-	/**
-	 * @param btnAplicar the btnAplicar to set
-	 */
 	public void setBtnAplicar(JButton btnAplicar) {
 		this.btnAplicar = btnAplicar;
 	}
 
-	/**
-	 * @return the btnExportar
-	 */
 	public JButton getBtnExportar() {
 		return btnExportar;
 	}
 
-	/**
-	 * @param btnExportar the btnExportar to set
-	 */
 	public void setBtnExportar(JButton btnExportar) {
 		this.btnExportar = btnExportar;
 	}
@@ -286,5 +345,45 @@ public class DialogoListadoParticipantes extends JDialog {
 
 	public void setComboNacionalidad(JComboBox<PaisComboBox> comboNacionalidad) {
 		this.comboNacionalidad = comboNacionalidad;
+	}
+
+	public JTextField getFieldNacionalidadSelected() {
+		return fieldNacionalidadSelected;
+	}
+
+	public void setFieldNacionalidadSelected(JTextField fieldNacionalidadSelected) {
+		this.fieldNacionalidadSelected = fieldNacionalidadSelected;
+	}
+
+	public JTextField getFieldCodigoSelected() {
+		return fieldCodigoSelected;
+	}
+
+	public void setFieldCodigoSelected(JTextField fieldCodigoSelected) {
+		this.fieldCodigoSelected = fieldCodigoSelected;
+	}
+
+	public JTextField getFieldNombreSelected() {
+		return fieldNombreSelected;
+	}
+
+	public void setFieldNombreSelected(JTextField fieldNombreSelected) {
+		this.fieldNombreSelected = fieldNombreSelected;
+	}
+
+	public JTextField getFieldFNacimientoSelected() {
+		return fieldFNacimientoSelected;
+	}
+
+	public void setFieldFNacimientoSelected(JTextField fieldFNacimientoSelected) {
+		this.fieldFNacimientoSelected = fieldFNacimientoSelected;
+	}
+
+	public JTextField getFieldSexoSelected() {
+		return fieldSexoSelected;
+	}
+
+	public void setFieldSexoSelected(JTextField fieldSexoSelected) {
+		this.fieldSexoSelected = fieldSexoSelected;
 	}
 }

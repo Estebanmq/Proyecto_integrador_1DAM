@@ -1,5 +1,13 @@
 package modelo;
 
+/**
+ * 
+ * <h1> Filtro de participantes
+ * 
+ * @author Jose Manuel
+ * @version 1.0
+ * @since 05/2020
+ */
 public class FiltroListadoParticipantes {
 	
 	private boolean director; 
@@ -47,6 +55,11 @@ public class FiltroListadoParticipantes {
 		this.sexoMasculino = true;
 	}
 
+	/**
+	 * Método para validar los datos cargados en el filtro
+	 * 
+	 * @return String con el mensaje de error, si no hay error retorna null  
+	 */
 	public String validarDatos() {
 		
 		if (!this.director && !this.participipante) {

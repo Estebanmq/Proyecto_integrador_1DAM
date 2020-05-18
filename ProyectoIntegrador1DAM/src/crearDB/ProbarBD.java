@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import dao.Conexion;
+import dao.DaoPaisMantenimiento;
 
 public class ProbarBD {
 
@@ -33,8 +34,10 @@ public class ProbarBD {
 				System.out.format("%d :: %s\n", codigo, descripcion);
 			}
 			
-			 Conexion.cerrar();
+			Conexion.cerrar();
 
+			System.out.format("%s\n", new DaoPaisMantenimiento().obtenerPais(999).getDescripcion());
+			 
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

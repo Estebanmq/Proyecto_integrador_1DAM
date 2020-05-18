@@ -55,7 +55,7 @@ public class DaoListadoParticipantes {
 		
 		listaPaises = this.obtenerPaises(conn);
 		
-		// Monta la query a ejecutar
+												// Monta la query a ejecutar
 		if (filtro.isDirector() && filtro.isParticipipante()) {
 			this.setQuery("SELECT codigo, nombre, nacionalidad FROM participante");
 		} else if (filtro.isDirector() && !filtro.isParticipipante()) {

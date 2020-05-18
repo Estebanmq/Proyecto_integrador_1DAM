@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import dao.Conexion;
 import dao.DaoListadoParticipantes;
@@ -15,7 +17,7 @@ import modelo.ListaParticipante;
 import modelo.Pais;
 import vista.DialogoListadoParticipantes;
 
-public class CtrlListadoParticipantes implements ActionListener {
+public class CtrlListadoParticipantes implements ActionListener, ListSelectionListener {
 
 	private DialogoListadoParticipantes dialogoListadoPart;
 
@@ -24,9 +26,11 @@ public class CtrlListadoParticipantes implements ActionListener {
 	
 	private FiltroListadoParticipantes filtro;
 
+	private ArrayList<ListaParticipante> arrayParticipantes;
+
 	public CtrlListadoParticipantes() {
 		
-		ArrayList<ListaParticipante> arrayParticipantes = new ArrayList<ListaParticipante>();
+		setArrayParticipantes(new ArrayList<ListaParticipante>());
 		ArrayList<Pais> arrayPaises = new ArrayList<Pais>();
 		
 		try {
@@ -36,11 +40,12 @@ public class CtrlListadoParticipantes implements ActionListener {
 			
 			arrayPaises = this.daoPaisMant.obtenerListaPaises();
 
-			arrayParticipantes = this.daoListadoPart.obtenerListaParticipantes();
+			setArrayParticipantes(this.daoListadoPart.obtenerListaParticipantes());
 			
 			this.dialogoListadoPart = new DialogoListadoParticipantes();
-			this.dialogoListadoPart.crearFilas(arrayParticipantes);
+			this.dialogoListadoPart.crearFilas(getArrayParticipantes());
 			
+			this.dialogoListadoPart.getTablaParticipantes().getSelectionModel().addListSelectionListener(this);
 			
 			this.dialogoListadoPart.getBtnAplicar().addActionListener(this);
 			this.dialogoListadoPart.getBtnExportar().addActionListener(this);
@@ -88,6 +93,17 @@ public class CtrlListadoParticipantes implements ActionListener {
 		}
 		
 	}
+	
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		
+		System.out.println(this.dialogoListadoPart.getTablaParticipantes().getValueAt(this.dialogoListadoPart.getTablaParticipantes().getSelectedRow(), 0));
+		
+		
+		
+	}
+
 	
 	public boolean obtenerFiltro() {
 		
@@ -160,6 +176,14 @@ public class CtrlListadoParticipantes implements ActionListener {
 
 	public void setFiltro(FiltroListadoParticipantes filtro) {
 		this.filtro = filtro;
+	}
+
+	public ArrayList<ListaParticipante> getArrayParticipantes() {
+		return arrayParticipantes;
+	}
+
+	public void setArrayParticipantes(ArrayList<ListaParticipante> arrayParticipantes) {
+		this.arrayParticipantes = arrayParticipantes;
 	}
 
 }

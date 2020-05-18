@@ -56,9 +56,8 @@ public class DaoPaisMantenimiento {
 		this.setRs(this.getPs().executeQuery());
 
 												// Carga en Pais los datos devuelvos
-		while (this.getRs().next()) {
-			pais = new Pais(this.getRs().getInt(1), this.getRs().getString(2));
-		}
+		this.getRs().next();
+		pais = new Pais(this.getRs().getInt(1), this.getRs().getString(2));
 		
 		Conexion.cerrar();
 		
