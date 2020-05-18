@@ -1,37 +1,23 @@
 package vista;
 
-import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SpinnerModel;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.MaskFormatter;
 
-import modelo.GeneroPelicula;
-import modelo.Pais;
 import modelo.Pelicula;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
+/**
+ * Esta clase genera la pantalla de visualización de datos para la transacción de baja de películas
+ *
+ * @author Esteban Martínez
+ * @since 16/05/2020
+ * @version 1.0
+ */
 public class DialogoPeliculaBaja extends JDialog {
 	private static final long serialVersionUID = 1L;
 

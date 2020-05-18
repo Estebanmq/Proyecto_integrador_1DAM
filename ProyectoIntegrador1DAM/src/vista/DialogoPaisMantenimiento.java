@@ -14,6 +14,14 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Pais;
 import javax.swing.ListSelectionModel;
 
+/**
+ * 
+ * Esta clase monta la pantalla de visualización de datos del mantenimiento de países
+ * 
+ * @author Jose Manuel de Dios Martin
+ * @version 1.0
+ * @since 10/05/2020
+ */
 public class DialogoPaisMantenimiento extends JDialog {
 
 	private static final long serialVersionUID = -6456737675544774116L;

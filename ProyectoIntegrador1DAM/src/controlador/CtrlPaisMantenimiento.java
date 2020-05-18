@@ -8,17 +8,48 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import dao.Conexion;
+import dao.DaoListadoParticipantes;
 import dao.DaoPaisMantenimiento;
 import modelo.Pais;
+import vista.DialogoListadoParticipantes;
 import vista.DialogoPaisMantenimiento;
 
+/**
+ * Clase que maneja el mantenimiento general de los países
+ * 
+ * @author Jose Manuel de Dios
+ * @version 1.0
+ * @since 10/05/2020
+ *
+ */
 public class CtrlPaisMantenimiento implements ActionListener  {
-	
+
+	/**
+	 * Almacena una instancia de país
+	 * 
+	 * @see Pais
+	 */
 	private Pais pais;
+	
+	/**
+	 * Clase que contiene la pantalla de visualización
+	 * 
+	 * @see DialogoPaisMantenimiento
+	 */
 	private DialogoPaisMantenimiento dialogoPaisMant;
 
+	/**
+	 * Clase que contiene el acceso a datos de países
+	 * 
+	 * @see DaoPaisMantenimiento
+	 */
 	private DaoPaisMantenimiento daoPaisMantenimiento;
 
+	/**
+	 * Método constructor para conectar modelo-controlador-vista
+	 * 
+	 * @see Pais
+	 */
 	public CtrlPaisMantenimiento() {
 		
 		ArrayList<Pais> arrayPais;
@@ -54,6 +85,11 @@ public class CtrlPaisMantenimiento implements ActionListener  {
 		
 	}
 
+	/**
+	 * Método que captura los eventos ocurridos en pantalla 
+	 * 
+	 * @param ActionEvent e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

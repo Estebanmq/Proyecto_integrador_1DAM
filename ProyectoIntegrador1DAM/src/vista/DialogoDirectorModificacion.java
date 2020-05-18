@@ -7,10 +7,19 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 
+/**
+ * Esta clase monta la pantalla de visualización para la modificación de director  
+ * 
+ * @author Sergio Fernández Rivera
+ * @since 15/05/2020
+ * @version 1.0
+ *
+ */
 public class DialogoDirectorModificacion extends JDialog {
 
+	private static final long serialVersionUID = 5913217229440232625L;
+	
 	private JButton btnAceptar;
 	private JButton btnCancelar;
 	private PanelBtnsAceptarCancelar panelBtnsAceptarCancelar;
@@ -18,20 +27,7 @@ public class DialogoDirectorModificacion extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			DialogoDirectorModificacion dialog = new DialogoDirectorModificacion();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
+	 * Crea la ventana con todos sus campos.
 	 */
 	public DialogoDirectorModificacion() {
 		setBounds(100, 100, 450, 300);
@@ -50,30 +46,19 @@ public class DialogoDirectorModificacion extends JDialog {
 
 	}
 
-	/**
-	 * @return the btnAceptar
-	 */
+	// GETTERS & SETTERS
 	public JButton getBtnAceptar() {
 		return btnAceptar;
 	}
 
-	/**
-	 * @param btnAceptar the btnAceptar to set
-	 */
 	public void setBtnAceptar(JButton btnAceptar) {
 		this.btnAceptar = btnAceptar;
 	}
 
-	/**
-	 * @return the btnCancelar
-	 */
 	public JButton getBtnCancelar() {
 		return btnCancelar;
 	}
 
-	/**
-	 * @param btnCancelar the btnCancelar to set
-	 */
 	public void setBtnCancelar(JButton btnCancelar) {
 		this.btnCancelar = btnCancelar;
 	}

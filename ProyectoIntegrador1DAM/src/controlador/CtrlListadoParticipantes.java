@@ -16,18 +16,53 @@ import modelo.FiltroListadoParticipantes;
 import modelo.ListaParticipante;
 import modelo.Pais;
 import vista.DialogoListadoParticipantes;
-
+/**
+ * Clase perteneciente a la capa "controlador" que maneja los objetos involucrados en el listado de participantes
+ * 
+ * @author Jose Manuel de Dios
+ * @version 1.0
+ * @since 10/05/2020
+ */
 public class CtrlListadoParticipantes implements ActionListener, ListSelectionListener {
 
+	/**
+	 * Clase que contiene la pantalla de visualización
+	 * 
+	 * @see DialogoListadoParticipantes
+	 */
 	private DialogoListadoParticipantes dialogoListadoPart;
 
+	/**
+	 * Clase que contiene el acceso a datos de participantes
+	 * 
+	 * @see DaoListadoParticipantes
+	 */
 	private DaoListadoParticipantes daoListadoPart;
+	
+	/**
+	 * Clase que contiene el acceso a datos de países
+	 * 
+	 * @see DaoPaisMantenimiento
+	 */
 	private DaoPaisMantenimiento daoPaisMant;
 	
+	/**
+	 * Clase utilizada para guardar el filtro aplicado en la pantalla
+	 * 
+	 * @see FiltroListadoParticipantes
+	 */
 	private FiltroListadoParticipantes filtro;
 
+	/**
+	 * Relación de participantes obtenidos de BD y que tienen que ser mostrados en la pantalla
+	 * 
+	 * @see ListaParticipante
+	 */
 	private ArrayList<ListaParticipante> arrayParticipantes;
 
+	/**
+	 * Método constructor para conectar modelo-controlador-vista
+	 */
 	public CtrlListadoParticipantes() {
 		
 		setArrayParticipantes(new ArrayList<ListaParticipante>());
@@ -70,6 +105,11 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 		
 	}
 
+	/**
+	 * Método que captura los eventos ocurridos en pantalla 
+	 * 
+	 * @param ActionEvent e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -94,17 +134,26 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 		
 	}
 	
+	/**
+	 * Método que captura los eventos ocurridos en la tabla mostrada en pantalla 
+	 * 
+	 * @param ListSelectionEvent e
+	 */
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		
 		System.out.println(this.dialogoListadoPart.getTablaParticipantes().getValueAt(this.dialogoListadoPart.getTablaParticipantes().getSelectedRow(), 0));
 		
-		
-		
 	}
 
-	
+	/**
+	 * Método que obtiene el filtro a aplicar en la consulta, siempre y cuando pase la validación
+	 * 
+	 * @see FiltroListadoParticipantes
+	 * 
+	 * @return boolean indicando si la validación de datos es correcta
+	 */
 	public boolean obtenerFiltro() {
 		
 		setFiltro(new FiltroListadoParticipantes());
@@ -125,7 +174,13 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 		return true;
 		
 	}
-	
+
+	/**
+	 * Método que obtiene los participantes sin aplicar ningún tipo de filtro.
+	 * Éstos son cargados en la pantalla de visualización
+	 * 
+	 * @see ListaParticipante
+	 */
 	public void obtenerParticipantes() {
 
 		ArrayList<ListaParticipante> arrayParticipantes = new ArrayList<ListaParticipante>();

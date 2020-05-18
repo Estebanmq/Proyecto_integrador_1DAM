@@ -22,7 +22,14 @@ import modelo.Actuacion;
 import modelo.ListaParticipante;
 import modelo.Pais;
 import modelo.PaisComboBox;
-
+/**
+ * 
+ * Esta clase genera la pantalla de visualización del listado de participantes
+ * 
+ * @author Jose Manuel de Dios
+ * @version 1.0
+ * @since 10/05/2020
+ */
 public class DialogoListadoParticipantes extends JDialog {
 
 	private static final long serialVersionUID = -222187089871399229L;

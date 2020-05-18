@@ -10,6 +10,19 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Font;
 
+/** 
+ * 
+ * Esta clase monta los botones de Aceptar y Cancelar en un JPanel que se reutilizará en las distintas ventanas de la aplicación. 
+ * Además contiene un JLabel donde se mostrarán los errores de aplicación ocurridos 
+ * 
+ * @see JPanel
+ * @see JLabel
+ * @see JButton
+ * 
+ * @author Jose Manuel de Dios
+ * @version 1.0
+ * @since 03/05/2020
+ */
 public class PanelBtnsAceptarCancelar extends JPanel {
 	
 	private static final long serialVersionUID = -2916018382013617038L;

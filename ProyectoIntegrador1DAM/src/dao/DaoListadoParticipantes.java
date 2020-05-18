@@ -12,23 +12,63 @@ import modelo.FiltroListadoParticipantes;
 import modelo.ListaParticipante;
 import modelo.Pais;
 /**
+ * Clase que obtiene los participantes para mostrar en pantalla
  * 
- * @author Jose Manuel
+ * @see Participante
+ * 
+ * @author Jose Manuel de Dios
  * @version 1.0
- * @see 
+ * @since 10/05/2020
  */
 public class DaoListadoParticipantes {
 	
+	/**
+	 * Query a ejecutar 
+	 */
 	private String query;
+
+	/**
+	 * Conexión a la BBDD
+	 * @see java.sql.Connection
+	 */
 	private Connection conn;
+	
+	/**
+	 * Statement para ejecutar sentencias SQL
+	 * @see java.sql.Statement 
+	 */
 	private Statement st;
+	
+	/**
+	 * PreparedStatement para ejecutar comandos SQL ya precompilados
+	 * @see java.sql.PreparedStatement
+	 */
 	private PreparedStatement ps;
+	
+	/**
+	 * ResultSet para almacenar el resultado de la sentencia SQL
+	 * @see java.sql.ResultSet
+	 */
 	private ResultSet rs;
 	
+	/**
+	 * Método constructor al que se le pasa la conexión a utilizar en la instancia
+	 * 
+	 * @param conn
+	 */
 	public DaoListadoParticipantes(Connection conn) {
 		this.setConn(conn);
 	}
 
+	/**
+	 * Método que obtiene de BD la lista de participantes
+	 * 
+	 * @see ListaParticipante
+	 * 
+	 * @return ArrayList<ListaParticipante>
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public ArrayList<ListaParticipante> obtenerListaParticipantes() throws ClassNotFoundException, SQLException {
 		
 		ListaParticipante listaParticipante = new ListaParticipante();
@@ -52,6 +92,15 @@ public class DaoListadoParticipantes {
 		
 	}
 
+	/**
+	 * 
+	 * Método que obtiene de BD la lista de participantes en función del filtro recibido por parámetros
+	 * 
+	 * @param FiltroListadoParticipantes filtro
+	 * @return ArrayList<ListaParticipante>
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public ArrayList<ListaParticipante> obtenerListaParticipantes(FiltroListadoParticipantes filtro) throws ClassNotFoundException, SQLException {
 		
 		ListaParticipante listaParticipante = new ListaParticipante();
@@ -96,6 +145,18 @@ public class DaoListadoParticipantes {
 		
 	}
 	
+	/**
+	 * 
+	 * Método que obtiene de BD la lista de países existentes en base de datos
+	 * 
+	 * @see HashMap
+	 * @see Pais
+	 * 
+	 * @param Connection conn
+	 * @return HashMap<Integer, String>
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public HashMap<Integer, String> obtenerPaises(Connection conn) throws ClassNotFoundException, SQLException {
 		
 		HashMap<Integer, String> listaPaises = new HashMap<Integer, String>();

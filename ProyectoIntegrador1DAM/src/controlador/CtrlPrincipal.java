@@ -4,11 +4,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import vista.PantallaPrincipal;
-
+/**
+ * 
+ * @author Jose Manuel
+ * @version 1.0
+ * @since 01/05/2020
+ *
+ * @see PantallaPrincipal
+ */
 public class CtrlPrincipal implements ActionListener {
-	
+	/**
+	 * Instancia de la pantalla principal que muestra el menú inicial
+	 */
 	private PantallaPrincipal pantalla;
-	
+
+	/**
+	 * Método constructor donde se instancia la pantalla principal y se añaden los actionListener a los elementos de menú
+	 * 
+	 */
 	public CtrlPrincipal() {
 		
 		this.setPantalla(new PantallaPrincipal());
@@ -37,6 +50,11 @@ public class CtrlPrincipal implements ActionListener {
 		this.getPantalla().setVisible(true);
 	}
 
+	/**
+	 * Captura el evento ocurrido en la pantalla y en función de ésta realiza la acción correspondiente 
+	 * 
+	 * @param ActionEvent e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

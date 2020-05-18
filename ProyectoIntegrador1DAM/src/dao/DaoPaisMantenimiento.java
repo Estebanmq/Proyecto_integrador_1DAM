@@ -8,15 +8,56 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import modelo.Pais;
-
+/**
+ * 
+ * Clase que realiza el mantenimiento de países en BD
+ * 
+ * @author Jose Manuel de Dios
+ * @version 1.0
+ * @since 10/05/2020
+ */
 public class DaoPaisMantenimiento {
 
+	/**
+	 * Query a ejecutar 
+	 */
 	private String query;
+
+	/**
+	 * Conexión a la BBDD
+	 * @see java.sql.Connection
+	 */
 	private Connection conn;
+	
+	/**
+	 * Statement para ejecutar sentencias SQL
+	 * @see java.sql.Statement 
+	 */
 	private Statement st;
+	
+	/**
+	 * PreparedStatement para ejecutar comandos SQL ya precompilados
+	 * @see java.sql.PreparedStatement
+	 */
 	private PreparedStatement ps;
+	
+	/**
+	 * ResultSet para almacenar el resultado de la sentencia SQL
+	 * @see java.sql.ResultSet
+	 */
 	private ResultSet rs;
 	
+	/**
+	 * 
+	 * Método que obtiene la lista de países de la BD  
+	 * 
+	 * @see ArrayList
+	 * @see Pais
+	 * 
+	 * @return ArrayList<Pais>
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public ArrayList<Pais> obtenerListaPaises () throws ClassNotFoundException, SQLException {
 		
 		Pais pais = new Pais();
@@ -42,6 +83,15 @@ public class DaoPaisMantenimiento {
 		
 	}
 	
+	/**
+	 * 
+	 * Método que obtiene un país en función del código recibido por parámetros
+	 * 
+	 * @param codigo Código del país a localizar 
+	 * @return Pais
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public Pais obtenerPais(Integer codigo) throws ClassNotFoundException, SQLException {
 		
 		Pais pais = null;

@@ -12,6 +12,8 @@ import controlador.CtrlPrincipal;
  * <h1>Clase iniciadora de la aplicación</h1>
  * 
  * @author Jose Manuel
+ * @version 1.0
+ * @since 01/05/2020
  *
  */
 public class init {

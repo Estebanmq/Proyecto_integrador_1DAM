@@ -10,6 +10,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/** 
+ * 
+ * Esta clase monta el botón Ok en un JPanel que se reutilizará en las distintas ventanas de la aplicación.
+ * Además contiene un JLabel donde se mostrarán los errores de aplicación ocurridos 
+ * 
+ * @see JPanel
+ * @see JLabel
+ * @see JButton
+ * 
+ * @author Jose Manuel de Dios
+ * @version 1.0
+ * @since 03/05/2020
+ */
 public class PanelBtnOk extends JPanel {
 
 	private static final long serialVersionUID = 1L;

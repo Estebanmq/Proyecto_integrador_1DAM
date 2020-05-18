@@ -12,15 +12,54 @@ import modelo.Interprete;
 import modelo.Pais;
 import modelo.Participante;
 import modelo.Sexo;
-
+/**
+ * Clase que realiza el mantenimiento de participantes
+ * 
+ * @see Participante
+ * 
+ * @author Jose Manuel de Dios
+ * @version 1.0
+ * @since 10/05/2020
+ */
 public class DaoParticipanteMantenimiento {
 	
+	/**
+	 * Query a ejecutar 
+	 */
 	private String query;
+
+	/**
+	 * Conexión a la BBDD
+	 * @see java.sql.Connection
+	 */
 	private Connection conn;
+
+	/**
+	 * Statement para ejecutar sentencias SQL
+	 * @see java.sql.Statement 
+	 */
 	private Statement st;
+	
+	/**
+	 * PreparedStatement para ejecutar comandos SQL ya precompilados
+	 * @see java.sql.PreparedStatement
+	 */
 	private PreparedStatement ps;
+	
+	/**
+	 * ResultSet para almacenar el resultado de la sentencia SQL
+	 * @see java.sql.ResultSet
+	 */
 	private ResultSet rs;
 	
+	/**
+	 * Método que ontiene un participante a partir del código recibido por parámetros 
+	 * 
+	 * @param codigo Código de participante a localizar
+	 * @return Participante
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public Participante obtenerParticipante(Integer codigo) throws ClassNotFoundException, SQLException {
 		
 		Participante participante = null;

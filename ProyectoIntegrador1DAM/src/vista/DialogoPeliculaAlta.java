@@ -1,33 +1,34 @@
 package vista;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
-import org.apache.derby.impl.sql.catalog.SYSFOREIGNKEYSRowFactory;
-
-import modelo.Director;
 import modelo.GeneroPelicula;
 import modelo.Pais;
 import modelo.Pelicula;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.SpinnerModel;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 
+/**
+ * Esta clase genera la pantalla de visualización de datos para la transacción de alta de películas
+ * 
+ * @author Esteban Martínez
+ * @since 10/05/2020
+ * @version 1.0
+ *
+ */
 public class DialogoPeliculaAlta extends JDialog {
 	
 	private static final long serialVersionUID = 3894472721898604079L;

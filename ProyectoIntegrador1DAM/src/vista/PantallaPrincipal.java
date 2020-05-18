@@ -13,6 +13,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
+/**
+ * Esta clase monta la pantalla principal de la aplicación
+ * 
+ * @author Jose Manuel de Dios
+ * @version 1.0
+ * @since 01/05/2020
+ */
 public class PantallaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 4327675116380983494L;
