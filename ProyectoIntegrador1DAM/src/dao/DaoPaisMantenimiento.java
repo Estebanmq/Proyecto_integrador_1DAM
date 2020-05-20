@@ -105,9 +105,12 @@ public class DaoPaisMantenimiento {
 		this.getPs().setInt(1, codigo);
 		this.setRs(this.getPs().executeQuery());
 
-												// Carga en Pais los datos devuelvos
-		this.getRs().next();
-		pais = new Pais(this.getRs().getInt(1), this.getRs().getString(2));
+												// Carga en País los datos devuelvos
+		if (this.getRs().next()) {
+			pais = new Pais(this.getRs().getInt(1), this.getRs().getString(2));			
+		} else {
+			pais = new Pais(codigo, "País no existe en BD");
+		}
 		
 		Conexion.cerrar();
 		
