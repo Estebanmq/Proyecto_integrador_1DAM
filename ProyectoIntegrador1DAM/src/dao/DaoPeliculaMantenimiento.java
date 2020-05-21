@@ -96,6 +96,7 @@ public class DaoPeliculaMantenimiento {
 		st.executeUpdate(insertPeli);
 		
 		Conexion.cerrar();
+		st.close();
 		return true;
 	}
 	
@@ -133,16 +134,26 @@ public class DaoPeliculaMantenimiento {
 		//Formateo el String del genero pelicula para quitar todas las tildes
 		aux = Normalizer.normalize(rs.getString(6).toUpperCase(), Normalizer.Form.NFD);
 	    aux = aux.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+		aux =  aux.replace(" ","");
 		p.setGenero(GeneroPelicula.valueOf(aux));
 		p.setNacionalidad(daoPaisMantenimiento.obtenerPais(rs.getInt(5)));
 		p.setDirector(daoDirectorMantenimiento.obtenerDirector(codDirec));
 		Conexion.cerrar();
-		
+		st.close();
 		return p;
 	}
 	
-	public void borrarPelicula(int cod) {
+	public int borrarPelicula(int cod) throws ClassNotFoundException, SQLException {
 		System.out.format("%s\n", cod);
+		int result = 0;
+		conn=Conexion.getConexion();
+		st=conn.createStatement();
+		result += st.executeUpdate("DELETE FROM PELICULA WHERE CODIGO = "+cod);
+		result += st.executeUpdate("DELETE FROM EJEMPLARAUDIOVISUAL WHERE CODIGO = "+cod);
+		conn.commit();
+		Conexion.cerrar();
+		st.close();
+		return result;
 	}
 	
 	// GETTERS & SETTERS

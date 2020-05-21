@@ -41,7 +41,6 @@ public class CtrlPeliculaBaja implements ActionListener{
 		dialogoBajaPelicula.getPanelBtnsAceptarCancelar().getBtnAceptar().addActionListener(this);
 		dialogoBajaPelicula.getPanelBtnsAceptarCancelar().getBtnCancelar().addActionListener(this);
 		dialogoBajaPelicula.getBtnBuscar().addActionListener(this);
-		
 		dialogoBajaPelicula.setVisible(true);
 		
 	}
@@ -57,9 +56,8 @@ public class CtrlPeliculaBaja implements ActionListener{
 		int cod=0;
 		switch (e.getActionCommand()) {
 		case "btnBuscar":
-			cod = Integer.parseInt(dialogoBajaPelicula.getTextFieldBuscarCodigo().getText());
 			try {
-				Pelicula p = new Pelicula(daoPeliculaMantenimiento.buscarPeli(cod)); //Creo un objeto pelicula para poder mostrar posteriormente los datos
+				Pelicula p = new Pelicula(daoPeliculaMantenimiento.buscarPeli(Integer.parseInt(dialogoBajaPelicula.getTextFieldBuscarCodigo().getText()))); //Creo un objeto pelicula para poder mostrar posteriormente los datos
 				dialogoBajaPelicula.mostrarPelicula(p); //Llamo al metodo con la pelicula que me devuelve la select
 			} catch (ClassNotFoundException | SQLException i) {
 	            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.PLAIN_MESSAGE);
@@ -67,7 +65,16 @@ public class CtrlPeliculaBaja implements ActionListener{
 	        }
 			break;
 		case "btnAceptar":
-			daoPeliculaMantenimiento.borrarPelicula(cod);
+			try {
+				if (daoPeliculaMantenimiento.borrarPelicula(Integer.parseInt(dialogoBajaPelicula.getTextFieldBuscarCodigo().getText())) != 0)
+					JOptionPane.showMessageDialog(null, "Pelicula borrada correctamente"); //Creación ventana informativa
+				else 
+					JOptionPane.showMessageDialog(null, "Error al borrar la pelicula", "Error", JOptionPane.PLAIN_MESSAGE);
+				dialogoBajaPelicula.dispose();
+			} catch (ClassNotFoundException | SQLException i) {
+	            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.PLAIN_MESSAGE);
+	            i.printStackTrace();
+	        }
 			System.out.format("%s\n", "Boton de aceptar");
 			
 			break;
@@ -82,7 +89,7 @@ public class CtrlPeliculaBaja implements ActionListener{
 		return dialogoBajaPelicula;
 	}
 
-	public void setDialogoAltaPelicula(DialogoPeliculaBaja dialogoBajaPelicula) {
+	public void setDialogoBajaPelicula(DialogoPeliculaBaja dialogoBajaPelicula) {
 		this.dialogoBajaPelicula = dialogoBajaPelicula;
 	}
 
