@@ -204,3 +204,13 @@ CREATE INDEX tituloIndex ON EjemplarAudiovisual (titulo);
 
 
 
+/* CREATE Views */
+
+CREATE VIEW ListaParticipante (codigo, nombre, nacionalidad) AS
+	SELECT participante.codigo, participante.nombre, pais.descripcion FROM participante INNER JOIN pais on participante.nacionalidad = pais.codigo;
+	
+
+CREATE VIEW participante_obj (tipo, codigo) AS
+SELECT 'D', codigo FROM director
+UNION
+SELECT 'I', codigo FROM interprete;

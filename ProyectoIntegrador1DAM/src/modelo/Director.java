@@ -19,16 +19,24 @@ public class Director extends Participante{
 	private GeneroPelicula generoPreferido;
 	
 	/** 
-	 * M�todo constructor de director
+	 * Método constructor de director
 	 * @param codigo
 	 * @param nombre
 	 * @param fechaNacimiento
 	 * @param sexo
 	 * @param generoPreferido
 	 */
-	public Director(int codigo, String nombre, Date fechaNacimiento, Sexo sexo, GeneroPelicula generoPreferido, Pais nacionalidad) {
+	public Director(Integer codigo, String nombre, Date fechaNacimiento, Sexo sexo, GeneroPelicula generoPreferido, Pais nacionalidad) {
 		super(codigo, nombre, fechaNacimiento, sexo, nacionalidad);
 		this.generoPreferido = generoPreferido;
+	}
+
+	/** 
+	 * Método constructor de copia de director
+	 * @param Director
+	 */
+	public Director(Director director) {
+		this(director.getCodigo(), director.getNombre(), director.getFechaNacimiento(), director.getSexo(), director.getGeneroPreferido(), director.getNacionalidad());
 	}
 
 	/**

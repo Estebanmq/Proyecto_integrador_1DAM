@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -19,6 +20,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.Actuacion;
+import modelo.Director;
 import modelo.ListaParticipante;
 import modelo.Pais;
 import modelo.PaisComboBox;
@@ -237,6 +239,16 @@ public class DialogoListadoParticipantes extends JDialog {
 			fila[2] = l.getNacionalidad();
 			this.getDtmModelo().addRow(fila);
 		}
+		
+	}
+	
+	public void mostrarDirector(Director director) {
+
+		this.getFieldCodigoSelected().setText(director.getCodigo().toString());
+		this.getFieldNombreSelected().setText(director.getNombre());
+		this.getFieldFNacimientoSelected().setText(new SimpleDateFormat("dd-MM-yyyy").format(director.getFechaNacimiento()));
+		this.getFieldNacionalidadSelected().setText(director.getNacionalidad().getDescripcion());
+		this.getFieldSexoSelected().setText(director.getSexo().getDescripcion());
 		
 	}
 	

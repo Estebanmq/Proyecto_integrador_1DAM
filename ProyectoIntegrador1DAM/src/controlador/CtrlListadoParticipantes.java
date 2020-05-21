@@ -10,9 +10,13 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import dao.Conexion;
+import dao.DaoDirectorMantenimiento;
 import dao.DaoListadoParticipantes;
 import dao.DaoPaisMantenimiento;
+import dao.DaoParticipanteMantenimiento;
+import modelo.Director;
 import modelo.FiltroListadoParticipantes;
+import modelo.Interprete;
 import modelo.ListaParticipante;
 import modelo.Pais;
 import vista.DialogoListadoParticipantes;
@@ -59,6 +63,21 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 	 * @see ListaParticipante
 	 */
 	private ArrayList<ListaParticipante> arrayParticipantes;
+	
+	/**
+	 * Clase para obtener los datos de un participante 
+	 */
+	private DaoParticipanteMantenimiento daoParticipanteMantenimiento;
+
+	/**
+	 * Clase para obtener los datos de un Director
+	 */
+	private DaoDirectorMantenimiento daoDirectorMantenimiento;
+	
+	/**
+	 * Clase para obtener los datos de un Interprete
+	 */
+//	private DaoInterpreteMantenimiento daoInterpreteMantenimiento;
 
 	/**
 	 * Método constructor para conectar modelo-controlador-vista
@@ -111,11 +130,11 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 	 * @param ActionEvent e
 	 */
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent event) {
 		
-		System.out.format("Se ha pulsado: %s\n", e.getActionCommand());
+		System.out.format("Se ha pulsado: %s\n", event.getActionCommand());
 		
-		switch (e.getActionCommand()) {
+		switch (event.getActionCommand()) {
 		
 			case "btnOk" :
 				this.getDialogoListadoPart().dispose();
@@ -139,12 +158,30 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 	 * 
 	 * @param ListSelectionEvent e
 	 */
-
 	@Override
-	public void valueChanged(ListSelectionEvent e) {
+	public void valueChanged(ListSelectionEvent event) {
 		
-		System.out.println(this.dialogoListadoPart.getTablaParticipantes().getValueAt(this.dialogoListadoPart.getTablaParticipantes().getSelectedRow(), 0));
+		Integer codigo = null;
+		Director director = null;
+		Interprete interprete = null;
 		
+		if (event.getValueIsAdjusting()) {			
+			daoParticipanteMantenimiento = new DaoParticipanteMantenimiento();
+			codigo = (Integer)this.dialogoListadoPart.getTablaParticipantes().getValueAt(this.dialogoListadoPart.getTablaParticipantes().getSelectedRow(), 0);
+			
+			try {
+				if (daoParticipanteMantenimiento.obtenerTipoParticipante(codigo).equalsIgnoreCase("D")) {
+					this.setDaoDirectorMantenimiento(new DaoDirectorMantenimiento());
+					director = new Director(this.getDaoDirectorMantenimiento().obtenerDirector(codigo));
+					this.getDialogoListadoPart().mostrarDirector(director);
+				} else {
+					System.out.println("es un interprete");
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}
 
 	/**
@@ -239,6 +276,22 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 
 	public void setArrayParticipantes(ArrayList<ListaParticipante> arrayParticipantes) {
 		this.arrayParticipantes = arrayParticipantes;
+	}
+
+	public DaoParticipanteMantenimiento getDaoParticipanteMantenimiento() {
+		return daoParticipanteMantenimiento;
+	}
+
+	public void setDaoParticipanteMantenimiento(DaoParticipanteMantenimiento daoParticipanteMantenimiento) {
+		this.daoParticipanteMantenimiento = daoParticipanteMantenimiento;
+	}
+
+	public DaoDirectorMantenimiento getDaoDirectorMantenimiento() {
+		return daoDirectorMantenimiento;
+	}
+
+	public void setDaoDirectorMantenimiento(DaoDirectorMantenimiento daoDirectorMantenimiento) {
+		this.daoDirectorMantenimiento = daoDirectorMantenimiento;
 	}
 
 }

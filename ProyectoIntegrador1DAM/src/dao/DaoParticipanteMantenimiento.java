@@ -6,12 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import modelo.Director;
-import modelo.GeneroPelicula;
-import modelo.Interprete;
-import modelo.Pais;
 import modelo.Participante;
-import modelo.Sexo;
 /**
  * Clase que realiza el mantenimiento de participantes
  * 
@@ -53,50 +48,34 @@ public class DaoParticipanteMantenimiento {
 	private ResultSet rs;
 	
 	/**
-	 * Método que ontiene un participante a partir del código recibido por parámetros 
+	 * Método que obtiene el tipo de participante. Si el código recibido no existe devuelve null 
 	 * 
 	 * @param codigo Código de participante a localizar
-	 * @return Participante
+	 * @return String Tipo de participante
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public Participante obtenerParticipante(Integer codigo) throws ClassNotFoundException, SQLException {
+	public String obtenerTipoParticipante(Integer codigo) throws ClassNotFoundException, SQLException {
 		
-		Participante participante = null;
-		Pais pais = null;
-		Sexo sexo = null;
-		GeneroPelicula genero = null;
-		
-										// Monta la query a ejecutar
-		this.setQuery("select * from PARTICIPANTE where CODIGO = ?");
+		String tipo = null;
+			
+										// Monta la query para obtener el tipo de participante (Director o Intérprete)
+		this.setQuery("select * from PARTICIPANTE_OBJ where CODIGO = ?");
 
 										// Obtiene la conexión y ejecuta la query
 		this.setConn(Conexion.getConexion());
 		this.setPs(this.getConn().prepareStatement(this.getQuery()));
 		this.getPs().setInt(1, codigo);
 		this.setRs(this.getPs().executeQuery());
-
-										// Carga en Participante los datos devueltos
-		this.getRs().next();
-		pais = new DaoPaisMantenimiento().obtenerPais(this.getRs().getInt(6));
-		if (this.getRs().getString(4).equalsIgnoreCase("MASCULINO")) {
-			sexo = Sexo.MASCULINO;
-		} else {
-			sexo = Sexo.FEMENINO;				
+		
+										// Si ha encontrado al participante guarda su tipo, si no devuelve null
+		if  (this.getRs().next()) {
+			tipo = this.getRs().getString(1);
 		}
-//		if (this.getRs().getString(5).equals(anObject)) {
-//			
-//		}
-		if (this.getRs().getString(1).equalsIgnoreCase("D")) {
-			participante = new Director(this.getRs().getInt(1), this.getRs().getString(2), this.getRs().getDate(3), sexo, genero, pais);				
-		} else {
-			participante = new Interprete(this.getRs().getInt(1), this.getRs().getString(2), this.getRs().getDate(3), sexo, this.getRs().getDouble(4), pais);				
-			
-		}
-
-			Conexion.cerrar();
-
-			return participante;
+		
+		Conexion.cerrar();
+		
+		return tipo;
 		
 	}
 
