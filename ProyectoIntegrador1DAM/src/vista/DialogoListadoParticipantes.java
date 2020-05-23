@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 import modelo.Actuacion;
 import modelo.Director;
+import modelo.Interprete;
 import modelo.ListaParticipante;
 import modelo.Pais;
 import modelo.PaisComboBox;
@@ -47,7 +48,7 @@ public class DialogoListadoParticipantes extends JDialog {
 	private JButton btnExportar;
 
 	private JCheckBox chkDirectores;
-	private JCheckBox chkParticipantes;
+	private JCheckBox chkInterpretes;
 	private JComboBox<Actuacion> comboPelicula;
 	private JTextField fieldNombre;
 	private JComboBox<PaisComboBox> comboNacionalidad;
@@ -63,6 +64,7 @@ public class DialogoListadoParticipantes extends JDialog {
 	public DialogoListadoParticipantes() {
 		
 		JPanel contentPanel = new JPanel();
+		JPanel panelSexo = new JPanel();
 		JPanel panelFiltro = new JPanel();
 		JLabel labelNombre = new JLabel("Nombre:");
 		JLabel labelEjemplar = new JLabel("Ejemplar audiovisual:");
@@ -98,10 +100,10 @@ public class DialogoListadoParticipantes extends JDialog {
 		getChkDirectores().setBounds(27, 17, 104, 23);
 		panelFiltro.add(getChkDirectores());
 		
-		setChkParticipantes(new JCheckBox("Participantes."));
-		getChkParticipantes().setSelected(true);
-		getChkParticipantes().setBounds(154, 17, 117, 23);
-		panelFiltro.add(getChkParticipantes());
+		setChkInterpretes(new JCheckBox("Intérpretes."));
+		getChkInterpretes().setSelected(true);
+		getChkInterpretes().setBounds(154, 17, 117, 23);
+		panelFiltro.add(getChkInterpretes());
 		
 		labelNombre.setBounds(27, 80, 127, 14);
 		panelFiltro.add(labelNombre);
@@ -126,7 +128,6 @@ public class DialogoListadoParticipantes extends JDialog {
 		getComboNacionalidad().setBounds(154, 106, 187, 28);
 		panelFiltro.add(getComboNacionalidad());
 		
-		JPanel panelSexo = new JPanel();
 		panelSexo.setBorder(new TitledBorder(null, "Sexo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelSexo.setBounds(365, 33, 211, 61);
 		panelFiltro.add(panelSexo);
@@ -159,7 +160,6 @@ public class DialogoListadoParticipantes extends JDialog {
 		this.getTablaParticipantes().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.getTablaParticipantes().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		this.getTablaParticipantes().setToolTipText("Relación de participantes");
-		this.getTablaParticipantes().setShowHorizontalLines(false);
 		scrollPane.setViewportView(getTablaParticipantes());
 		
 		btnExportar = new JButton("Exportar");
@@ -226,7 +226,6 @@ public class DialogoListadoParticipantes extends JDialog {
 		this.setPanelBtnOk(new PanelBtnOk());
 		getContentPane().add(this.getPanelBtnOk(), BorderLayout.SOUTH);
 		this.getRootPane().setDefaultButton(this.getPanelBtnOk().getBtnOk());
-		
 	}
 	
 	public void crearFilas(ArrayList<ListaParticipante> array) {
@@ -250,6 +249,16 @@ public class DialogoListadoParticipantes extends JDialog {
 		this.getFieldFNacimientoSelected().setText(new SimpleDateFormat("dd-MM-yyyy").format(director.getFechaNacimiento()));
 		this.getFieldNacionalidadSelected().setText(director.getNacionalidad().getDescripcion());
 		this.getFieldSexoSelected().setText(director.getSexo().getDescripcion());
+		
+	}
+	
+	public void mostrarInterprete(Interprete interprete) {
+
+		this.getFieldCodigoSelected().setText(interprete.getCodigo().toString());
+		this.getFieldNombreSelected().setText(interprete.getNombre());
+		this.getFieldFNacimientoSelected().setText(new SimpleDateFormat("dd-MM-yyyy").format(interprete.getFechaNacimiento()));
+		this.getFieldNacionalidadSelected().setText(interprete.getNacionalidad().getDescripcion());
+		this.getFieldSexoSelected().setText(interprete.getSexo().getDescripcion());
 		
 	}
 	
@@ -327,12 +336,12 @@ public class DialogoListadoParticipantes extends JDialog {
 		this.chkDirectores = chkDirectores;
 	}
 
-	public JCheckBox getChkParticipantes() {
-		return chkParticipantes;
+	public JCheckBox getChkInterpretes() {
+		return chkInterpretes;
 	}
 
-	public void setChkParticipantes(JCheckBox chkParticipantes) {
-		this.chkParticipantes = chkParticipantes;
+	public void setChkInterpretes(JCheckBox chkInterpretes) {
+		this.chkInterpretes = chkInterpretes;
 	}
 
 	public JComboBox<Actuacion> getComboPelicula() {

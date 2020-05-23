@@ -43,6 +43,7 @@ public class PantallaPrincipal extends JFrame {
 	private JMenuItem mntmDocumentalBaja;
 	private JMenuItem mntmDocumentalModificacion;
 	private JMenuItem mntmDocumentalConsulta;
+	private JMenuItem mntmActuacionMantenimiento;
 	private JMenuItem mntmPaisMantenimiento;
 	private JMenuItem mntmListadoParticipantes;
 	private JMenuItem mntmListadoEjemplaresAudiovisuales;
@@ -154,6 +155,13 @@ public class PantallaPrincipal extends JFrame {
 		
 		JMenu mnDatosAuxiliares = new JMenu("Estructuras");
 		mnMantenimiento.add(mnDatosAuxiliares);
+
+		JMenu mnActuaciones = new JMenu("Actuaciones");
+		mnDatosAuxiliares.add(mnActuaciones);
+		
+		setMntmActuacionMantenimiento(new JMenuItem("Mantenimiento"));
+		getMntmActuacionMantenimiento().setActionCommand("menuEstructurasActuacionesMantenimiento");
+		mnActuaciones.add(getMntmActuacionMantenimiento());
 		
 		JMenu mnPaises = new JMenu("Países");
 		mnDatosAuxiliares.add(mnPaises);
@@ -355,6 +363,14 @@ public class PantallaPrincipal extends JFrame {
 
 	public void setMntmDocumentalConsulta(JMenuItem mntmDocumentalConsulta) {
 		this.mntmDocumentalConsulta = mntmDocumentalConsulta;
+	}
+
+	public JMenuItem getMntmActuacionMantenimiento() {
+		return mntmActuacionMantenimiento;
+	}
+
+	public void setMntmActuacionMantenimiento(JMenuItem mntmActuacionMantenimiento) {
+		this.mntmActuacionMantenimiento = mntmActuacionMantenimiento;
 	}
 	
 }

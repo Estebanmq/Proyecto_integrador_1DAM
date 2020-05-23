@@ -42,6 +42,7 @@ public class CtrlPrincipal implements ActionListener {
 		this.getPantalla().getMntmDocumentalBaja().addActionListener(this);
 		this.getPantalla().getMntmDocumentalModificacion().addActionListener(this);
 		this.getPantalla().getMntmDocumentalConsulta().addActionListener(this);
+		this.getPantalla().getMntmActuacionMantenimiento().addActionListener(this);
 		this.getPantalla().getMntmPaisMantenimiento().addActionListener(this);
 		this.getPantalla().getMntmListadoParticipantes().addActionListener(this);
 		this.getPantalla().getMntmListadoEjemplaresAudiovisuales().addActionListener(this);
@@ -109,6 +110,10 @@ public class CtrlPrincipal implements ActionListener {
 				break;
 			case "menuDocumentalConsulta" :
 				System.out.format("%s\n", e.getActionCommand());
+				break;
+			case "menuEstructurasActuacionesMantenimiento" :
+				System.out.format("%s\n", e.getActionCommand());
+				new CtrlActuacionMantenimiento();
 				break;
 			case "menuEstructurasPaisesMantenimiento" :
 				System.out.format("%s\n", e.getActionCommand());

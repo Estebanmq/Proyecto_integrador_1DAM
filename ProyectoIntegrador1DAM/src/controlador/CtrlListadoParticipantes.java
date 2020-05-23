@@ -11,6 +11,7 @@ import javax.swing.event.ListSelectionListener;
 
 import dao.Conexion;
 import dao.DaoDirectorMantenimiento;
+import dao.DaoInterpreteMantenimiento;
 import dao.DaoListadoParticipantes;
 import dao.DaoPaisMantenimiento;
 import dao.DaoParticipanteMantenimiento;
@@ -77,7 +78,7 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 	/**
 	 * Clase para obtener los datos de un Interprete
 	 */
-//	private DaoInterpreteMantenimiento daoInterpreteMantenimiento;
+	private DaoInterpreteMantenimiento daoInterpreteMantenimiento;
 
 	/**
 	 * Método constructor para conectar modelo-controlador-vista
@@ -94,7 +95,7 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 			
 			arrayPaises = this.daoPaisMant.obtenerListaPaises();
 
-			setArrayParticipantes(this.daoListadoPart.obtenerListaParticipantes());
+			this.setArrayParticipantes(this.daoListadoPart.obtenerListaParticipantes());
 			
 			this.dialogoListadoPart = new DialogoListadoParticipantes();
 			this.dialogoListadoPart.crearFilas(getArrayParticipantes());
@@ -175,7 +176,9 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 					director = new Director(this.getDaoDirectorMantenimiento().obtenerDirector(codigo));
 					this.getDialogoListadoPart().mostrarDirector(director);
 				} else {
-					System.out.println("es un interprete");
+					this.setDaoInterpreteMantenimiento(new DaoInterpreteMantenimiento());
+					interprete = new Interprete(this.getDaoInterpreteMantenimiento().obtenerInterprete(codigo));					
+					this.getDialogoListadoPart().mostrarInterprete(interprete);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
@@ -197,7 +200,7 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 		String validacion;
 		
 		getFiltro().setDirector(this.dialogoListadoPart.getChkDirectores().isSelected());
-		getFiltro().setParticipipante(this.dialogoListadoPart.getChkParticipantes().isSelected());
+		getFiltro().setParticipipante(this.dialogoListadoPart.getChkInterpretes().isSelected());
 //		getFiltro().setEjemplar(this.dialogoListadoPart.getComboEjemplar().getSelectedItem().toString());
 		getFiltro().setNombre(this.dialogoListadoPart.getFieldNombre().getText());
 		getFiltro().setPais(((Pais)this.dialogoListadoPart.getComboNacionalidad().getSelectedItem()).getCodigo());
@@ -292,6 +295,14 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 
 	public void setDaoDirectorMantenimiento(DaoDirectorMantenimiento daoDirectorMantenimiento) {
 		this.daoDirectorMantenimiento = daoDirectorMantenimiento;
+	}
+
+	public DaoInterpreteMantenimiento getDaoInterpreteMantenimiento() {
+		return daoInterpreteMantenimiento;
+	}
+
+	public void setDaoInterpreteMantenimiento(DaoInterpreteMantenimiento daoInterpreteMantenimiento) {
+		this.daoInterpreteMantenimiento = daoInterpreteMantenimiento;
 	}
 
 }
