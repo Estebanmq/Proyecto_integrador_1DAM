@@ -76,11 +76,11 @@ public class DialogoPeliculaBaja extends JDialog {
 		panelBuscar.setLayout(null);
 		
 		
-		labelCodigo.setBounds(6, 11, 146, 16);
+		labelCodigo.setBounds(68, 20, 146, 16);
 		panelBuscar.add(labelCodigo);
 		
 		
-		textFieldBuscarCodigo.setBounds(145, 11, 108, 24);
+		textFieldBuscarCodigo.setBounds(214, 16, 108, 24);
 		panelBuscar.add(textFieldBuscarCodigo);
 		textFieldBuscarCodigo.setColumns(10);
 		
@@ -94,7 +94,7 @@ public class DialogoPeliculaBaja extends JDialog {
 			   }
 		});
 		
-		btnBuscar.setBounds(251, 10, 85, 29);
+		btnBuscar.setBounds(320, 15, 85, 29);
 		panelBuscar.add(btnBuscar);
 		
 		panelResultado.setBounds(0, 53, 541, 265);
@@ -142,15 +142,24 @@ public class DialogoPeliculaBaja extends JDialog {
 		
 		panelBtnsAceptarCancelar.setBounds(0, 320, 541, 39);
 		getContentPane().add(panelBtnsAceptarCancelar);
+		
+		getPanelResultado().setVisible(false);
 	}
 
 	public void mostrarPelicula(Pelicula p) {
-		labelTitResul.setText(p.getTitulo());
-		labelPaisResul.setText(p.getNacionalidad().getDescripcion());
-		labelAnyoResul.setText(Integer.toString(p.getAnyo()));
-		labelDirectorResul.setText(p.getDirector().getNombre());
-		labelGeneroResul.setText(p.getGenero().getDescripcion());
-		labelSinopsisResul.setText(p.getSinopsis());
+		if (p.getTitulo().equals("Pelicula no existe")) {
+			getPanelBtnsAceptarCancelar().getLabelTextoError().setText("La película introducida no existe");
+			getPanelResultado().setVisible(false);
+		} else {
+			getPanelBtnsAceptarCancelar().getLabelTextoError().setText("");
+			getPanelResultado().setVisible(true);
+			labelTitResul.setText(p.getTitulo());
+			labelPaisResul.setText(p.getNacionalidad().getDescripcion());
+			labelAnyoResul.setText(Integer.toString(p.getAnyo()));
+			labelDirectorResul.setText(p.getDirector().getNombre());
+			labelGeneroResul.setText(p.getGenero().getDescripcion());
+			labelSinopsisResul.setText(p.getSinopsis());
+		}
 	}
 	
 	public JTextField getTextFieldBuscarCodigo() {

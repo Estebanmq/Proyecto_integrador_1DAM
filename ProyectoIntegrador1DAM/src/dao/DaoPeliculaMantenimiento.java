@@ -122,22 +122,24 @@ public class DaoPeliculaMantenimiento {
 				"INNER JOIN PELICULA ON ejemplaraudiovisual.CODIGO = PELICULA.CODIGO " + 
 				"INNER JOIN PARTICIPANTE ON participante.CODIGO = ejemplaraudiovisual.DIRECTOR WHERE ejemplaraudiovisual.codigo="+cod;
 		rs = st.executeQuery(selPeli);
-		rs.next();
+		if (rs.next()) {
+			p.setCodigo(cod);
+			p.setTitulo(rs.getString(1));
+			p.setAnyo(rs.getInt(2));
+			codDirec = rs.getInt(3);
+			p.setSinopsis(rs.getString(4));
+			
+			//Formateo el String del genero pelicula para quitar todas las tildes
+			aux = Normalizer.normalize(rs.getString(6).toUpperCase(), Normalizer.Form.NFD);
+		    aux = aux.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+			aux =  aux.replace(" ","");
+			p.setGenero(GeneroPelicula.valueOf(aux));
+			p.setNacionalidad(daoPaisMantenimiento.obtenerPais(rs.getInt(5)));
+			p.setDirector(daoDirectorMantenimiento.obtenerDirector(codDirec));
+		} else {
+			p.setTitulo("Pelicula no existe");;
+		}
 		
-		
-		p.setCodigo(cod);
-		p.setTitulo(rs.getString(1));
-		p.setAnyo(rs.getInt(2));
-		codDirec = rs.getInt(3);
-		p.setSinopsis(rs.getString(4));
-		
-		//Formateo el String del genero pelicula para quitar todas las tildes
-		aux = Normalizer.normalize(rs.getString(6).toUpperCase(), Normalizer.Form.NFD);
-	    aux = aux.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-		aux =  aux.replace(" ","");
-		p.setGenero(GeneroPelicula.valueOf(aux));
-		p.setNacionalidad(daoPaisMantenimiento.obtenerPais(rs.getInt(5)));
-		p.setDirector(daoDirectorMantenimiento.obtenerDirector(codDirec));
 		Conexion.cerrar();
 		st.close();
 		return p;

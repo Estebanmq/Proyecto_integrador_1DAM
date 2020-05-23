@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -12,7 +13,7 @@ import javax.swing.JTextField;
 import modelo.Pelicula;
 
 /**
- * Esta clase genera la pantalla de visualización de datos para la transacción de baja de películas
+ * Esta clase genera la pantalla de visualización de datos para la transacción de s de películas
  *
  * @author Esteban Martínez
  * @since 16/05/2020
@@ -23,9 +24,7 @@ public class DialogoPeliculaConsulta extends JDialog {
 
 	private Pelicula pelicula;
 	
-	private JButton btnAceptar;
-	private JButton btnCancelar;
-	private PanelBtnsAceptarCancelar panelBtnsAceptarCancelar;
+	private PanelBtnOk panelBtnOk;
 
 	private JTextField textFieldBuscarCodigo;
 	private JPanel panelResultado;
@@ -58,7 +57,7 @@ public class DialogoPeliculaConsulta extends JDialog {
 		JLabel labelSinopsis = new JLabel("Sinopsis: ");
 		labelSinopsisResul = new JLabel("");
 		
-		panelBtnsAceptarCancelar = new PanelBtnsAceptarCancelar();
+		panelBtnOk = new PanelBtnOk();
 		
 		setTitle("Baja de películas");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -72,11 +71,11 @@ public class DialogoPeliculaConsulta extends JDialog {
 		panelBuscar.setLayout(null);
 		
 		
-		labelCodigo.setBounds(6, 11, 146, 16);
+		labelCodigo.setBounds(126, 10, 146, 16);
 		panelBuscar.add(labelCodigo);
 		
 		
-		textFieldBuscarCodigo.setBounds(145, 11, 108, 24);
+		textFieldBuscarCodigo.setBounds(269, 6, 108, 24);
 		panelBuscar.add(textFieldBuscarCodigo);
 		textFieldBuscarCodigo.setColumns(10);
 		
@@ -133,8 +132,11 @@ public class DialogoPeliculaConsulta extends JDialog {
 		labelSinopsisResul.setBounds(71, 90, 296, 113);
 		panelResultado.add(labelSinopsisResul);
 		
-		panelBtnsAceptarCancelar.setBounds(0, 320, 541, 39);
-		getContentPane().add(panelBtnsAceptarCancelar);
+		panelBtnOk.setBounds(0, 320, 541, 39);
+		getContentPane().add(panelBtnOk);
+		
+		getPanelResultado().setVisible(false);
+			
 	}
 
 	public void mostrarPelicula(Pelicula p) {
@@ -146,6 +148,16 @@ public class DialogoPeliculaConsulta extends JDialog {
 		labelSinopsisResul.setText(p.getSinopsis());
 	}
 	
+	
+	
+	public PanelBtnOk getPanelBtnOk() {
+		return panelBtnOk;
+	}
+
+	public void setPanelBtnOk(PanelBtnOk panelBtnOk) {
+		this.panelBtnOk = panelBtnOk;
+	}
+
 	public JTextField getTextFieldBuscarCodigo() {
 		return textFieldBuscarCodigo;
 	}
@@ -162,24 +174,4 @@ public class DialogoPeliculaConsulta extends JDialog {
 		this.panelResultado = panelResultado;
 	}
 
-
-	public void setBtnAceptar(JButton btnAceptar) {
-		this.btnAceptar = btnAceptar;
-	}
-
-	public JButton getBtnCancelar() {
-		return btnCancelar;
-	}
-
-	public void setBtnCancelar(JButton btnCancelar) {
-		this.btnCancelar = btnCancelar;
-	}
-
-	public PanelBtnsAceptarCancelar getPanelBtnsAceptarCancelar() {
-		return panelBtnsAceptarCancelar;
-	}
-
-	public void setPanelBtnsAceptarCancelar(PanelBtnsAceptarCancelar panelBtnsAceptarCancelar) {
-		this.panelBtnsAceptarCancelar = panelBtnsAceptarCancelar;
-	}
 }

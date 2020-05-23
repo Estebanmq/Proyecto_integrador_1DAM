@@ -226,6 +226,7 @@ public class DialogoListadoParticipantes extends JDialog {
 		this.setPanelBtnOk(new PanelBtnOk());
 		getContentPane().add(this.getPanelBtnOk(), BorderLayout.SOUTH);
 		this.getRootPane().setDefaultButton(this.getPanelBtnOk().getBtnOk());
+		
 	}
 	
 	public void crearFilas(ArrayList<ListaParticipante> array) {

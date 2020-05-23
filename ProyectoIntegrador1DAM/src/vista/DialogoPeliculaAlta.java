@@ -1,6 +1,8 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -53,6 +56,21 @@ public class DialogoPeliculaAlta extends JDialog {
 		Date sysDate = new Date();
 		int max = Calendar.getInstance().get(Calendar.YEAR);
 		SpinnerModel model = new SpinnerNumberModel(1900,1900,max,1);
+		setFieldTitulo(new JTextField());
+		JLabel labelTitulo = new JLabel("Título:");
+		JLabel labelDirector = new JLabel("Director:");
+		comboBoxDirector = new JComboBox();
+		JLabel labelAnyo = new JLabel("Año:");
+		spinnerAnyo = new JSpinner(model);
+		JLabel labelPais = new JLabel("País:");
+		comboBoxPais = new JComboBox();
+		
+		JLabel labelGenero = new JLabel("Género:");
+		comboBoxGenero = new JComboBox();
+		JLabel labelSinopsis = new JLabel("Sinopsis: ");
+		textAreaSinopsis = new JTextArea();
+		
+		
 		
 		setTitle("Alta de películas");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -64,68 +82,72 @@ public class DialogoPeliculaAlta extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JLabel labelTitulo = new JLabel("Título:");
+		
 		labelTitulo.setBounds(16, 24, 55, 16);
 		contentPanel.add(labelTitulo);
 		
-		setFieldTitulo(new JTextField());
+	
 		getFieldTitulo().setBounds(80, 18, 188, 28);
 		contentPanel.add(getFieldTitulo());
 		getFieldTitulo().setColumns(33);
 		
-		JLabel labelDirector = new JLabel("Director:");
 		labelDirector.setBounds(16, 127, 55, 16);
 		contentPanel.add(labelDirector);
 		
-		comboBoxDirector = new JComboBox();
+		
 		comboBoxDirector.setBounds(78, 123, 190, 26);
 		contentPanel.add(comboBoxDirector);
 		comboBoxDirector.addItem("--Seleccionar Director--");
 		comboBoxDirector.setSelectedItem("--Seleccionar Director--");
 		
-		JLabel labelAnyo = new JLabel("Año:");
 		labelAnyo.setBounds(16, 62, 44, 16);
 		contentPanel.add(labelAnyo);
-		
-		spinnerAnyo = new JSpinner(model);
+	
 		spinnerAnyo.setBounds(78, 57, 72, 26);
 		spinnerAnyo.setValue(2020);
 		contentPanel.add(spinnerAnyo);
 		
-		JLabel labelPais = new JLabel("País:");
 		labelPais.setBounds(16, 95, 61, 16);
 		contentPanel.add(labelPais);
 		
-		comboBoxPais = new JComboBox();
 		comboBoxPais.setBounds(78, 88, 190, 27);
 		contentPanel.add(comboBoxPais);
 		comboBoxPais.addItem("--Seleccionar País--");
 		comboBoxPais.setSelectedItem("--Seleccionar País--");
 		
-		JLabel labelSinopsis = new JLabel("Sinopsis: ");
 		labelSinopsis.setBounds(16, 192, 61, 16);
 		contentPanel.add(labelSinopsis);
 		
-		textAreaSinopsis = new JTextArea();
+		
 		textAreaSinopsis.setLineWrap(true);
 		textAreaSinopsis.setRows(1);
 		textAreaSinopsis.setBounds(80, 192, 218, 109);
 		contentPanel.add(textAreaSinopsis);
+		textAreaSinopsis.addKeyListener(new KeyAdapter() {
+			 public void keyTyped(KeyEvent e) {
+			      if(textAreaSinopsis.getText().length()==150) {
+			         e.consume();  // No escribe el caracter
+			         getPanelBtnsAceptarCancelar().getLabelTextoError().setText("Sinopsis no puede superar 150 caracteres");
+			      } else {
+			    	  getPanelBtnsAceptarCancelar().getLabelTextoError().setText("");
+			      }
+			   }
+		});
+		
 		
 		setPanelBtnsAceptarCancelar(new PanelBtnsAceptarCancelar());
 		getContentPane().add(getPanelBtnsAceptarCancelar(), BorderLayout.SOUTH);
 		this.getRootPane().setDefaultButton(getPanelBtnsAceptarCancelar().getBtnAceptar());
 
-		
-		JLabel labelGenero = new JLabel("Género:");
+	
 		labelGenero.setBounds(16, 157, 61, 16);
 		contentPanel.add(labelGenero);
 		
-		comboBoxGenero = new JComboBox();
 		comboBoxGenero.setBounds(78, 153, 190, 27);
 		contentPanel.add(comboBoxGenero);
 		comboBoxGenero.addItem("--Seleccionar Género--");
 		comboBoxGenero.setSelectedItem("--Seleccionar Género--");
+		
 		mostrarGeneros();
 		
 		

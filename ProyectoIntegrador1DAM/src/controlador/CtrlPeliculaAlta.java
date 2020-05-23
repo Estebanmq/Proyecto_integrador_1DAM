@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import org.apache.derby.shared.common.error.DerbySQLIntegrityConstraintViolationException;
+
 import dao.DaoDirectorMantenimiento;
 import dao.DaoPaisMantenimiento;
 import dao.DaoPeliculaMantenimiento;
@@ -83,6 +85,8 @@ public class CtrlPeliculaAlta implements ActionListener {
 						dialogoAltaPelicula.dispose();
 					}
 					
+				} catch (DerbySQLIntegrityConstraintViolationException a) {
+					JOptionPane.showMessageDialog(null, "La película ya existe.", "Error", JOptionPane.PLAIN_MESSAGE); //Creación de una ventana de error
 				} catch (ClassNotFoundException | SQLException i) {
 		            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.PLAIN_MESSAGE); //Creación de una ventana de error
 		            i.printStackTrace();
