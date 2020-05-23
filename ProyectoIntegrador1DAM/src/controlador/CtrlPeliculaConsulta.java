@@ -53,28 +53,28 @@ public class CtrlPeliculaConsulta implements ActionListener{
 		String lblCod;
 		Pelicula p;
 		switch (e.getActionCommand()) {			
-		case "btnOk":
-			System.out.format("%s\n", "Boton de aceptar");
-			try {
-				lblCod = dialogoConsultaPelicula.getTextFieldBuscarCodigo().getText();
-				if (lblCod.equals(""))
-					dialogoConsultaPelicula.getPanelBtnOk().getLabelTextoError().setText("El código no puede estar en blanco");
-				else {
-					dialogoConsultaPelicula.getPanelBtnOk().getLabelTextoError().setText("");
-					p = new Pelicula(daoPeliculaMantenimiento.buscarPeli(Integer.parseInt(lblCod))); //Creo un objeto pelicula para poder mostrar posteriormente los datos
-					if (p.getTitulo().equals("Pelicula no existe"))  {
-						JOptionPane.showMessageDialog(null, "La pelicula no se ha podido encontrar en la base de datos.", "Error", JOptionPane.PLAIN_MESSAGE);
-						dialogoConsultaPelicula.getPanelResultado().setVisible(false);
-					} else {
-						dialogoConsultaPelicula.getPanelResultado().setVisible(true);
-						dialogoConsultaPelicula.mostrarPelicula(p); //Llamo al metodo con la pelicula que me devuelve la select
+			case "btnOk":
+				System.out.format("%s\n", "Boton de aceptar");
+				try {
+					lblCod = dialogoConsultaPelicula.getTextFieldBuscarCodigo().getText();
+					if (lblCod.equals(""))
+						dialogoConsultaPelicula.getPanelBtnOk().getLabelTextoError().setText("El código no puede estar en blanco");
+					else {
+						dialogoConsultaPelicula.getPanelBtnOk().getLabelTextoError().setText("");
+						p = new Pelicula(daoPeliculaMantenimiento.buscarPeli(Integer.parseInt(lblCod))); //Creo un objeto pelicula para poder mostrar posteriormente los datos
+						if (p.getTitulo().equals("Pelicula no existe"))  {
+							JOptionPane.showMessageDialog(null, "La pelicula no se ha podido encontrar en la base de datos.", "Error", JOptionPane.PLAIN_MESSAGE);
+							dialogoConsultaPelicula.getPanelResultado().setVisible(false);
+						} else {
+							dialogoConsultaPelicula.getPanelResultado().setVisible(true);
+							dialogoConsultaPelicula.mostrarPelicula(p); //Llamo al metodo con la pelicula que me devuelve la select
+						}
 					}
-				}
-			} catch (ClassNotFoundException | SQLException i) {
-	            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.PLAIN_MESSAGE);
-	            i.printStackTrace();
-	        }
-			break;
+				} catch (ClassNotFoundException | SQLException i) {
+		            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.PLAIN_MESSAGE);
+		            i.printStackTrace();
+		        }
+				break;
 		}
 		
 	}

@@ -145,6 +145,8 @@ public class DaoPeliculaMantenimiento {
 		return p;
 	}
 	
+	
+	
 	public int borrarPelicula(int cod) throws ClassNotFoundException, SQLException {
 		System.out.format("%s\n", cod);
 		int result = 0;

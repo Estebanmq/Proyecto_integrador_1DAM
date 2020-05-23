@@ -66,6 +66,7 @@ public class CtrlPrincipal implements ActionListener {
 				break;
 			case "menuDirectorBaja" :
 				System.out.format("%s\n", e.getActionCommand());
+				new CtrlDirectorBaja();
 				break;
 			case "menuDirectorModificacion" :
 				System.out.format("%s\n", e.getActionCommand());

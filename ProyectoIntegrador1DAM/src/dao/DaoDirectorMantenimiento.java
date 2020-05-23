@@ -12,6 +12,7 @@ import modelo.Director;
 import modelo.GeneroPelicula;
 import modelo.Sexo;
 import vista.DialogoDirectorAlta;
+import vista.DialogoDirectorBaja;
 
 /**
  * Esta clase está dedicada al manejo de datos de directores en la base de datos
@@ -49,7 +50,7 @@ public class DaoDirectorMantenimiento {
 	private ResultSet rs;
 	
 	/**
-	 * Método para insertar una película en la BBDD
+	 * Método para insertar un director en la BBDD
 	 * @param nombre nombre del director
 	 * @param fecha fecha en que nació
 	 * @param sexo sexo del director
@@ -75,7 +76,7 @@ public class DaoDirectorMantenimiento {
 		String nombre = dAlta.getTextNombre().getText();
 		String fecha = dAlta.getTextFecha().getText();
 		//Date date = Date.valueOf(fecha);
-		String sexo = dAlta.getBg().getSelection().getActionCommand();
+		String sexo = dAlta.getBg().getSelection().getActionCommand().toUpperCase();
 		String generoPreferido = dAlta.getTextGenero().getText();
 		String nacionalidad = dAlta.getComboBoxPais().getSelectedItem().toString();
 		
@@ -87,6 +88,8 @@ public class DaoDirectorMantenimiento {
 		String insertDirector = "INSERT INTO DIRECTOR VALUES ("+codigo+ ",'" +generoPreferido+ "')";
 		this.setQuery(insertDirector);
 		st.executeUpdate(this.getQuery());
+		conn.commit();
+		st.close();
 		Conexion.cerrar();
 		
 	}
@@ -117,7 +120,7 @@ public class DaoDirectorMantenimiento {
 		}
 		
 		Conexion.cerrar();
-		
+		this.st.close();
 		return directores;
 		
 	}
@@ -140,8 +143,29 @@ public class DaoDirectorMantenimiento {
 		direc = new Director(codigo,rs.getString(1),rs.getDate(2),Sexo.valueOf(rs.getString(3).toUpperCase()),GeneroPelicula.valueOf(rs.getString(4).toUpperCase()),daoPaisMantenimiento.obtenerPais(rs.getInt(5)));
 		
 		Conexion.cerrar();
-		
+		st.close();
 		return direc;
+		
+	}
+	
+	/**
+	 * Método para dar de baja a un director
+	 * @param dialogo
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public void darBajaDirector (DialogoDirectorBaja dialogo) throws ClassNotFoundException, SQLException{
+	
+		int codigo = Integer.parseInt(dialogo.getTextFieldCodigo().getText());
+
+		this.setConn(Conexion.getConexion());
+		st = conn.createStatement();
+		String borrarDirector = "DELETE FROM DIRECTOR WHERE CODIGO=" + codigo;
+		st.executeUpdate(borrarDirector);
+		String borrarParticipante = "DELETE FROM PARTICIPANTE WHERE CODIGO=" + codigo;
+		st.executeUpdate(borrarParticipante);
+		st.close();
+		Conexion.cerrar();
 		
 	}
 

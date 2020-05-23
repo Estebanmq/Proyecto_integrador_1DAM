@@ -156,11 +156,7 @@ public class DialogoPeliculaModificacion extends JDialog {
 		getContentPane().add(panelBtnsAceptarCancelar);
 		
 		getBtnBuscar().setActionCommand("btnBuscar");
-		
-		setPanelBtnsAceptarCancelar(new PanelBtnsAceptarCancelar());
-		getContentPane().add(getPanelBtnsAceptarCancelar(), BorderLayout.SOUTH);
-		this.getRootPane().setDefaultButton(getPanelBtnsAceptarCancelar().getBtnAceptar());
-		
+	
 		getPanelResultado().setVisible(false);
 		
 		mostrarGeneros();
