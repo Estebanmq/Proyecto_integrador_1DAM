@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import modelo.Pelicula;
+import javax.swing.JTextArea;
 
 /**
  * Esta clase genera la pantalla de visualización de datos para la transacción de baja de películas
@@ -36,7 +37,7 @@ public class DialogoPeliculaBaja extends JDialog {
 	private JLabel labelAnyoResul;
 	private JLabel labelDirectorResul;
 	private JLabel labelGeneroResul;
-	private JLabel labelSinopsisResul;
+	private JTextArea textAreaSinopsisResul;
 	
 	public DialogoPeliculaBaja() {
 		//Panel para buscar por codigo
@@ -58,7 +59,7 @@ public class DialogoPeliculaBaja extends JDialog {
 		JLabel labelGenero = new JLabel("Género: ");
 		labelGeneroResul = new JLabel("");
 		JLabel labelSinopsis = new JLabel("Sinopsis: ");
-		labelSinopsisResul = new JLabel("");
+		textAreaSinopsisResul = new JTextArea();
 		
 		panelBtnsAceptarCancelar = new PanelBtnsAceptarCancelar();
 		
@@ -136,9 +137,10 @@ public class DialogoPeliculaBaja extends JDialog {
 		labelGeneroResul.setBounds(79, 118, 296, 16);
 		panelResultado.add(labelGeneroResul);
 		
-		
-		labelSinopsisResul.setBounds(79, 146, 296, 113);
-		panelResultado.add(labelSinopsisResul);
+		textAreaSinopsisResul.setEditable(false);
+		textAreaSinopsisResul.setLineWrap(true);
+		textAreaSinopsisResul.setBounds(89, 146, 345, 100);
+		panelResultado.add(textAreaSinopsisResul);
 		
 		panelBtnsAceptarCancelar.setBounds(0, 320, 541, 39);
 		getContentPane().add(panelBtnsAceptarCancelar);
@@ -158,7 +160,7 @@ public class DialogoPeliculaBaja extends JDialog {
 			labelAnyoResul.setText(Integer.toString(p.getAnyo()));
 			labelDirectorResul.setText(p.getDirector().getNombre());
 			labelGeneroResul.setText(p.getGenero().getDescripcion());
-			labelSinopsisResul.setText(p.getSinopsis());
+			textAreaSinopsisResul.setText(p.getSinopsis());
 		}
 	}
 	

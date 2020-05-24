@@ -149,7 +149,6 @@ public class DialogoPeliculaModificacion extends JDialog {
 		panelResultado.add(labelSinopsis);
 		
 		textAreaSinopsisResul.setLineWrap(true);
-		textAreaSinopsisResul.setRows(1);
 		textAreaSinopsisResul.setBounds(71, 90, 218, 109);
 		panelResultado.add(textAreaSinopsisResul);
 		textAreaSinopsisResul.addKeyListener(new KeyAdapter() {

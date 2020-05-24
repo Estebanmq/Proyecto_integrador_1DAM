@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import modelo.Documental;
+import javax.swing.JTextArea;
 
 /**
  * Esta clase genera la pantalla de visualización de datos para la transacción de documentales
@@ -34,7 +35,7 @@ public class DialogoDocumentalConsulta extends JDialog {
 	private JLabel labelAnyoResul;
 	private JLabel labelDirectorResul;
 	private JLabel labelGeneroResul;
-	private JLabel labelSinopsisResul;
+	private JTextArea textAreaSinopsisResul;
 	
 	public DialogoDocumentalConsulta() {
 		//Panel para buscar por codigo
@@ -55,7 +56,7 @@ public class DialogoDocumentalConsulta extends JDialog {
 		JLabel labelGenero = new JLabel("Género: ");
 		labelGeneroResul = new JLabel("");
 		JLabel labelSinopsis = new JLabel("Sinopsis: ");
-		labelSinopsisResul = new JLabel("");
+		textAreaSinopsisResul = new JTextArea();
 		
 		panelBtnOk = new PanelBtnOk();
 		
@@ -128,9 +129,10 @@ public class DialogoDocumentalConsulta extends JDialog {
 		labelGeneroResul.setBounds(79, 62, 179, 16);
 		panelResultado.add(labelGeneroResul);
 		
-		
-		labelSinopsisResul.setBounds(71, 90, 296, 113);
-		panelResultado.add(labelSinopsisResul);
+		textAreaSinopsisResul.setEditable(false);
+		textAreaSinopsisResul.setLineWrap(true);
+		textAreaSinopsisResul.setBounds(79, 90, 337, 146);
+		panelResultado.add(textAreaSinopsisResul);
 		
 		panelBtnOk.setBounds(0, 320, 541, 39);
 		getContentPane().add(panelBtnOk);
@@ -145,7 +147,7 @@ public class DialogoDocumentalConsulta extends JDialog {
 		labelAnyoResul.setText(Integer.toString(d.getAnyo()));
 		labelDirectorResul.setText(d.getDirector().getNombre());
 		labelGeneroResul.setText(d.getGenero().getDescripcion());
-		labelSinopsisResul.setText(d.getSinopsis());
+		textAreaSinopsisResul.setText(d.getSinopsis());
 	}
 	
 	

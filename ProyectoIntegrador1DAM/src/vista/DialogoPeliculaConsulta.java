@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import modelo.Pelicula;
+import javax.swing.JTextArea;
 
 /**
  * Esta clase genera la pantalla de visualización de datos para la transacción de s de películas
@@ -34,7 +35,7 @@ public class DialogoPeliculaConsulta extends JDialog {
 	private JLabel labelAnyoResul;
 	private JLabel labelDirectorResul;
 	private JLabel labelGeneroResul;
-	private JLabel labelSinopsisResul;
+	private JTextArea textAreaSinopsisResul;
 	
 	public DialogoPeliculaConsulta() {
 		//Panel para buscar por codigo
@@ -55,11 +56,11 @@ public class DialogoPeliculaConsulta extends JDialog {
 		JLabel labelGenero = new JLabel("Género: ");
 		labelGeneroResul = new JLabel("");
 		JLabel labelSinopsis = new JLabel("Sinopsis: ");
-		labelSinopsisResul = new JLabel("");
+		textAreaSinopsisResul = new JTextArea();
 		
 		panelBtnOk = new PanelBtnOk();
 		
-		setTitle("Baja de películas");
+		setTitle("Consulta de películas");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setBounds(100, 100, 541, 381);
@@ -128,9 +129,10 @@ public class DialogoPeliculaConsulta extends JDialog {
 		labelGeneroResul.setBounds(79, 62, 179, 16);
 		panelResultado.add(labelGeneroResul);
 		
-		
-		labelSinopsisResul.setBounds(71, 90, 296, 113);
-		panelResultado.add(labelSinopsisResul);
+		textAreaSinopsisResul.setEditable(false);
+		textAreaSinopsisResul.setLineWrap(true);
+		textAreaSinopsisResul.setBounds(79, 90, 359, 148);
+		panelResultado.add(textAreaSinopsisResul);
 		
 		panelBtnOk.setBounds(0, 320, 541, 39);
 		getContentPane().add(panelBtnOk);
@@ -145,7 +147,7 @@ public class DialogoPeliculaConsulta extends JDialog {
 		labelAnyoResul.setText(Integer.toString(p.getAnyo()));
 		labelDirectorResul.setText(p.getDirector().getNombre());
 		labelGeneroResul.setText(p.getGenero().getDescripcion());
-		labelSinopsisResul.setText(p.getSinopsis());
+		textAreaSinopsisResul.setText(p.getSinopsis());
 	}
 	
 	
@@ -173,5 +175,4 @@ public class DialogoPeliculaConsulta extends JDialog {
 	public void setPanelResultado(JPanel panelResultado) {
 		this.panelResultado = panelResultado;
 	}
-
 }

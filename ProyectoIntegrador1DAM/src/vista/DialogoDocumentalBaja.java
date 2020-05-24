@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import modelo.Documental;
@@ -37,7 +38,7 @@ public class DialogoDocumentalBaja extends JDialog {
 	private JLabel labelAnyoResul;
 	private JLabel labelDirectorResul;
 	private JLabel labelGeneroResul;
-	private JLabel labelSinopsisResul;
+	private JTextArea textAreaSinopsisResul;
 	
 	public DialogoDocumentalBaja() {
 		//Panel para buscar por codigo
@@ -59,11 +60,11 @@ public class DialogoDocumentalBaja extends JDialog {
 		JLabel labelGenero = new JLabel("Género: ");
 		labelGeneroResul = new JLabel("");
 		JLabel labelSinopsis = new JLabel("Sinopsis: ");
-		labelSinopsisResul = new JLabel("");
+		textAreaSinopsisResul = new JTextArea();
 		
 		panelBtnsAceptarCancelar = new PanelBtnsAceptarCancelar();
 		
-		setTitle("Baja de Documentals");
+		setTitle("Baja de Documentales");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setBounds(100, 100, 541, 381);
@@ -138,8 +139,10 @@ public class DialogoDocumentalBaja extends JDialog {
 		panelResultado.add(labelGeneroResul);
 		
 		
-		labelSinopsisResul.setBounds(79, 146, 296, 113);
-		panelResultado.add(labelSinopsisResul);
+		textAreaSinopsisResul.setEditable(false);
+		textAreaSinopsisResul.setLineWrap(true);
+		textAreaSinopsisResul.setBounds(89, 146, 345, 100);
+		panelResultado.add(textAreaSinopsisResul);
 		
 		panelBtnsAceptarCancelar.setBounds(0, 320, 541, 39);
 		getContentPane().add(panelBtnsAceptarCancelar);
@@ -159,7 +162,7 @@ public class DialogoDocumentalBaja extends JDialog {
 			labelAnyoResul.setText(Integer.toString(d.getAnyo()));
 			labelDirectorResul.setText(d.getDirector().getNombre());
 			labelGeneroResul.setText(d.getGenero().getDescripcion());
-			labelSinopsisResul.setText(d.getSinopsis());
+			textAreaSinopsisResul.setText(d.getSinopsis());
 		}
 	}
 	
