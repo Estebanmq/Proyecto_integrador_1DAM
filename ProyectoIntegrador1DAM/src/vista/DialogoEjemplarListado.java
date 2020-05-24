@@ -38,7 +38,7 @@ public class DialogoEjemplarListado extends JDialog {
 	
 	private static final long serialVersionUID = 5838718128147058007L;
 
-	private final String NOMCOLUMNAS[] = new String[] {"Código", "Título", "Director"};
+	private final String NOMCOLUMNAS[] = new String[] {"Código", "Título", "Nacionalidad"};
 	
 	private DefaultTableModel dtmModelo;
 	private JTable tablaEjemplares;
@@ -59,6 +59,7 @@ public class DialogoEjemplarListado extends JDialog {
 	private JTextField fieldNacionalidadSelected;
 	private JTextField fieldAnyoSelected;
 	private JTextField fieldGeneroSelected;
+	private JTextField fieldDirectorSelected;
 	
 	public DialogoEjemplarListado() {
 		
@@ -74,6 +75,7 @@ public class DialogoEjemplarListado extends JDialog {
 		JLabel labelanyoSelected = new JLabel("Año:");
 		JLabel labelNacionalidadSelected = new JLabel("Nacionalidad:");
 		JLabel labelGenero = new JLabel("Género:");
+		JLabel labelDirectorSelected = new JLabel("Director:");
 
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -169,7 +171,6 @@ public class DialogoEjemplarListado extends JDialog {
 		
 		this.setFieldTituloSelected(new JTextField());
 		this.getFieldTituloSelected().setEnabled(false);
-		this.getFieldTituloSelected().setDragEnabled(true);
 		this.getFieldTituloSelected().setColumns(33);
 		this.getFieldTituloSelected().setBounds(328, 23, 262, 28);
 		panelDatos.add(this.getFieldTituloSelected());
@@ -179,7 +180,6 @@ public class DialogoEjemplarListado extends JDialog {
 		
 		this.setFieldNacionalidadSelected(new JTextField());
 		this.getFieldNacionalidadSelected().setEnabled(false);
-		this.getFieldNacionalidadSelected().setDragEnabled(true);
 		this.getFieldNacionalidadSelected().setColumns(25);
 		this.getFieldNacionalidadSelected().setBounds(112, 50, 207, 28);
 		panelDatos.add(this.getFieldNacionalidadSelected());
@@ -202,12 +202,20 @@ public class DialogoEjemplarListado extends JDialog {
 		labelGenero.setBounds(27, 85, 73, 16);
 		panelDatos.add(labelGenero);
 		
-		setFieldGeneroSelected(new JTextField());
-		getFieldGeneroSelected().setEnabled(false);
-		getFieldGeneroSelected().setDragEnabled(true);
-		getFieldGeneroSelected().setColumns(25);
-		getFieldGeneroSelected().setBounds(112, 79, 207, 28);
+		this.setFieldGeneroSelected(new JTextField());
+		this.getFieldGeneroSelected().setEnabled(false);
+		this.getFieldGeneroSelected().setColumns(25);
+		this.getFieldGeneroSelected().setBounds(112, 79, 109, 28);
 		panelDatos.add(getFieldGeneroSelected());
+		
+		labelDirectorSelected.setBounds(269, 85, 58, 16);
+		panelDatos.add(labelDirectorSelected);
+		
+		this.setFieldDirectorSelected(new JTextField());
+		this.getFieldDirectorSelected().setEnabled(false);
+		this.getFieldDirectorSelected().setColumns(33);
+		this.getFieldDirectorSelected().setBounds(328, 79, 262, 28);
+		panelDatos.add(getFieldDirectorSelected());
 
 		this.setPanelBtnOk(new PanelBtnOk());
 		getContentPane().add(this.getPanelBtnOk(), BorderLayout.SOUTH);
@@ -235,6 +243,7 @@ public class DialogoEjemplarListado extends JDialog {
 		this.getFieldAnyoSelected().setText(Integer.toString(pelicula.getAnyo()));
 		this.getFieldNacionalidadSelected().setText(pelicula.getNacionalidad().getDescripcion());
 		this.getFieldGeneroSelected().setText(pelicula.getGenero().getDescripcion());
+		this.getFieldDirectorSelected().setText(pelicula.getDirector().getNombre());
 		
 	}
 	
@@ -245,6 +254,7 @@ public class DialogoEjemplarListado extends JDialog {
 		this.getFieldAnyoSelected().setText(Integer.toString(documental.getAnyo()));
 		this.getFieldNacionalidadSelected().setText(documental.getNacionalidad().getDescripcion());
 		this.getFieldGeneroSelected().setText(documental.getGenero().getDescripcion());
+		this.getFieldDirectorSelected().setText(documental.getDirector().getNombre());
 		
 	}
 	
@@ -384,5 +394,13 @@ public class DialogoEjemplarListado extends JDialog {
 
 	public void setFieldGeneroSelected(JTextField fieldGeneroSelected) {
 		this.fieldGeneroSelected = fieldGeneroSelected;
+	}
+
+	public JTextField getFieldDirectorSelected() {
+		return fieldDirectorSelected;
+	}
+
+	public void setFieldDirectorSelected(JTextField fieldDirectorSelected) {
+		this.fieldDirectorSelected = fieldDirectorSelected;
 	}
 }
