@@ -123,6 +123,15 @@ public class DialogoPeliculaModificacion extends JDialog {
 		textFieldAnyoResul.setBounds(71, 29, 187, 26);
 		panelResultado.add(textFieldAnyoResul);
 		textFieldAnyoResul.setColumns(10);
+		textFieldAnyoResul.addKeyListener(new KeyAdapter() {
+			 public void keyTyped(KeyEvent e) {
+			      char caracter = e.getKeyChar();
+			      // Verifico si la tecla pulsada no es un digito
+			      if(((caracter < '0') || (caracter > '9')) || textFieldAnyoResul.getText().length()>3 && (caracter != '\b')) {
+			         e.consume();  // No escribe el caracter
+			      }
+			   }
+		});
 		
 		labelDirector.setBounds(270, 34, 61, 16);
 		panelResultado.add(labelDirector);
@@ -194,8 +203,60 @@ public class DialogoPeliculaModificacion extends JDialog {
 		textAreaSinopsisResul.setEditable(true);
 	}
 	
+	//GETTER Y SETTER
+	
+	
+	
 	public JButton getBtnBuscar() {
 		return btnBuscar;
+	}
+
+	public JTextField getTextFieldTitResul() {
+		return textFieldTitResul;
+	}
+
+	public void setTextFieldTitResul(JTextField textFieldTitResul) {
+		this.textFieldTitResul = textFieldTitResul;
+	}
+
+	public JTextField getTextFieldAnyoResul() {
+		return textFieldAnyoResul;
+	}
+
+	public void setTextFieldAnyoResul(JTextField textFieldAnyoResul) {
+		this.textFieldAnyoResul = textFieldAnyoResul;
+	}
+
+	public JComboBox<String> getComboBoxPais() {
+		return comboBoxPais;
+	}
+
+	public void setComboBoxPais(JComboBox<String> comboBoxPais) {
+		this.comboBoxPais = comboBoxPais;
+	}
+
+	public JComboBox getComboBoxGenero() {
+		return comboBoxGenero;
+	}
+
+	public void setComboBoxGenero(JComboBox comboBoxGenero) {
+		this.comboBoxGenero = comboBoxGenero;
+	}
+
+	public JComboBox getComboBoxDirector() {
+		return comboBoxDirector;
+	}
+
+	public void setComboBoxDirector(JComboBox comboBoxDirector) {
+		this.comboBoxDirector = comboBoxDirector;
+	}
+
+	public JTextArea getTextAreaSinopsisResul() {
+		return textAreaSinopsisResul;
+	}
+
+	public void setTextAreaSinopsisResul(JTextArea textAreaSinopsisResul) {
+		this.textAreaSinopsisResul = textAreaSinopsisResul;
 	}
 
 	public void setBtnBuscar(JButton btnBuscar) {

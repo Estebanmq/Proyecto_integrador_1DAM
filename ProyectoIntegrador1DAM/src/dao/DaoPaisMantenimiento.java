@@ -118,6 +118,35 @@ public class DaoPaisMantenimiento {
 		
 	}
 	
+	/**
+	 * 
+	 * Método que obtiene el código de un país en función del nombre recibido por parámetro
+	 * 
+	 * @param codigo Código del país a localizar 
+	 * @return Pais
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public int obtenerCodPais(String p) throws ClassNotFoundException, SQLException {
+		
+												// Monta la query a ejecutar
+		this.setQuery("select codigo from PAIS where DESCRIPCION  = ?");
+			
+												// Obtiene la conexión y ejecuta la query
+		this.setConn(Conexion.getConexion());
+		this.setPs(this.getConn().prepareStatement(this.getQuery()));
+		this.getPs().setString(1, p);
+		this.setRs(this.getPs().executeQuery());
+
+												// Carga en País los datos devuelvos
+		if (this.getRs().next()) { 
+			return this.getRs().getInt(1);			
+		} 
+		
+		Conexion.cerrar();
+		return 0;
+	}
+
 	// GETTERS & SETTERS
 	private Connection getConn() {
 		return conn;

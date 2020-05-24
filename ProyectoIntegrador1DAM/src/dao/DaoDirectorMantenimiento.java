@@ -166,6 +166,24 @@ public class DaoDirectorMantenimiento {
 		Conexion.cerrar();
 		
 	}
+	
+	/**
+	 * Método para buscar el codigo de un director
+	 * @param nombre del director
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public int buscarCodDirector (String nombre) throws ClassNotFoundException, SQLException{
+		int codigo;
+		this.setConn(Conexion.getConexion());
+		st = conn.createStatement();
+		rs = st.executeQuery("SELECT codigo FROM PARTICIPANTE WHERE NOMBRE = '"+nombre+"'");
+		rs.next();
+		codigo=rs.getInt(1);
+		st.close();
+		Conexion.cerrar();
+		return codigo;
+	}
 
 	// GETTERS & SETTERS
 	private Connection getConn() {

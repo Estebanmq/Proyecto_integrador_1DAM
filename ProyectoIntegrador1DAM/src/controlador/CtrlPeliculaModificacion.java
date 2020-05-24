@@ -3,12 +3,16 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.Normalizer;
 
 import javax.swing.JOptionPane;
 
 import dao.DaoDirectorMantenimiento;
 import dao.DaoPaisMantenimiento;
 import dao.DaoPeliculaMantenimiento;
+import modelo.Director;
+import modelo.GeneroPelicula;
+import modelo.Pais;
 import modelo.Pelicula;
 import vista.DialogoPeliculaModificacion;
 
@@ -67,12 +71,15 @@ public class CtrlPeliculaModificacion implements ActionListener{
 			daoPeliculaMantenimiento = new DaoPeliculaMantenimiento();
 			daoPaisMantenimiento = new DaoPaisMantenimiento();
 			daoDirectorMantenimiento = new DaoDirectorMantenimiento();
-			String lblCod;
+			
+			int codDirec;
+			int codPais;
+			String lblCod = dialogoModificacionPelicula.getTextFieldBuscarCodigo().getText();
 			Pelicula p;
 			switch (e.getActionCommand()) {			
 				case "btnBuscar":
 					try {
-						lblCod = dialogoModificacionPelicula.getTextFieldBuscarCodigo().getText();
+						
 						if (lblCod.equals("")) //Si el codigo de la pelicula esta vacio muestro un mensaje de error
 							dialogoModificacionPelicula.getPanelBtnsAceptarCancelar().getLabelTextoError().setText("El código no puede estar en blanco");
 						else {
@@ -94,7 +101,26 @@ public class CtrlPeliculaModificacion implements ActionListener{
 			        }
 					break;
 				case "btnAceptar":
-					System.out.format("%s\n", "Boton de aceptar");
+					try {
+						codDirec = daoDirectorMantenimiento.buscarCodDirector(dialogoModificacionPelicula.getComboBoxDirector().getSelectedItem().toString());
+						codPais = daoPaisMantenimiento.obtenerCodPais(dialogoModificacionPelicula.getComboBoxPais().getSelectedItem().toString());
+						//Formateo el String del genero pelicula para quitar todas las tildes y no de ningun error
+						String aux;
+						aux = Normalizer.normalize(dialogoModificacionPelicula.getComboBoxGenero().getSelectedItem().toString(), Normalizer.Form.NFD);
+					    aux = aux.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+						aux =  aux.replace(" ","");
+						
+						
+						if (daoPeliculaMantenimiento.actualizarPelicula(new Pelicula(Integer.parseInt(dialogoModificacionPelicula.getTextFieldBuscarCodigo().getText()),
+								dialogoModificacionPelicula.getTextFieldTitResul().getText(),Integer.parseInt(dialogoModificacionPelicula.getTextFieldAnyoResul().getText()),
+								new Director(codDirec,null,null,null,null,null),dialogoModificacionPelicula.getTextAreaSinopsisResul().getText(),new Pais(codPais,null),
+								GeneroPelicula.valueOf(aux.toUpperCase()))) != 0)
+							JOptionPane.showMessageDialog(null, "Pelicula actualizada correctamente");
+						else
+							JOptionPane.showMessageDialog(null, "La pelicula no se ha podido actualizar", "Error", JOptionPane.PLAIN_MESSAGE);
+					} catch (NumberFormatException | ClassNotFoundException | SQLException e1) {
+						e1.printStackTrace();
+					};
 					break;
 				case "btnCancelar" :
 					dialogoModificacionPelicula.dispose(); //Cierro la ventana si pulsa el boton de cancelar
