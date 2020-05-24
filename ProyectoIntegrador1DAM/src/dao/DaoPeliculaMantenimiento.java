@@ -74,20 +74,6 @@ public class DaoPeliculaMantenimiento {
 		rs.next();
 		maxCod = rs.getInt(1); //Almaceno el código
 		
-//		String query = " insert into users (first_name, last_name, date_created, is_admin, num_points)"
-//		        + " values (?, ?, ?, ?, ?)";
-//	
-//	      // create the mysql insert preparedstatement
-//	      PreparedStatement preparedStmt = conn.prepareStatement(query);
-//	      preparedStmt.setString (1, "Barney");
-//	      preparedStmt.setString (2, "Rubble");
-//	      preparedStmt.setDate   (3, startDate);
-//	      preparedStmt.setBoolean(4, false);
-//	      preparedStmt.setInt    (5, 5000);
-//	
-//	      // execute the preparedstatement
-//	      preparedStmt.execute();
-	      
 		//Para poder almacenar una película antes tengo que almacenar un ejemplar audiovisual
 		String insertGenePeli = "INSERT INTO EJEMPLARAUDIOVISUAL VALUES ("+maxCod+",'"+titulo+"',"+anyo+",(SELECT DIRECTOR.CODIGO FROM PARTICIPANTE,DIRECTOR WHERE DIRECTOR.CODIGO = PARTICIPANTE.CODIGO AND participante.NOMBRE = '"+director+"'),(SELECT codigo FROM PAIS WHERE descripcion='"+nacionalidad+"'),'"+sinopsis+"')";
 		String insertPeli = "INSERT INTO PELICULA VALUES("+maxCod+",'"+genero+"')";
@@ -144,16 +130,43 @@ public class DaoPeliculaMantenimiento {
 		st.close();
 		return p;
 	}
-	
-	
-	
+
+	/** 
+	 * Método que elimina una película a partir de su código
+	 * @param cod Código de la película∫
+	 * @return El número de filas actualizadas
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public int borrarPelicula(int cod) throws ClassNotFoundException, SQLException {
-		System.out.format("%s\n", cod);
 		int result = 0;
 		conn=Conexion.getConexion();
 		st=conn.createStatement();
 		result += st.executeUpdate("DELETE FROM PELICULA WHERE CODIGO = "+cod);
 		result += st.executeUpdate("DELETE FROM EJEMPLARAUDIOVISUAL WHERE CODIGO = "+cod);
+		conn.commit();
+		Conexion.cerrar();
+		st.close();
+		return result;
+	}
+	
+	/** 
+	 * Método que elimina una película a partir de su código
+	 * @param cod Código de la película∫
+	 * @return El número de filas actualizadas
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public int actualizarPelicula(Pelicula p) throws ClassNotFoundException, SQLException {
+		DaoPaisMantenimiento daoPaisMantenimiento = new DaoPaisMantenimiento();
+		DaoDirectorMantenimiento daoDirectorMantenimiento = new DaoDirectorMantenimiento();
+		int result = 0;
+		conn=Conexion.getConexion();
+		st=conn.createStatement();
+		result += st.executeUpdate("UPDATE EJEMPLARAUDIOVISUAL SET TITULO = '"+p.getTitulo()+"', SIPNOSIS = '"+ p.getSinopsis()+"', ANYO = "+p.getAnyo()
+		+", DIRECTOR = "+p.getDirector().getCodigo()
+		+", NACIONALIDAD = "+p.getNacionalidad().getCodigo()+" WHERE CODIGO = "+p.getCodigo());
+		result += st.executeUpdate("UPDATE PELICULA SET GENEROPELICULA = '"+p.getGenero().getDescripcion()+"' WHERE CODIGO ="+p.getCodigo());
 		conn.commit();
 		Conexion.cerrar();
 		st.close();

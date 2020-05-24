@@ -10,6 +10,7 @@ import java.util.HashSet;
 import modelo.Interprete;
 import modelo.ListaInterprete;
 import modelo.Sexo;
+import vista.DialogoInterpreteAlta;
 
 /**
  * Esta clase está dedicada al manejo de datos de intérpretes en la base de datos
@@ -45,6 +46,52 @@ public class DaoInterpreteMantenimiento {
 	 */
 	private ResultSet rs;
 
+	/**
+     * Método para dar de alta a un interprete
+     * @param nombre nombre del interprete
+     * @param fecha fecha en que nació
+     * @param sexo sexo del interprete
+     * @param cache el salario que cobra de base por película
+     * @param nacionalidad país de nacimiento
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+	public void darAltaInterprete (DialogoInterpreteAlta iAlta) throws ClassNotFoundException, SQLException {
+		
+		int codigo = 0;
+		double cache = 0;
+		//monta la query
+		this.setQuery("select max(codigo) from participante");
+		
+		this.setConn(Conexion.getConexion());
+		this.setPs(this.getConn().prepareStatement(this.getQuery()));
+		this.setRs(this.getPs().executeQuery());
+		
+		if(this.getRs().next()) {
+			codigo=this.getRs().getInt(1)+1;
+		}
+		
+		String nombre = iAlta.getTextNombre().getText();
+		String fecha = iAlta.getTextFecha().getText();
+		String sexo = iAlta.getBg().getSelection().getActionCommand().toUpperCase();
+		String nacionalidad = iAlta.getComboBoxPais().getSelectedItem().toString();
+		String cacheString = iAlta.getTextCache().getText();
+		if(!cacheString.isEmpty())
+			cache = Double.parseDouble(iAlta.getTextCache().getText());
+
+		String insertParticipante = "INSERT INTO PARTICIPANTE VALUES ("+codigo+ ",'" +nombre+ "',DATE('" + fecha + "'),'" +sexo+ "', (SELECT codigo FROM PAIS WHERE descripcion='"+nacionalidad+"'))";
+		this.setQuery(insertParticipante);
+		st = conn.createStatement();
+		st.executeUpdate(this.getQuery());
+		
+		String insertInterprete = "INSERT INTO INTERPRETE VALUES ("+codigo+ "," +cache+ ")";
+		this.setQuery(insertInterprete);
+		st.executeUpdate(this.getQuery());
+		conn.commit();
+		Conexion.cerrar();
+		
+	}
+	
 	/**
 	 * Método que obtiene de BD la lista de intérpretes
 	 * 
