@@ -175,9 +175,9 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 					pelicula = new Pelicula(this.getDaoPeliculaMantenimiento().buscarPeli(codigo));
 					this.getDialogoEjemplarListado().mostrarPelicula(pelicula);
 				} else {
-//					this.setDaoDocumentalMantenimiento(new DaoDocumentalMantenimiento());
-//					documental = new Documental(this.getDaoDocumentalMantenimiento().buscarDocumental(codigo));					
-//					this.getDialogoEjemplarListado().mostrarDocumental(documental);
+					this.setDaoDocumentalMantenimiento(new DaoDocumentalMantenimiento());
+					documental = new Documental(this.getDaoDocumentalMantenimiento().buscarDocu(codigo));					
+					this.getDialogoEjemplarListado().mostrarDocumental(documental);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
@@ -200,7 +200,6 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 		this.setFiltro(new FiltroEjemplarListado());
 		this.getFiltro().setPelicula(this.getDialogoEjemplarListado().getChkPeliculas().isSelected());
 		this.getFiltro().setDocumental(this.getDialogoEjemplarListado().getChkDocumentales().isSelected());
-//		getFiltro().setEjemplar(this.dialogoListadoPart.getComboEjemplar().getSelectedItem().toString());
 		getFiltro().setTitulo(this.getDialogoEjemplarListado().getFieldTitulo().getText());
 		getFiltro().setPais(((Pais)this.getDialogoEjemplarListado().getComboNacionalidad().getSelectedItem()).getCodigo());
 		getFiltro().setAnyo((Integer)this.getDialogoEjemplarListado().getSpinnerAnyo().getValue());
