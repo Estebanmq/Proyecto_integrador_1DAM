@@ -58,6 +58,7 @@ public class DialogoEjemplarListado extends JDialog {
 	private JTextField fieldTituloSelected;
 	private JTextField fieldNacionalidadSelected;
 	private JTextField fieldAnyoSelected;
+	private JTextField fieldGeneroSelected;
 	
 	public DialogoEjemplarListado() {
 		
@@ -72,12 +73,14 @@ public class DialogoEjemplarListado extends JDialog {
 		JLabel labelTituloSelected = new JLabel("Título:");
 		JLabel labelanyoSelected = new JLabel("Año:");
 		JLabel labelNacionalidadSelected = new JLabel("Nacionalidad:");
+		JLabel labelGenero = new JLabel("Género:");
+
 
 		JScrollPane scrollPane = new JScrollPane();
 
 		int anyoActual = Calendar.getInstance().get(Calendar.YEAR);
 		
-		spinnerModel = new SpinnerNumberModel(anyoActual, 1900, anyoActual, 1);
+		spinnerModel = new SpinnerNumberModel(0, 0, anyoActual, 1);
 		this.setSpinnerAnyo(new JSpinner(spinnerModel));
 
 		this.setModal(true); 		
@@ -161,24 +164,24 @@ public class DialogoEjemplarListado extends JDialog {
 		labelCodigoSelected.setBounds(27, 29, 73, 16);
 		panelDatos.add(labelCodigoSelected);
 		
-		labelTituloSelected.setBounds(27, 57, 83, 14);
+		labelTituloSelected.setBounds(269, 30, 53, 14);
 		panelDatos.add(labelTituloSelected);
 		
 		this.setFieldTituloSelected(new JTextField());
 		this.getFieldTituloSelected().setEnabled(false);
 		this.getFieldTituloSelected().setDragEnabled(true);
 		this.getFieldTituloSelected().setColumns(33);
-		this.getFieldTituloSelected().setBounds(112, 50, 262, 28);
+		this.getFieldTituloSelected().setBounds(328, 23, 262, 28);
 		panelDatos.add(this.getFieldTituloSelected());
 		
-		labelNacionalidadSelected.setBounds(27, 83, 83, 16);
+		labelNacionalidadSelected.setBounds(27, 57, 83, 16);
 		panelDatos.add(labelNacionalidadSelected);
 		
 		this.setFieldNacionalidadSelected(new JTextField());
 		this.getFieldNacionalidadSelected().setEnabled(false);
 		this.getFieldNacionalidadSelected().setDragEnabled(true);
 		this.getFieldNacionalidadSelected().setColumns(25);
-		this.getFieldNacionalidadSelected().setBounds(112, 77, 207, 28);
+		this.getFieldNacionalidadSelected().setBounds(112, 50, 207, 28);
 		panelDatos.add(this.getFieldNacionalidadSelected());
 		
 		this.setFieldCodigoSelected(new JTextField());
@@ -195,6 +198,16 @@ public class DialogoEjemplarListado extends JDialog {
 		this.getFieldAnyoSelected().setEnabled(false);
 		this.getFieldAnyoSelected().setBounds(507, 50, 83, 28);
 		panelDatos.add(this.getFieldAnyoSelected());
+		
+		labelGenero.setBounds(27, 85, 73, 16);
+		panelDatos.add(labelGenero);
+		
+		setFieldGeneroSelected(new JTextField());
+		getFieldGeneroSelected().setEnabled(false);
+		getFieldGeneroSelected().setDragEnabled(true);
+		getFieldGeneroSelected().setColumns(25);
+		getFieldGeneroSelected().setBounds(112, 79, 207, 28);
+		panelDatos.add(getFieldGeneroSelected());
 
 		this.setPanelBtnOk(new PanelBtnOk());
 		getContentPane().add(this.getPanelBtnOk(), BorderLayout.SOUTH);
@@ -221,6 +234,7 @@ public class DialogoEjemplarListado extends JDialog {
 		this.getFieldTituloSelected().setText(pelicula.getTitulo());
 		this.getFieldAnyoSelected().setText(Integer.toString(pelicula.getAnyo()));
 		this.getFieldNacionalidadSelected().setText(pelicula.getNacionalidad().getDescripcion());
+		this.getFieldGeneroSelected().setText(pelicula.getGenero().getDescripcion());
 		
 	}
 	
@@ -230,6 +244,7 @@ public class DialogoEjemplarListado extends JDialog {
 		this.getFieldTituloSelected().setText(documental.getTitulo());
 		this.getFieldAnyoSelected().setText(Integer.toString(documental.getAnyo()));
 		this.getFieldNacionalidadSelected().setText(documental.getNacionalidad().getDescripcion());
+		this.getFieldGeneroSelected().setText(documental.getGenero().getDescripcion());
 		
 	}
 	
@@ -361,5 +376,13 @@ public class DialogoEjemplarListado extends JDialog {
 
 	public void setSpinnerAnyo(JSpinner spinnerAnyo) {
 		this.spinnerAnyo = spinnerAnyo;
+	}
+
+	public JTextField getFieldGeneroSelected() {
+		return fieldGeneroSelected;
+	}
+
+	public void setFieldGeneroSelected(JTextField fieldGeneroSelected) {
+		this.fieldGeneroSelected = fieldGeneroSelected;
 	}
 }

@@ -200,9 +200,9 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 		this.setFiltro(new FiltroEjemplarListado());
 		this.getFiltro().setPelicula(this.getDialogoEjemplarListado().getChkPeliculas().isSelected());
 		this.getFiltro().setDocumental(this.getDialogoEjemplarListado().getChkDocumentales().isSelected());
-		getFiltro().setTitulo(this.getDialogoEjemplarListado().getFieldTitulo().getText());
-		getFiltro().setPais(((Pais)this.getDialogoEjemplarListado().getComboNacionalidad().getSelectedItem()).getCodigo());
-		getFiltro().setAnyo((Integer)this.getDialogoEjemplarListado().getSpinnerAnyo().getValue());
+		this.getFiltro().setTitulo(this.getDialogoEjemplarListado().getFieldTitulo().getText());
+		this.getFiltro().setPais(((Pais)this.getDialogoEjemplarListado().getComboNacionalidad().getSelectedItem()).getCodigo());
+		this.getFiltro().setAnyo((Integer)this.getDialogoEjemplarListado().getSpinnerAnyo().getValue());
 		if ((validacion = getFiltro().validarDatos()) != null) {
 			this.getDialogoEjemplarListado().getPanelBtnOk().getLabelTextoError().setText(validacion);
 			return false;
@@ -223,7 +223,7 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 		ArrayList<ListaEjemplar> arrayEjemplares = new ArrayList<ListaEjemplar>();
 
 		try {
-			arrayEjemplares = this.daoEjemplarListado.obtenerListaEjemplares(this.filtro);
+			arrayEjemplares = this.daoEjemplarListado.obtenerListaEjemplares(this.getFiltro());
 			
 			this.getDialogoEjemplarListado().crearFilas(arrayEjemplares);
 			

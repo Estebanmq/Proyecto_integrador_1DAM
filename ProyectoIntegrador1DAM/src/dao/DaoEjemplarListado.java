@@ -121,6 +121,10 @@ public class DaoEjemplarListado {
 			this.setQuery("select EJEMPLARAUDIOVISUAL.CODIGO, EJEMPLARAUDIOVISUAL.TITULO, EJEMPLARAUDIOVISUAL.NACIONALIDAD from DOCUMENTAL inner join EJEMPLARAUDIOVISUAL on DOCUMENTAL.CODIGO = EJEMPLARAUDIOVISUAL.CODIGO");
 		}
 		query = query.concat(" WHERE TRUE");
+		
+		if (!filtro.getAnyo().equals(0)) {
+			query = query.concat(" and EJEMPLARAUDIOVISUAL.ANYO = ").concat(filtro.getAnyo().toString());			
+		}
 			
 		if (!filtro.getTitulo().isEmpty()) {
 			query = query.concat(" and EJEMPLARAUDIOVISUAL.TITULO = '").concat(filtro.getTitulo()).concat("'");			

@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -60,6 +61,9 @@ public class DialogoParticipanteListado extends JDialog {
 	private JTextField fieldNombreSelected;
 	private JTextField fieldFNacimientoSelected;
 	private JTextField fieldSexoSelected;
+
+	private JLabel labelDinamico;
+	private JTextField fieldDinamico;
 	
 	public DialogoParticipanteListado() {
 		
@@ -176,24 +180,24 @@ public class DialogoParticipanteListado extends JDialog {
 		labelCodigoSelected.setBounds(27, 23, 73, 16);
 		panelDatos.add(labelCodigoSelected);
 		
-		labelNombreSelected.setBounds(27, 51, 83, 14);
+		labelNombreSelected.setBounds(338, 24, 57, 14);
 		panelDatos.add(labelNombreSelected);
 		
 		this.setFieldNombreSelected(new JTextField());
 		this.getFieldNombreSelected().setEnabled(false);
 		this.getFieldNombreSelected().setDragEnabled(true);
 		this.getFieldNombreSelected().setColumns(33);
-		this.getFieldNombreSelected().setBounds(112, 44, 262, 28);
+		this.getFieldNombreSelected().setBounds(396, 17, 219, 28);
 		panelDatos.add(this.getFieldNombreSelected());
 		
-		labelNacionalidadSelected.setBounds(27, 77, 83, 16);
+		labelNacionalidadSelected.setBounds(27, 51, 83, 16);
 		panelDatos.add(labelNacionalidadSelected);
 		
 		this.setFieldNacionalidadSelected(new JTextField());
 		this.getFieldNacionalidadSelected().setEnabled(false);
 		this.getFieldNacionalidadSelected().setDragEnabled(true);
 		this.getFieldNacionalidadSelected().setColumns(25);
-		this.getFieldNacionalidadSelected().setBounds(112, 71, 207, 28);
+		this.getFieldNacionalidadSelected().setBounds(112, 44, 207, 28);
 		panelDatos.add(this.getFieldNacionalidadSelected());
 		
 		this.setFieldCodigoSelected(new JTextField());
@@ -222,6 +226,16 @@ public class DialogoParticipanteListado extends JDialog {
 		this.getFieldSexoSelected().setColumns(10);
 		this.getFieldSexoSelected().setBounds(532, 71, 83, 28);
 		panelDatos.add(this.getFieldSexoSelected());
+		
+		this.setFieldDinamico(new JTextField());
+		this.getFieldDinamico().setEnabled(false);
+		this.getFieldDinamico().setColumns(25);
+		this.getFieldDinamico().setBounds(112, 71, 128, 28);
+		panelDatos.add(getFieldDinamico());
+		
+		setLabelDinamico(new JLabel(""));
+		getLabelDinamico().setBounds(27, 77, 83, 16);
+		panelDatos.add(getLabelDinamico());
 
 		this.setPanelBtnOk(new PanelBtnOk());
 		getContentPane().add(this.getPanelBtnOk(), BorderLayout.SOUTH);
@@ -249,16 +263,22 @@ public class DialogoParticipanteListado extends JDialog {
 		this.getFieldFNacimientoSelected().setText(new SimpleDateFormat("dd-MM-yyyy").format(director.getFechaNacimiento()));
 		this.getFieldNacionalidadSelected().setText(director.getNacionalidad().getDescripcion());
 		this.getFieldSexoSelected().setText(director.getSexo().getDescripcion());
+		this.getLabelDinamico().setText("Género:");
+		this.getFieldDinamico().setText(director.getGeneroPreferido().getDescripcion());
 		
 	}
 	
 	public void mostrarInterprete(Interprete interprete) {
 
+		DecimalFormat formateador = new DecimalFormat("###,###,###,###");
+		
 		this.getFieldCodigoSelected().setText(interprete.getCodigo().toString());
 		this.getFieldNombreSelected().setText(interprete.getNombre());
 		this.getFieldFNacimientoSelected().setText(new SimpleDateFormat("dd-MM-yyyy").format(interprete.getFechaNacimiento()));
 		this.getFieldNacionalidadSelected().setText(interprete.getNacionalidad().getDescripcion());
 		this.getFieldSexoSelected().setText(interprete.getSexo().getDescripcion());
+		this.getLabelDinamico().setText("Caché:");
+		this.getFieldDinamico().setText(formateador.format(interprete.getCache()));
 		
 	}
 	
@@ -410,5 +430,21 @@ public class DialogoParticipanteListado extends JDialog {
 
 	public void setFieldSexoSelected(JTextField fieldSexoSelected) {
 		this.fieldSexoSelected = fieldSexoSelected;
+	}
+
+	public JTextField getFieldDinamico() {
+		return fieldDinamico;
+	}
+
+	public void setFieldDinamico(JTextField fieldDinamico) {
+		this.fieldDinamico = fieldDinamico;
+	}
+
+	public JLabel getLabelDinamico() {
+		return labelDinamico;
+	}
+
+	public void setLabelDinamico(JLabel labelDinamico) {
+		this.labelDinamico = labelDinamico;
 	}
 }
