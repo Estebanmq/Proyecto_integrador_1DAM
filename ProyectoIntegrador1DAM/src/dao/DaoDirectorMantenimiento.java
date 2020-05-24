@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -132,13 +131,19 @@ public class DaoDirectorMantenimiento {
 	public Director obtenerDirector(int codigo) throws ClassNotFoundException, SQLException {
 		DaoPaisMantenimiento daoPaisMantenimiento = new DaoPaisMantenimiento();
 		Director direc;
+		GeneroPelicula generoPreferido = null;
 		
 		conn = Conexion.getConexion();
 		st=conn.createStatement();
 		rs = st.executeQuery("SELECT participante.NOMBRE, participante.FECHANACIMIENTO , participante.SEXO , director.GENEROPREFERIDO, participante.NACIONALIDAD "
 				+ "FROM participante INNER JOIN director ON participante.codigo = director.CODIGO WHERE director.codigo="+codigo);
 		rs.next();
-		direc = new Director(codigo,rs.getString(1),rs.getDate(2),Sexo.valueOf(rs.getString(3).toUpperCase()),GeneroPelicula.valueOf(rs.getString(4).toUpperCase()),daoPaisMantenimiento.obtenerPais(rs.getInt(5)));
+		
+		if (!rs.getString(4).isEmpty()) {
+			generoPreferido = GeneroPelicula.valueOf(rs.getString(4));						
+		}
+		
+		direc = new Director(codigo,rs.getString(1),rs.getDate(2),Sexo.valueOf(rs.getString(3).toUpperCase()), generoPreferido ,daoPaisMantenimiento.obtenerPais(rs.getInt(5)));
 		
 		Conexion.cerrar();
 		st.close();

@@ -65,8 +65,6 @@ public class DaoPeliculaMantenimiento {
 	public boolean insertarPelicula(String titulo,int anyo,String director,String nacionalidad,String sinopsis,String genero) throws SQLException, ClassNotFoundException {
 		int maxCod;
 		
-		genero.toUpperCase(); //El genero lo muestro en minuscula pero se almacena en mayuscula
-		
 		String selMaxCod = "SELECT COALESCE(max(codigo),0)+1 FROM EJEMPLARAUDIOVISUAL"; //Recupero el código mas alto + 1, si es 0 asigna 1
 		conn=Conexion.getConexion();
 		st=conn.createStatement();
@@ -76,7 +74,7 @@ public class DaoPeliculaMantenimiento {
 		
 		//Para poder almacenar una película antes tengo que almacenar un ejemplar audiovisual
 		String insertGenePeli = "INSERT INTO EJEMPLARAUDIOVISUAL VALUES ("+maxCod+",'"+titulo+"',"+anyo+",(SELECT DIRECTOR.CODIGO FROM PARTICIPANTE,DIRECTOR WHERE DIRECTOR.CODIGO = PARTICIPANTE.CODIGO AND participante.NOMBRE = '"+director+"'),(SELECT codigo FROM PAIS WHERE descripcion='"+nacionalidad+"'),'"+sinopsis+"')";
-		String insertPeli = "INSERT INTO PELICULA VALUES("+maxCod+",'"+genero+"')";
+		String insertPeli = "INSERT INTO PELICULA VALUES("+maxCod+",'"+GeneroPelicula.valueOfDescripcion(genero)+"')";
 		//Ejecuto ambos insert
 		st.executeUpdate(insertGenePeli);
 		st.executeUpdate(insertPeli);

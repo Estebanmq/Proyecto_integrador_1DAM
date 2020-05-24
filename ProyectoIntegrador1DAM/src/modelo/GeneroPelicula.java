@@ -1,4 +1,5 @@
 package modelo;
+
 /**
  * Enum con todos los valores de los generos de la película
  * @author Esteban Martínez
@@ -24,6 +25,19 @@ public enum GeneroPelicula {
 	GeneroPelicula (String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	public static GeneroPelicula valueOfDescripcion(final String descripcion) {
+		
+		if (!descripcion.isEmpty()) {
+			for (GeneroPelicula genero : values()) {
+				if (genero.getDescripcion().equals(descripcion)) {
+					return genero;
+				}
+			}			
+		}
+		return null;
+	}
+
 	
 	public String getDescripcion() {
 		return descripcion;

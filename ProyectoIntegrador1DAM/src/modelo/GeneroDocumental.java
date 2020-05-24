@@ -22,6 +22,19 @@ public enum GeneroDocumental {
 		this.descripcion = descripcion;
 	}
 	
+	public static GeneroDocumental valueOfDescripcion(final String descripcion) {
+		
+		if (!descripcion.isEmpty()) {
+			for (GeneroDocumental genero : values()) {
+				if (genero.getDescripcion().equals(descripcion)) {
+					return genero;
+				}
+			}			
+		}
+		return null;
+	}
+
+	
 	public String getDescripcion() {
 		return descripcion;
 	}
