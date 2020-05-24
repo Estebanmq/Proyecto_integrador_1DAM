@@ -33,7 +33,7 @@ import modelo.PaisComboBox;
  * @version 1.0
  * @since 10/05/2020
  */
-public class DialogoListadoParticipantes extends JDialog {
+public class DialogoParticipanteListado extends JDialog {
 
 	private static final long serialVersionUID = -222187089871399229L;
 	
@@ -61,7 +61,7 @@ public class DialogoListadoParticipantes extends JDialog {
 	private JTextField fieldFNacimientoSelected;
 	private JTextField fieldSexoSelected;
 	
-	public DialogoListadoParticipantes() {
+	public DialogoParticipanteListado() {
 		
 		JPanel contentPanel = new JPanel();
 		JPanel panelSexo = new JPanel();
@@ -145,10 +145,10 @@ public class DialogoListadoParticipantes extends JDialog {
 		this.btnAplicar.setActionCommand("btnAplicarFiltros");
 		panelFiltro.add(btnAplicar);
 		
-		scrollPane.setBounds(10, 162, 552, 120);
+		scrollPane.setBounds(10, 162, 552, 133);
 		contentPanel.add(scrollPane);
 		
-		this.setDtmModelo(new DefaultTableModel(this.getNOMCOLUMNAS(), 0));
+		this.setDtmModelo(new DefaultTableModel(this.NOMCOLUMNAS, 0));
 		
 		this.setTablaParticipantes(new JTable(this.getDtmModelo()));
 		this.getTablaParticipantes().getColumnModel().getColumn(0).setResizable(false);
@@ -169,7 +169,7 @@ public class DialogoListadoParticipantes extends JDialog {
 		contentPanel.add(btnExportar);
 		
 		panelDatos.setBorder(new TitledBorder(null, "Datos del participante seleccionado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelDatos.setBounds(10, 282, 632, 135);
+		panelDatos.setBounds(10, 307, 632, 110);
 		contentPanel.add(panelDatos);
 		panelDatos.setLayout(null);
 		
@@ -230,7 +230,7 @@ public class DialogoListadoParticipantes extends JDialog {
 	
 	public void crearFilas(ArrayList<ListaParticipante> array) {
 		
-		Object[] fila = new Object[this.getNOMCOLUMNAS().length];
+		Object[] fila = new Object[this.NOMCOLUMNAS.length];
 		this.getDtmModelo().setRowCount(0);
 		
 		for (ListaParticipante l : array) {
@@ -306,10 +306,6 @@ public class DialogoListadoParticipantes extends JDialog {
 
 	public void setTablaParticipantes(JTable tableParticipantes) {
 		this.tablaParticipantes = tableParticipantes;
-	}
-
-	public String[] getNOMCOLUMNAS() {
-		return NOMCOLUMNAS;
 	}
 
 	public JButton getBtnAplicar() {

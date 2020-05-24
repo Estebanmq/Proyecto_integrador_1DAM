@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import modelo.FiltroListadoParticipantes;
+import modelo.FiltroParticipanteListado;
 import modelo.ListaParticipante;
 import modelo.Pais;
 /**
@@ -20,7 +20,7 @@ import modelo.Pais;
  * @version 1.0
  * @since 10/05/2020
  */
-public class DaoListadoParticipantes {
+public class DaoParticipanteListado {
 	
 	/**
 	 * Query a ejecutar 
@@ -56,7 +56,7 @@ public class DaoListadoParticipantes {
 	 * 
 	 * @param conn
 	 */
-	public DaoListadoParticipantes(Connection conn) {
+	public DaoParticipanteListado(Connection conn) {
 		this.setConn(conn);
 	}
 
@@ -96,12 +96,12 @@ public class DaoListadoParticipantes {
 	 * 
 	 * Método que obtiene de BD la lista de participantes en función del filtro recibido por parámetros
 	 * 
-	 * @param FiltroListadoParticipantes filtro
+	 * @param FiltroParticipanteListado filtro
 	 * @return ArrayList<ListaParticipante>
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public ArrayList<ListaParticipante> obtenerListaParticipantes(FiltroListadoParticipantes filtro) throws ClassNotFoundException, SQLException {
+	public ArrayList<ListaParticipante> obtenerListaParticipantes(FiltroParticipanteListado filtro) throws ClassNotFoundException, SQLException {
 		
 		ListaParticipante listaParticipante = new ListaParticipante();
 		ArrayList<ListaParticipante> arrayList = new ArrayList<ListaParticipante>();
@@ -110,9 +110,9 @@ public class DaoListadoParticipantes {
 		listaPaises = this.obtenerPaises(conn);
 		
 												// Monta la query a ejecutar
-		if (filtro.isDirector() && filtro.isParticipipante()) {
+		if (filtro.isDirector() && filtro.isInterprete()) {
 			this.setQuery("SELECT codigo, nombre, nacionalidad FROM participante");
-		} else if (filtro.isDirector() && !filtro.isParticipipante()) {
+		} else if (filtro.isDirector() && !filtro.isInterprete()) {
 			this.setQuery("SELECT participante.codigo, participante.nombre, participante.nacionalidad FROM director INNER JOIN participante ON director.codigo = participante.codigo");
 		} else {
 			this.setQuery("SELECT participante.codigo, participante.nombre, participante.nacionalidad FROM interprete INNER JOIN participante ON interprete.codigo = participante.codigo");

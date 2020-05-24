@@ -12,15 +12,15 @@ import javax.swing.event.ListSelectionListener;
 import dao.Conexion;
 import dao.DaoDirectorMantenimiento;
 import dao.DaoInterpreteMantenimiento;
-import dao.DaoListadoParticipantes;
+import dao.DaoParticipanteListado;
 import dao.DaoPaisMantenimiento;
 import dao.DaoParticipanteMantenimiento;
 import modelo.Director;
-import modelo.FiltroListadoParticipantes;
+import modelo.FiltroParticipanteListado;
 import modelo.Interprete;
 import modelo.ListaParticipante;
 import modelo.Pais;
-import vista.DialogoListadoParticipantes;
+import vista.DialogoParticipanteListado;
 /**
  * Clase perteneciente a la capa "controlador" que maneja los objetos involucrados en el listado de participantes
  * 
@@ -28,21 +28,21 @@ import vista.DialogoListadoParticipantes;
  * @version 1.0
  * @since 10/05/2020
  */
-public class CtrlListadoParticipantes implements ActionListener, ListSelectionListener {
+public class CtrlParticipanteListado implements ActionListener, ListSelectionListener {
 
 	/**
 	 * Clase que contiene la pantalla de visualización
 	 * 
-	 * @see DialogoListadoParticipantes
+	 * @see DialogoParticipanteListado
 	 */
-	private DialogoListadoParticipantes dialogoListadoPart;
+	private DialogoParticipanteListado dialogoListadoPart;
 
 	/**
 	 * Clase que contiene el acceso a datos de participantes
 	 * 
-	 * @see DaoListadoParticipantes
+	 * @see DaoParticipanteListado
 	 */
-	private DaoListadoParticipantes daoListadoPart;
+	private DaoParticipanteListado daoListadoPart;
 	
 	/**
 	 * Clase que contiene el acceso a datos de países
@@ -54,9 +54,9 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 	/**
 	 * Clase utilizada para guardar el filtro aplicado en la pantalla
 	 * 
-	 * @see FiltroListadoParticipantes
+	 * @see FiltroParticipanteListado
 	 */
-	private FiltroListadoParticipantes filtro;
+	private FiltroParticipanteListado filtro;
 
 	/**
 	 * Relación de participantes obtenidos de BD y que tienen que ser mostrados en la pantalla
@@ -83,21 +83,21 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 	/**
 	 * Método constructor para conectar modelo-controlador-vista
 	 */
-	public CtrlListadoParticipantes() {
+	public CtrlParticipanteListado() {
 		
 		setArrayParticipantes(new ArrayList<ListaParticipante>());
 		ArrayList<Pais> arrayPaises = new ArrayList<Pais>();
 		
 		try {
 			
-			this.daoListadoPart = new DaoListadoParticipantes(Conexion.getConexion());
+			this.daoListadoPart = new DaoParticipanteListado(Conexion.getConexion());
 			this.daoPaisMant = new DaoPaisMantenimiento();
 			
 			arrayPaises = this.daoPaisMant.obtenerListaPaises();
 
 			this.setArrayParticipantes(this.daoListadoPart.obtenerListaParticipantes());
 			
-			this.dialogoListadoPart = new DialogoListadoParticipantes();
+			this.dialogoListadoPart = new DialogoParticipanteListado();
 			this.dialogoListadoPart.crearFilas(getArrayParticipantes());
 			
 			this.dialogoListadoPart.getTablaParticipantes().getSelectionModel().addListSelectionListener(this);
@@ -133,8 +133,6 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		
-		System.out.format("Se ha pulsado: %s\n", event.getActionCommand());
-		
 		switch (event.getActionCommand()) {
 		
 			case "btnOk" :
@@ -167,11 +165,11 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 		Interprete interprete = null;
 		
 		if (event.getValueIsAdjusting()) {			
-			daoParticipanteMantenimiento = new DaoParticipanteMantenimiento();
+			this.setDaoParticipanteMantenimiento(new DaoParticipanteMantenimiento());
 			codigo = (Integer)this.dialogoListadoPart.getTablaParticipantes().getValueAt(this.dialogoListadoPart.getTablaParticipantes().getSelectedRow(), 0);
 			
 			try {
-				if (daoParticipanteMantenimiento.obtenerTipoParticipante(codigo).equalsIgnoreCase("D")) {
+				if (this.getDaoParticipanteMantenimiento().obtenerTipoParticipante(codigo).equalsIgnoreCase("D")) {
 					this.setDaoDirectorMantenimiento(new DaoDirectorMantenimiento());
 					director = new Director(this.getDaoDirectorMantenimiento().obtenerDirector(codigo));
 					this.getDialogoListadoPart().mostrarDirector(director);
@@ -190,17 +188,17 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 	/**
 	 * Método que obtiene el filtro a aplicar en la consulta, siempre y cuando pase la validación
 	 * 
-	 * @see FiltroListadoParticipantes
+	 * @see FiltroParticipanteListado
 	 * 
 	 * @return boolean indicando si la validación de datos es correcta
 	 */
 	public boolean obtenerFiltro() {
 		
-		setFiltro(new FiltroListadoParticipantes());
 		String validacion;
 		
+		setFiltro(new FiltroParticipanteListado());
 		getFiltro().setDirector(this.dialogoListadoPart.getChkDirectores().isSelected());
-		getFiltro().setParticipipante(this.dialogoListadoPart.getChkInterpretes().isSelected());
+		getFiltro().setInterprete(this.dialogoListadoPart.getChkInterpretes().isSelected());
 //		getFiltro().setEjemplar(this.dialogoListadoPart.getComboEjemplar().getSelectedItem().toString());
 		getFiltro().setNombre(this.dialogoListadoPart.getFieldNombre().getText());
 		getFiltro().setPais(((Pais)this.dialogoListadoPart.getComboNacionalidad().getSelectedItem()).getCodigo());
@@ -238,22 +236,22 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 	}
 
 	// GETTERS & SETTERS
-	public DialogoListadoParticipantes getDialogoListadoPart() {
+	public DialogoParticipanteListado getDialogoListadoPart() {
 		return dialogoListadoPart;
 	}
 
 
-	public void setDialogoListadoPart(DialogoListadoParticipantes dialogoListadoPart) {
+	public void setDialogoListadoPart(DialogoParticipanteListado dialogoListadoPart) {
 		this.dialogoListadoPart = dialogoListadoPart;
 	}
 
 
-	public DaoListadoParticipantes getDaoListadoPart() {
+	public DaoParticipanteListado getDaoListadoPart() {
 		return daoListadoPart;
 	}
 
 
-	public void setDaoListadoPart(DaoListadoParticipantes daoListadoPart) {
+	public void setDaoListadoPart(DaoParticipanteListado daoListadoPart) {
 		this.daoListadoPart = daoListadoPart;
 	}
 
@@ -265,11 +263,11 @@ public class CtrlListadoParticipantes implements ActionListener, ListSelectionLi
 		this.daoPaisMant = daoPaisMant;
 	}
 
-	public FiltroListadoParticipantes getFiltro() {
+	public FiltroParticipanteListado getFiltro() {
 		return filtro;
 	}
 
-	public void setFiltro(FiltroListadoParticipantes filtro) {
+	public void setFiltro(FiltroParticipanteListado filtro) {
 		this.filtro = filtro;
 	}
 

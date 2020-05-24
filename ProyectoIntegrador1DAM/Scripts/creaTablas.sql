@@ -214,3 +214,13 @@ CREATE VIEW participante_obj (tipo, codigo) AS
 SELECT 'D', codigo FROM director
 UNION
 SELECT 'I', codigo FROM interprete;
+
+
+CREATE VIEW ListaEjemplar (codigo, titulo, nacionalidad) AS
+	SELECT ejemplaraudiovisual.codigo, ejemplaraudiovisual.titulo, pais.descripcion FROM ejemplaraudiovisual INNER JOIN pais on ejemplaraudiovisual.nacionalidad = pais.codigo;
+	
+
+CREATE VIEW ejemplar_obj (tipo, codigo) AS
+SELECT 'P', codigo FROM pelicula
+UNION
+SELECT 'D', codigo FROM documental;

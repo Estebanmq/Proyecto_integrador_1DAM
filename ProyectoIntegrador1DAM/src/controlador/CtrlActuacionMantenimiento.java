@@ -97,7 +97,8 @@ public class CtrlActuacionMantenimiento implements ActionListener, ListSelection
 			this.setDaoPeliculaMantenimiento(new DaoPeliculaMantenimiento());
 			
 			this.setPelicula(this.getDaoPeliculaMantenimiento().buscarPeli(this.getCodigoPelicula()));
-			if (this.getPelicula()!=null) {
+//			if (this.getPelicula()!=null) {
+			if (!this.getPelicula().getTitulo().equals("Pelicula no existe")) {
 				this.congigurarActuacion();
 			} else {
 				this.getDialogoActuacionMantenimiento().getPanelBtnsAceptarCancelar().getLabelTextoError().setText("El código de película informado no existe.");				

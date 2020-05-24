@@ -1,44 +1,45 @@
 package modelo;
 
 /** 
- * Esta clase define una visión parcial de los participantes
+ * Esta clase define una visión parcial de los ejemplares audiovisuales junto
  * 
  * @author Jose Manuel 
  * @see Participante
- * @since 16/05/2020
+ * @since 24/05/2020
  */
-public class ListaParticipante {
+public class ListaEjemplar {
 
 	/** 
-	 * Código unico de cada persona
+	 * Código unico de cada ejemplar
 	 */
 	private Integer codigo;
 	/**
-	 * Nombre del participante
+	 * Título del ejemplar
 	 */
-	private String nombre;
+	private String titulo;
 	/**
 	 * Nombre del participante
 	 */
 	private String nacionalidad;
 	
 	/**
-	 * Método constructor de ListaParticipante
-	 * @param codigo Código de participante
-	 * @param nombre Nombre del participante
+	 * Método constructor de ListaEjemplar
+	 * 
+	 * @param codigo Código de ejemplar
+	 * @param titulo Título del ejemplar
 	 * @param nacionalidad Nacionalidad
 	 */	
-	public ListaParticipante(Integer codigo, String nombre, String nacionalidad) {
+	public ListaEjemplar(Integer codigo, String titulo, String nacionalidad) {
 		this.setCodigo(codigo);
-		this.setNombre(nombre);
+		this.setTitulo(titulo);
 		this.setNacionalidad(nacionalidad);
 	}
 	/**
-	 * Método constructor de ListaParticipante sin parámetros
+	 * Método constructor sin parámetros
 	 */	
-	public ListaParticipante() {
+	public ListaEjemplar() {
 		this.setCodigo(0);
-		this.setNombre(null);
+		this.setTitulo(null);
 		this.setNacionalidad(null);
 	}
 
@@ -51,12 +52,12 @@ public class ListaParticipante {
 		this.codigo = codigo;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 	
 	public String getNacionalidad() {

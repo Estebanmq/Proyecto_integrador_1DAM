@@ -38,6 +38,13 @@ public class Documental extends EjemplarAudiovisual{
 		super(codigo, titulo, anyo, director, sinopsis, nacionalidad);
 		this.genero = genero;
 	}
+	
+	/**
+	 * Método constructor sin parámetros de documental
+	 */
+	public Documental() {
+		this(0, null, 0, null, null, null, null);
+	}
 
 	/**
 	 * Método para ver los atributos

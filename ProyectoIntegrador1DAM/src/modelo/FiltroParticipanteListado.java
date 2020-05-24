@@ -2,16 +2,16 @@ package modelo;
 
 /**
  * 
- * <h1> Filtro de participantes
+ * <h1> Filtro para el listado de participantes
  * 
  * @author Jose Manuel
  * @version 1.0
  * @since 05/2020
  */
-public class FiltroListadoParticipantes {
+public class FiltroParticipanteListado {
 	
 	private boolean director; 
-	private boolean participipante; 
+	private boolean interprete; 
 	private Integer ejemplar;
 	private String nombre;
 	private Integer pais;
@@ -29,10 +29,10 @@ public class FiltroListadoParticipantes {
 	 * @param sexoFemenino Booleano que indica si se ha seleccionado el sexo femenino
 	 * @param sexoMasculino Booleano que indica si se ha seleccionado el sexo masculino
 	 */
-	public FiltroListadoParticipantes(boolean director, boolean participipante, Integer ejemplar, String nombre,
+	public FiltroParticipanteListado(boolean director, boolean participipante, Integer ejemplar, String nombre,
 			Integer pais, boolean sexoFemenino, boolean sexoMasculino) {
 		this.director = director;
-		this.participipante = participipante;
+		this.interprete = participipante;
 		this.ejemplar = ejemplar;
 		this.nombre = nombre;
 		this.pais = pais;
@@ -45,9 +45,9 @@ public class FiltroListadoParticipantes {
 	 * Constructor sin parámetros del filtro de participantes 
 	 * 
 	 */
-	public FiltroListadoParticipantes() {
+	public FiltroParticipanteListado() {
 		this.director = true;
-		this.participipante = true;
+		this.interprete = true;
 		this.ejemplar = 0;
 		this.nombre = "";
 		this.pais = 0;
@@ -62,7 +62,7 @@ public class FiltroListadoParticipantes {
 	 */
 	public String validarDatos() {
 		
-		if (!this.director && !this.participipante) {
+		if (!this.director && !this.interprete) {
 			return "Se debe marcar director o participante o ambos";
 		}
 		
@@ -81,11 +81,11 @@ public class FiltroListadoParticipantes {
 	public void setDirector(boolean director) {
 		this.director = director;
 	}
-	public boolean isParticipipante() {
-		return participipante;
+	public boolean isInterprete() {
+		return interprete;
 	}
-	public void setParticipipante(boolean participipante) {
-		this.participipante = participipante;
+	public void setInterprete(boolean interprete) {
+		this.interprete = interprete;
 	}
 	public Integer getEjemplar() {
 		return ejemplar;
