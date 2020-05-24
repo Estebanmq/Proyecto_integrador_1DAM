@@ -47,6 +47,15 @@ public class Documental extends EjemplarAudiovisual{
 	}
 
 	/**
+	 * Método constructor de copia
+	 * @param p Objeto de tipo documental
+	 */
+	public Documental(Documental d) {
+		super(d.getCodigo(),d.getTitulo(),d.getAnyo(),d.getDirector(),d.getSinopsis(),d.getNacionalidad());
+		this.genero = d.genero;
+	}
+	
+	/**
 	 * Método para ver los atributos
 	 * @returns una cadena de caracteres con todos los atributos
 	 */
