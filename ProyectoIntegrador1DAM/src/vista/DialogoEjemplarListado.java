@@ -43,6 +43,8 @@ public class DialogoEjemplarListado extends JDialog {
 	private DefaultTableModel dtmModelo;
 	private JTable tablaEjemplares;
 	
+	private ArrayList<ListaEjemplar> arrayDatos;
+	
 	private PanelBtnOk panelBtnOk;
 
 	private JButton btnAplicar;
@@ -218,16 +220,16 @@ public class DialogoEjemplarListado extends JDialog {
 		panelDatos.add(getFieldDirectorSelected());
 
 		this.setPanelBtnOk(new PanelBtnOk());
-		getContentPane().add(this.getPanelBtnOk(), BorderLayout.SOUTH);
+		this.getContentPane().add(this.getPanelBtnOk(), BorderLayout.SOUTH);
 		this.getRootPane().setDefaultButton(this.getPanelBtnOk().getBtnOk());
 	}
 	
-	public void crearFilas(ArrayList<ListaEjemplar> array) {
+	public void crearFilas() {
 		
 		Object[] fila = new Object[this.getNOMCOLUMNAS().length];
 		this.getDtmModelo().setRowCount(0);
 		
-		for (ListaEjemplar l : array) {
+		for (ListaEjemplar l : this.getArrayDatos()) {
 			fila[0] = l.getCodigo();
 			fila[1] = l.getTitulo();
 			fila[2] = l.getNacionalidad();
@@ -402,5 +404,13 @@ public class DialogoEjemplarListado extends JDialog {
 
 	public void setFieldDirectorSelected(JTextField fieldDirectorSelected) {
 		this.fieldDirectorSelected = fieldDirectorSelected;
+	}
+
+	public ArrayList<ListaEjemplar> getArrayDatos() {
+		return arrayDatos;
+	}
+
+	public void setArrayDatos(ArrayList<ListaEjemplar> arrayDatos) {
+		this.arrayDatos = arrayDatos;
 	}
 }

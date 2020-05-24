@@ -43,6 +43,8 @@ public class DialogoParticipanteListado extends JDialog {
 	private DefaultTableModel dtmModelo;
 	private JTable tablaParticipantes;
 	
+	private ArrayList<ListaParticipante> arrayDatos;
+	
 	private PanelBtnOk panelBtnOk;
 
 	private JButton btnAplicar;
@@ -233,21 +235,21 @@ public class DialogoParticipanteListado extends JDialog {
 		this.getFieldDinamico().setBounds(112, 71, 128, 28);
 		panelDatos.add(getFieldDinamico());
 		
-		setLabelDinamico(new JLabel(""));
-		getLabelDinamico().setBounds(27, 77, 83, 16);
+		this.setLabelDinamico(new JLabel(""));
+		this.getLabelDinamico().setBounds(27, 77, 83, 16);
 		panelDatos.add(getLabelDinamico());
 
 		this.setPanelBtnOk(new PanelBtnOk());
-		getContentPane().add(this.getPanelBtnOk(), BorderLayout.SOUTH);
+		this.getContentPane().add(this.getPanelBtnOk(), BorderLayout.SOUTH);
 		this.getRootPane().setDefaultButton(this.getPanelBtnOk().getBtnOk());
 	}
 	
-	public void crearFilas(ArrayList<ListaParticipante> array) {
+	public void crearFilas() {
 		
 		Object[] fila = new Object[this.NOMCOLUMNAS.length];
 		this.getDtmModelo().setRowCount(0);
 		
-		for (ListaParticipante l : array) {
+		for (ListaParticipante l : this.getArrayDatos()) {
 			fila[0] = l.getCodigo();
 			fila[1] = l.getNombre();
 			fila[2] = l.getNacionalidad();
@@ -446,5 +448,13 @@ public class DialogoParticipanteListado extends JDialog {
 
 	public void setLabelDinamico(JLabel labelDinamico) {
 		this.labelDinamico = labelDinamico;
+	}
+
+	public ArrayList<ListaParticipante> getArrayDatos() {
+		return arrayDatos;
+	}
+
+	public void setArrayDatos(ArrayList<ListaParticipante> arrayDatos) {
+		this.arrayDatos = arrayDatos;
 	}
 }

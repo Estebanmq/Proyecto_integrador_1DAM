@@ -79,7 +79,7 @@ public class DaoEjemplarListado {
 		listaPaises = this.obtenerPaises(conn);
 		
 		// Monta la query a ejecutar
-		this.setQuery("select CODIGO, TITULO, NACIONALIDAD from EJEMPLARAUDIOVISUAL");
+		this.setQuery("select CODIGO, TITULO, NACIONALIDAD from EJEMPLARAUDIOVISUAL order by EJEMPLARAUDIOVISUAL.CODIGO");
 
 		this.setPs(this.getConn().prepareStatement(this.getQuery()));
 		this.setRs(this.getPs().executeQuery());
@@ -132,6 +132,8 @@ public class DaoEjemplarListado {
 		if (filtro.getPais() != 0) {
 			query = query.concat(" and EJEMPLARAUDIOVISUAL.nacionalidad = ").concat(filtro.getPais().toString());
 		}
+		
+		query = query.concat(" order by EJEMPLARAUDIOVISUAL.CODIGO");
 
 		this.setPs(this.getConn().prepareStatement(this.getQuery()));
 		this.setRs(this.getPs().executeQuery());

@@ -98,7 +98,8 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 			this.setArrayParticipantes(this.daoListadoPart.obtenerListaParticipantes());
 			
 			this.dialogoListadoPart = new DialogoParticipanteListado();
-			this.dialogoListadoPart.crearFilas(getArrayParticipantes());
+			this.dialogoListadoPart.setArrayDatos(this.getArrayParticipantes());
+			this.dialogoListadoPart.crearFilas();
 			
 			this.dialogoListadoPart.getTablaParticipantes().getSelectionModel().addListSelectionListener(this);
 			
@@ -146,8 +147,11 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 				break;
 				
 			case "btnExportar" :
+//				if this.getDialogoListadoPart().
 				break;
-		
+				
+			default :
+				JOptionPane.showMessageDialog(null, "Opción no implementada.", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
@@ -221,12 +225,10 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 	 */
 	public void obtenerParticipantes() {
 
-		ArrayList<ListaParticipante> arrayParticipantes = new ArrayList<ListaParticipante>();
-
 		try {
-			arrayParticipantes = this.daoListadoPart.obtenerListaParticipantes(this.filtro);
-			
-			this.dialogoListadoPart.crearFilas(arrayParticipantes);
+			this.setArrayParticipantes(this.daoListadoPart.obtenerListaParticipantes(this.filtro));
+			this.dialogoListadoPart.setArrayDatos(this.getArrayParticipantes());
+			this.dialogoListadoPart.crearFilas();
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

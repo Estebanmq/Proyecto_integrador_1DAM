@@ -78,7 +78,7 @@ public class DaoParticipanteListado {
 		listaPaises = this.obtenerPaises(conn);
 		
 		// Monta la query a ejecutar
-		this.setQuery("SELECT codigo, nombre, nacionalidad FROM participante");
+		this.setQuery("select CODIGO, NOMBRE, NACIONALIDAD from PARTICIPANTE order by CODIGO");
 
 		this.setPs(this.getConn().prepareStatement(this.getQuery()));
 		this.setRs(this.getPs().executeQuery());
@@ -133,6 +133,8 @@ public class DaoParticipanteListado {
 				query = query.concat("'MASCULINO'");				
 			}			
 		}
+		query = query.concat(" order by PARTICIPANTE.CODIGO");
+		
 		this.setPs(this.getConn().prepareStatement(this.getQuery()));
 		this.setRs(this.getPs().executeQuery());
 		

@@ -99,7 +99,8 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 			this.setArrayEjemplares(this.daoEjemplarListado.obtenerListaEjemplares());
 			
 			this.setDialogoEjemplarListado(new DialogoEjemplarListado());
-			this.getDialogoEjemplarListado().crearFilas(getArrayEjemplares());
+			this.getDialogoEjemplarListado().setArrayDatos(this.getArrayEjemplares());
+			this.getDialogoEjemplarListado().crearFilas();
 			
 			this.getDialogoEjemplarListado().getTablaEjemplares().getSelectionModel().addListSelectionListener(this);
 			
@@ -137,7 +138,7 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 		switch (event.getActionCommand()) {
 		
 			case "btnOk" :
-				this.getDialogoListadoEjemplar().dispose();
+				this.getDialogoEjemplarListado().dispose();
 				break;
 				
 			case "btnAplicarFiltros" :
@@ -148,7 +149,9 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 				
 			case "btnExportar" :
 				break;
-		
+				
+			default :
+				JOptionPane.showMessageDialog(null, "Opción no implementada.", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
@@ -220,12 +223,10 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 	 */
 	public void obtenerEjemplares() {
 
-		ArrayList<ListaEjemplar> arrayEjemplares = new ArrayList<ListaEjemplar>();
-
 		try {
-			arrayEjemplares = this.daoEjemplarListado.obtenerListaEjemplares(this.getFiltro());
-			
-			this.getDialogoEjemplarListado().crearFilas(arrayEjemplares);
+			this.setArrayEjemplares(this.daoEjemplarListado.obtenerListaEjemplares(this.getFiltro()));
+			this.getDialogoEjemplarListado().setArrayDatos(this.getArrayEjemplares());
+			this.getDialogoEjemplarListado().crearFilas();
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -235,14 +236,6 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 	}
 
 	// GETTERS & SETTERS
-	public DialogoEjemplarListado getDialogoListadoEjemplar() {
-		return getDialogoEjemplarListado();
-	}
-
-
-	public void setDialogoListadoPart(DialogoEjemplarListado dialogoListadoEjemplar) {
-		this.setDialogoEjemplarListado(dialogoListadoEjemplar);
-	}
 
 	public DaoPaisMantenimiento getDaoPaisMant() {
 		return daoPaisMantenimiento;
