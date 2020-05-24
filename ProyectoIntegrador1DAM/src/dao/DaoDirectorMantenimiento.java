@@ -118,9 +118,7 @@ public class DaoDirectorMantenimiento {
 			direc=this.getRs().getString(1);
 			directores.add(direc);
 		}
-		
 		Conexion.cerrar();
-		this.st.close();
 		return directores;
 		
 	}
