@@ -164,7 +164,7 @@ public class DaoPeliculaMantenimiento {
 		result += st.executeUpdate("UPDATE EJEMPLARAUDIOVISUAL SET TITULO = '"+p.getTitulo()+"', SIPNOSIS = '"+ p.getSinopsis()+"', ANYO = "+p.getAnyo()
 		+", DIRECTOR = "+p.getDirector().getCodigo()
 		+", NACIONALIDAD = "+p.getNacionalidad().getCodigo()+" WHERE CODIGO = "+p.getCodigo());
-		result += st.executeUpdate("UPDATE PELICULA SET GENEROPELICULA = '"+p.getGenero().getDescripcion()+"' WHERE CODIGO ="+p.getCodigo());
+		result += st.executeUpdate("UPDATE PELICULA SET GENEROPELICULA = '"+p.getGenero()+"' WHERE CODIGO ="+p.getCodigo());
 		conn.commit();
 		Conexion.cerrar();
 		st.close();

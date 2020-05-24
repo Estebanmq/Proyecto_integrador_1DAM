@@ -104,17 +104,11 @@ public class CtrlPeliculaModificacion implements ActionListener{
 					try {
 						codDirec = daoDirectorMantenimiento.buscarCodDirector(dialogoModificacionPelicula.getComboBoxDirector().getSelectedItem().toString());
 						codPais = daoPaisMantenimiento.obtenerCodPais(dialogoModificacionPelicula.getComboBoxPais().getSelectedItem().toString());
-						//Formateo el String del genero pelicula para quitar todas las tildes y no de ningun error
-						String aux;
-						aux = Normalizer.normalize(dialogoModificacionPelicula.getComboBoxGenero().getSelectedItem().toString(), Normalizer.Form.NFD);
-					    aux = aux.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-						aux =  aux.replace(" ","");
-						
 						
 						if (daoPeliculaMantenimiento.actualizarPelicula(new Pelicula(Integer.parseInt(dialogoModificacionPelicula.getTextFieldBuscarCodigo().getText()),
 								dialogoModificacionPelicula.getTextFieldTitResul().getText(),Integer.parseInt(dialogoModificacionPelicula.getTextFieldAnyoResul().getText()),
 								new Director(codDirec,null,null,null,null,null),dialogoModificacionPelicula.getTextAreaSinopsisResul().getText(),new Pais(codPais,null),
-								GeneroPelicula.valueOf(aux.toUpperCase()))) != 0)
+								GeneroPelicula.valueOfDescripcion(dialogoModificacionPelicula.getComboBoxGenero().getSelectedItem().toString()))) != 0)
 							JOptionPane.showMessageDialog(null, "Pelicula actualizada correctamente");
 						else
 							JOptionPane.showMessageDialog(null, "La pelicula no se ha podido actualizar", "Error", JOptionPane.PLAIN_MESSAGE);
