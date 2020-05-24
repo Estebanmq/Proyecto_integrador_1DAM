@@ -124,9 +124,9 @@ public class DialogoDocumentalAlta extends JDialog {
 		contentPanel.add(textAreaSinopsis);
 		textAreaSinopsis.addKeyListener(new KeyAdapter() {
 			 public void keyTyped(KeyEvent e) {
-			      if(textAreaSinopsis.getText().length()==150) {
+			      if(textAreaSinopsis.getText().length()==250) {
 			         e.consume();  // No escribe el caracter
-			         getPanelBtnsAceptarCancelar().getLabelTextoError().setText("Sinopsis no puede superar 150 caracteres");
+			         getPanelBtnsAceptarCancelar().getLabelTextoError().setText("Sinopsis no puede superar 250 caracteres");
 			      } else {
 			    	  getPanelBtnsAceptarCancelar().getLabelTextoError().setText("");
 			      }

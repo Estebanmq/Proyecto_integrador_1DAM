@@ -12,6 +12,7 @@ import modelo.GeneroPelicula;
 import modelo.Sexo;
 import vista.DialogoDirectorAlta;
 import vista.DialogoDirectorBaja;
+import vista.DialogoDirectorModificacion;
 
 /**
  * Esta clase está dedicada al manejo de datos de directores en la base de datos
@@ -140,7 +141,7 @@ public class DaoDirectorMantenimiento {
 		rs.next();
 		
 		if (!rs.getString(4).isEmpty()) {
-			generoPreferido = GeneroPelicula.valueOf(rs.getString(4));						
+			generoPreferido = GeneroPelicula.valueOfDescripcion(rs.getString(4));						
 		}
 		
 		direc = new Director(codigo,rs.getString(1),rs.getDate(2),Sexo.valueOf(rs.getString(3).toUpperCase()), generoPreferido ,daoPaisMantenimiento.obtenerPais(rs.getInt(5)));
@@ -149,6 +150,33 @@ public class DaoDirectorMantenimiento {
 		st.close();
 		return direc;
 		
+	}
+	
+
+	/**
+	 * Método para modificar datos a un director
+	 * @param dialogo
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public void modificarDirector(DialogoDirectorModificacion dialogo) throws ClassNotFoundException, SQLException{
+		
+		int codigo = Integer.parseInt(dialogo.getTextFieldCodigo().getText());
+		
+		String nombre = dialogo.getTextFieldNombre().getText();
+		String fecha = dialogo.getTextFieldFecha().getText();
+		String sexo = dialogo.getBg().getSelection().getActionCommand().toUpperCase();
+		String generoPreferido = dialogo.getComboBoxGenero().getSelectedItem().toString();
+		String nacionalidad = dialogo.getComboBoxPais().getSelectedItem().toString();
+		
+		this.setConn(Conexion.getConexion());
+		st = conn.createStatement();
+		String modificarParticipante = "UPDATE PARTICIPANTE SET NOMBRE = '" +nombre+ "', FECHANACIMIENTO = DATE('" + fecha + "'),SEXO = '" +sexo+ "', NACIONALIDAD = (SELECT codigo FROM PAIS WHERE descripcion='"+nacionalidad+"') WHERE CODIGO ="+ codigo;
+		st.executeUpdate(modificarParticipante);
+		String modificarDirector = "UPDATE DIRECTOR SET GENEROPREFERIDO = '" + GeneroPelicula.valueOfDescripcion(generoPreferido) + "' WHERE CODIGO =" + codigo;
+		st.executeUpdate(modificarDirector);
+		st.close();
+		Conexion.cerrar();
 	}
 	
 	/**

@@ -65,7 +65,7 @@ public class DaoDocumentalMantenimiento {
 	public boolean insertarDocumental(String titulo,int anyo,String director,String nacionalidad,String sinopsis,String genero) throws SQLException, ClassNotFoundException {
 		int maxCod;
 		
-		genero.toUpperCase(); //El genero lo muestro en minuscula pero se almacena en mayuscula
+		
 		
 		String selMaxCod = "SELECT COALESCE(max(codigo),0)+1 FROM EJEMPLARAUDIOVISUAL"; //Recupero el código mas alto + 1, si es 0 asigna 1
 		conn=Conexion.getConexion();
@@ -74,9 +74,9 @@ public class DaoDocumentalMantenimiento {
 		rs.next();
 		maxCod = rs.getInt(1); //Almaceno el código
 		
-		//Para poder almacenar una película antes tengo que almacenar un ejemplar audiovisual
+		//Para poder almacenar un documental antes tengo que almacenar un ejemplar audiovisual
 		String insertGeneDocu = "INSERT INTO EJEMPLARAUDIOVISUAL VALUES ("+maxCod+",'"+titulo+"',"+anyo+",(SELECT DIRECTOR.CODIGO FROM PARTICIPANTE,DIRECTOR WHERE DIRECTOR.CODIGO = PARTICIPANTE.CODIGO AND participante.NOMBRE = '"+director+"'),(SELECT codigo FROM PAIS WHERE descripcion='"+nacionalidad+"'),'"+sinopsis+"')";
-		String insertDocu = "INSERT INTO DOCUMENTAL VALUES("+maxCod+",'"+genero+"')";
+		String insertDocu = "INSERT INTO DOCUMENTAL VALUES("+maxCod+",'"+GeneroDocumental.valueOfDescripcion(genero)+"')";
 		//Ejecuto ambos insert
 		st.executeUpdate(insertGeneDocu);
 		st.executeUpdate(insertDocu);
@@ -100,28 +100,21 @@ public class DaoDocumentalMantenimiento {
 		Documental d = new Documental();
 		int codDirec;
 		String selDocu;
-		String aux;
 		
 		conn=Conexion.getConexion();
 		st=conn.createStatement();
-		selDocu = "SELECT ejemplaraudiovisual.TITULO , ejemplaraudiovisual.ANYO , participante.CODIGO, ejemplaraudiovisual.SIPNOSIS , "+
-				"ejemplaraudiovisual.NACIONALIDAD, documental.GENERODOCUMENTAL FROM EJEMPLARAUDIOVISUAL " + 
-				"INNER JOIN DOCUMENTAL ON ejemplaraudiovisual.CODIGO = DOCUMENTAL.CODIGO " + 
-				"INNER JOIN PARTICIPANTE ON participante.CODIGO = ejemplaraudiovisual.DIRECTOR WHERE ejemplaraudiovisual.codigo="+codigo;
+		selDocu = "SELECT ejemplaraudiovisual.TITULO , ejemplaraudiovisual.ANYO , ejemplaraudiovisual.SIPNOSIS , "+
+				"ejemplaraudiovisual.NACIONALIDAD, documental.GENERODOCUMENTAL, ejemplaraudiovisual.DIRECTOR FROM EJEMPLARAUDIOVISUAL,DOCUMENTAL " + 
+				"WHERE ejemplaraudiovisual.codigo = documental.codigo AND ejemplaraudiovisual.codigo="+codigo;
 		rs = st.executeQuery(selDocu);
 		if (rs.next()) {
 			d.setCodigo(codigo);
 			d.setTitulo(rs.getString(1));
 			d.setAnyo(rs.getInt(2));
-			codDirec = rs.getInt(3);
-			d.setSinopsis(rs.getString(4));
-			
-			//Formateo el String del genero pelicula para quitar todas las tildes
-			aux = Normalizer.normalize(rs.getString(6).toUpperCase(), Normalizer.Form.NFD);
-		    aux = aux.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-			aux =  aux.replace(" ","");
-			d.setGenero(GeneroDocumental.valueOf(aux));
-			d.setNacionalidad(daoPaisMantenimiento.obtenerPais(rs.getInt(5)));
+			d.setSinopsis(rs.getString(3));
+			d.setNacionalidad(daoPaisMantenimiento.obtenerPais(rs.getInt(4)));
+			d.setGenero(GeneroDocumental.valueOf(rs.getString(5)));
+			codDirec = rs.getInt(6);
 			d.setDirector(daoDirectorMantenimiento.obtenerDirector(codDirec));
 		} else {
 			d.setTitulo("Documental no existe");;
@@ -139,7 +132,7 @@ public class DaoDocumentalMantenimiento {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public int borrarPelicula(int codigo) throws ClassNotFoundException, SQLException {
+	public int borrarDocumental(int codigo) throws ClassNotFoundException, SQLException {
 		int result = 0;
 		conn=Conexion.getConexion();
 		st=conn.createStatement();
@@ -168,7 +161,7 @@ public class DaoDocumentalMantenimiento {
 		result += st.executeUpdate("UPDATE EJEMPLARAUDIOVISUAL SET TITULO = '"+d.getTitulo()+"', SIPNOSIS = '"+ d.getSinopsis()+"', ANYO = "+d.getAnyo()
 		+", DIRECTOR = "+d.getDirector().getCodigo()
 		+", NACIONALIDAD = "+d.getNacionalidad().getCodigo()+" WHERE CODIGO = "+d.getCodigo());
-		result += st.executeUpdate("UPDATE DOCUMENTAL SET GENERODOCUMENTAL = '"+d.getGenero().getDescripcion()+"' WHERE CODIGO ="+d.getCodigo());
+		result += st.executeUpdate("UPDATE DOCUMENTAL SET GENERODOCUMENTAL = '"+d.getGenero()+"' WHERE CODIGO ="+d.getCodigo());
 		conn.commit();
 		Conexion.cerrar();
 		st.close();
