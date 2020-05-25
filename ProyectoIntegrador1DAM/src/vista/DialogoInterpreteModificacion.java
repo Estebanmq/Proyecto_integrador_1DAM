@@ -154,8 +154,7 @@ private static final long serialVersionUID = 5913217229440232625L;
 	
 	/**
 	 * Recorre el array de paises para sacar todos e introducirlos en comboBox
-	 * @see comboBox
-	 * @param paises
+	 * @param paises Colección de países
 	 */
 	public void mostrarPaises(ArrayList<Pais>paises) {
 		for (int i = 0; i < paises.size(); i++) {

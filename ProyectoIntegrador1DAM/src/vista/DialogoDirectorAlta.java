@@ -137,8 +137,7 @@ public class DialogoDirectorAlta extends JDialog {
 	
 	/**
 	 * Recorre el array de paises para sacar todos y introducirlos en comboBox
-	 * @see comboBox
-	 * @param paises
+	 * @param paises Relación de países
 	 */
 	public void mostrarPaises(ArrayList<Pais>paises) {
 		for (int i = 0; i < paises.size(); i++) {

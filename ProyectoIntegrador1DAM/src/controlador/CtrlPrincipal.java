@@ -54,7 +54,7 @@ public class CtrlPrincipal implements ActionListener {
 	/**
 	 * Captura el evento ocurrido en la pantalla y en función de ésta realiza la acción correspondiente 
 	 * 
-	 * @param ActionEvent e
+	 * @param e ActionEvent
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -42,8 +42,8 @@ public class DaoActuacionMantenimiento {
 	 * 
 	 * @see Actuacion
 	 * 
-	 * @param Integer Código de película
-	 * @return HashSet<Actuacion>
+	 * @param codigo Código de película
+	 * @return Colección de ListaPersonaje
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */

@@ -61,7 +61,7 @@ public class CtrlInterpreteAlta implements ActionListener{
 	
 	/** 
 	 * Método para capturar las acciones del usuario en la interfaz gráfica de alta de los interpretes
-	 * @param ActionEvent
+	 * @param e ActionEvent
 	 * @see java.awt.event.ActionEvent
 	 */
 	@Override

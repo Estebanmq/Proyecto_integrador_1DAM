@@ -54,7 +54,7 @@ public class DaoPaisMantenimiento {
 	 * @see ArrayList
 	 * @see Pais
 	 * 
-	 * @return ArrayList<Pais>
+	 * @return Colección de países
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
@@ -122,8 +122,8 @@ public class DaoPaisMantenimiento {
 	 * 
 	 * Método que obtiene el código de un país en función del nombre recibido por parámetro
 	 * 
-	 * @param codigo Código del país a localizar 
-	 * @return Pais
+	 * @param p Nombre del país 
+	 * @return Código de pais
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */

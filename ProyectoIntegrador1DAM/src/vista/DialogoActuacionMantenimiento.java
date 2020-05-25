@@ -172,11 +172,9 @@ public class DialogoActuacionMantenimiento extends JDialog {
 		
 		
 	}
-	
+
 	/**
 	 * Método que carga en el JTable de intérpretes la lista recibida en el hashset
-	 * 
-	 * @param hashset Relación de intérpretes a cargar en la tabla 
 	 */
 	public void cargarFilasInterpretes() {
 		
@@ -191,11 +189,9 @@ public class DialogoActuacionMantenimiento extends JDialog {
 		}
 		
 	}
-	
+
 	/**
 	 * Método que carga en el JTable de personajes la lista recibida en el hashset
-	 * 
-	 * @param hashset Relación de intérpretes a cargar en la tabla 
 	 */
 	public void cargarFilasPersonajes() {
 		

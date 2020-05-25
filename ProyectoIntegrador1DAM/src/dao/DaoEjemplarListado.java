@@ -66,7 +66,7 @@ public class DaoEjemplarListado {
 	 * 
 	 * @see ListaEjemplar
 	 * 
-	 * @return ArrayList<ListaParticipante>
+	 * @return Colección de ListaEjemplar
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
@@ -99,7 +99,7 @@ public class DaoEjemplarListado {
 	 * 
 	 * @param filtro Filtro aplicado en pantalla por el usuario
 	 * 
-	 * @return ArrayList<ListaEjemplar>
+	 * @return Colección de ListaEjemplar
 	 * 
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
@@ -151,11 +151,8 @@ public class DaoEjemplarListado {
 	 * 
 	 * Método que obtiene de BD la lista de países existentes en base de datos
 	 * 
-	 * @see HashMap
-	 * @see Pais
-	 * 
-	 * @param Connection conn
-	 * @return HashMap<Integer, String>
+	 * @param conn Conexión
+	 * @return Coleccion de paises
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */

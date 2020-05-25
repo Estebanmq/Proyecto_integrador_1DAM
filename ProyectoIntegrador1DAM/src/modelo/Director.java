@@ -22,6 +22,7 @@ public class Director extends Participante{
 	 * @param fechaNacimiento Fecha de nacimiento 
 	 * @param sexo Sexo 
 	 * @param generoPreferido Género preferido
+	 * @param nacionalidad País de nacimiento
 	 */
 	public Director(Integer codigo, String nombre, Date fechaNacimiento, Sexo sexo, GeneroPelicula generoPreferido, Pais nacionalidad) {
 		super(codigo, nombre, fechaNacimiento, sexo, nacionalidad);
@@ -30,7 +31,7 @@ public class Director extends Participante{
 
 	/** 
 	 * Método constructor de copia de director
-	 * @param Director
+	 * @param director Clase Director
 	 */
 	public Director(Director director) {
 		this(director.getCodigo(), director.getNombre(), director.getFechaNacimiento(), director.getSexo(), director.getGeneroPreferido(), director.getNacionalidad());

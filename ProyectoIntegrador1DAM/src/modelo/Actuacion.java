@@ -28,9 +28,9 @@ public class Actuacion {
 	
 	/** 
 	 * Método constructor de Actuacion
-	 * @param codInterprete
-	 * @param codPelicula
-	 * @param nombrePersonaje
+	 * @param codInterprete Código de intérprete
+	 * @param codPelicula Código de película 
+	 * @param nombrePersonaje Nombre de personaje
 	 */
 	public Actuacion(Integer codInterprete, Integer codPelicula, String nombrePersonaje) {
 		this.setCodInterprete(codInterprete);

@@ -136,7 +136,7 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 	/**
 	 * Método que captura los eventos ocurridos en pantalla 
 	 * 
-	 * @param ActionEvent e
+	 * @param event ActionEvent
 	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
@@ -170,7 +170,7 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 	/**
 	 * Método que captura los eventos ocurridos en la tabla mostrada en pantalla 
 	 * 
-	 * @param ListSelectionEvent e
+	 * @param event ListSelectionEvent
 	 */
 	@Override
 	public void valueChanged(ListSelectionEvent event) {

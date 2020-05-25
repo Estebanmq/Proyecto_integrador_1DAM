@@ -144,11 +144,12 @@ public class DaoPeliculaMantenimiento {
 		st.close();
 		return result;
 	}
-	
-	/** 
-	 * Método que elimina una película a partir de su código
-	 * @param cod Código de la película∫
-	 * @return El número de filas actualizadas
+
+	/**
+	 * Método que actualiza un película
+	 * 
+	 * @param p Película a actualizar
+	 * @return número de películas actualizadas
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */

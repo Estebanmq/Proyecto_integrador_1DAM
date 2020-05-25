@@ -156,8 +156,7 @@ public class DialogoDirectorModificacion extends JDialog {
 	
 	/**
 	 * Recorre el array de paises para sacar todos e introducirlos en comboBox
-	 * @see comboBox
-	 * @param paises
+	 * @param paises Relación de países
 	 */
 	public void mostrarPaises(ArrayList<Pais>paises) {
 		for (int i = 0; i < paises.size(); i++) {
@@ -166,8 +165,6 @@ public class DialogoDirectorModificacion extends JDialog {
 	}
 	/**
 	 * Recorre el array de los tipos de género
-	 * @see comboxGenero
-	 * @param genero
 	 */
 	public void mostrarGeneros() {
 		GeneroPelicula[]gp=GeneroPelicula.values();

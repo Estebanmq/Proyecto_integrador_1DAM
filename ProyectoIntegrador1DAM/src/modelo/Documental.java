@@ -24,7 +24,7 @@ public class Documental extends EjemplarAudiovisual{
 	
 	/**
 	 * Método constructor de documental
-	 * @param codig Código de documental
+	 * @param codigo Código de documental
 	 * @param titulo Título del documental
 	 * @param anyo Año de producción
 	 * @param director Director que lo ha dirigido

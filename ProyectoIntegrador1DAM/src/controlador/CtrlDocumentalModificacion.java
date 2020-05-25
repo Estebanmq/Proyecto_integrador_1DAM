@@ -64,7 +64,7 @@ public class CtrlDocumentalModificacion implements ActionListener{
 
 		/** 
 		 * Método para capturar las acciones del usuario en la interfaz gráfica de modificacion de documentales
-		 * @param ActionEvent
+		 * @param e ActionEvent
 		 * @see java.awt.event.ActionEvent
 		 */
 		@Override

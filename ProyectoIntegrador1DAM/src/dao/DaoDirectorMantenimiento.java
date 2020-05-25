@@ -49,15 +49,13 @@ public class DaoDirectorMantenimiento {
 	 */
 	private ResultSet rs;
 	
+
 	/**
 	 * Método para insertar un director en la BBDD
-	 * @param nombre nombre del director
-	 * @param fecha fecha en que nació
-	 * @param sexo sexo del director
-	 * @param generoPreferido su genero preferido de peliculas
-	 * @param nacionalidad país de nacimiento
-	 * @throws SQLException
+	 * 
+	 * @param dAlta Dialogo de alta de directores
 	 * @throws ClassNotFoundException
+	 * @throws SQLException
 	 */
 	public void darAltaDirector (DialogoDirectorAlta dAlta) throws ClassNotFoundException, SQLException {
 		
@@ -96,8 +94,6 @@ public class DaoDirectorMantenimiento {
 	
 	/** 
 	 * Método que busca el código del director y lo guarda
-	 * @param direc 
-	 * @param directores array donde se almacena
 	 * @return Array con los directores
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
@@ -155,7 +151,7 @@ public class DaoDirectorMantenimiento {
 
 	/**
 	 * Método para modificar datos a un director
-	 * @param dialogo
+	 * @param dialogo Diálogo de modificación de directores
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
@@ -202,7 +198,8 @@ public class DaoDirectorMantenimiento {
 	
 	/**
 	 * Método para buscar el codigo de un director
-	 * @param nombre del director
+	 * @param nombre Nombre del director
+	 * @return Código de director localizado 
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */

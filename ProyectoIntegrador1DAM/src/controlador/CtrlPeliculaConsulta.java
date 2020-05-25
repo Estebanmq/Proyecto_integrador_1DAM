@@ -44,7 +44,7 @@ public class CtrlPeliculaConsulta implements ActionListener{
 
 	/** 
 	 * Método para capturar las acciones del usuario en la interfaz gráfica de Consulta de películas
-	 * @param ActionEvent
+	 * @param e ActionEvent
 	 * @see java.awt.event.ActionEvent
 	 */
 	@Override

@@ -11,7 +11,7 @@ import controlador.CtrlPrincipal;
 /**
  * <h1>Clase iniciadora de la aplicación</h1>
  * 
- * @author Jose Manuel
+ * @author Jose Manuel de Dios
  * @version 1.0
  * @since 01/05/2020
  *
@@ -21,7 +21,7 @@ public class init {
 	/**
 	 * Lanza la aplicación
 	 * 
-	 * @param args
+	 * @param args parámetros para inicial la aplicación
 	 */
 	public static void main(String[] args) {
 		

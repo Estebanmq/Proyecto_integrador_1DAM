@@ -2,7 +2,7 @@ package modelo;
 
 /**
  * 
- * <h1> Filtro de participantes
+ * <h1> Filtro de participantes </h1>
  * 
  * @author Jose Manuel
  * @version 1.0

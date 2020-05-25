@@ -88,7 +88,7 @@ public class CtrlPaisMantenimiento implements ActionListener  {
 	/**
 	 * Método que captura los eventos ocurridos en pantalla 
 	 * 
-	 * @param ActionEvent e
+	 * @param e ActionEvent
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

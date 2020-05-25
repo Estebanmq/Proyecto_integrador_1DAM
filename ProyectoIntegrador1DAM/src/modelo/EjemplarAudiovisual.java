@@ -57,12 +57,12 @@ public abstract class EjemplarAudiovisual {
 	
 	/**
 	 * Método constructor de ejemplar
-	 * @param codigo
-	 * @param titulo
-	 * @param anyo
-	 * @param director
-	 * @param sinopsis
-	 * @param nacionalidad
+	 * @param codigo Código de ejemplar
+	 * @param titulo Título de ejemplar
+	 * @param anyo Anyo de producción
+	 * @param director Director del ejemplar
+	 * @param sinopsis Sipnosis
+	 * @param nacionalidad País de producción
 	 */
 	public EjemplarAudiovisual(Integer codigo, String titulo, int anyo, Director director, String sinopsis,
 			Pais nacionalidad) {
@@ -72,16 +72,6 @@ public abstract class EjemplarAudiovisual {
 		this.director = director;
 		this.sinopsis = sinopsis;
 		this.nacionalidad = nacionalidad;
-	}
-	
-	/**
-	 * Método para ver los atributos
-	 * @returns una cadena de caracteres con todos los atributos
-	 */
-	@Override
-	public String toString() {
-		return "EjemplarAudiovisual [codigo=" + codigo + ", titulo=" + titulo + ", anyo=" + anyo + ", director="
-				+ director + ", sinopsis=" + sinopsis + ", nacionalidad=" + nacionalidad + "]";
 	}
 	
 	// Métodos Getter y Setter

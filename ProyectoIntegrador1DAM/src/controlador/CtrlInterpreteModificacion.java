@@ -59,7 +59,7 @@ public class CtrlInterpreteModificacion implements ActionListener {
 	
 	/** 
 	 * Método para capturar las acciones del usuario en la interfaz gráfica de modificaicon de interpretes
-	 * @param ActionEvent
+	 * @param e ActionEvent
 	 * @see java.awt.event.ActionEvent
 	 */
 	@Override

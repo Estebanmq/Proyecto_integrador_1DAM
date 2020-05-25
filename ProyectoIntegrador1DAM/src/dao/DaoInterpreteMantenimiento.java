@@ -49,15 +49,12 @@ public class DaoInterpreteMantenimiento {
 	private ResultSet rs;
 
 	/**
-     * Método para dar de alta a un interprete
-     * @param nombre nombre del interprete
-     * @param fecha fecha en que nació
-     * @param sexo sexo del interprete
-     * @param cache el salario que cobra de base por película
-     * @param nacionalidad país de nacimiento
-     * @throws SQLException
-     * @throws ClassNotFoundException
-     */
+	 * Método para dar de alta a un interprete
+	 * 
+	 * @param iAlta Dialogo de alta de intérpretes
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public void darAltaInterprete (DialogoInterpreteAlta iAlta) throws ClassNotFoundException, SQLException {
 		
 		int codigo = 0;
@@ -97,9 +94,7 @@ public class DaoInterpreteMantenimiento {
 	/**
 	 * Método que obtiene de BD la lista de intérpretes
 	 * 
-	 * @see ListaInterprete
-	 * 
-	 * @return HashSet<ListaInterprete>
+	 * @return Colección de ListaIntetprete
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */

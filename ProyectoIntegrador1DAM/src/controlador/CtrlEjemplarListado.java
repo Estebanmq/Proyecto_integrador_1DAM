@@ -137,7 +137,7 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 	/**
 	 * Método que captura los eventos ocurridos en pantalla 
 	 * 
-	 * @param ActionEvent e
+	 * @param event ActionEvent
 	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
@@ -171,7 +171,7 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 	/**
 	 * Método que captura los eventos ocurridos en la tabla mostrada en pantalla 
 	 * 
-	 * @param ListSelectionEvent e
+	 * @param event ListSelectionEvent
 	 */
 	@Override
 	public void valueChanged(ListSelectionEvent event) {
@@ -331,12 +331,12 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 		bW.write(joiner.toString());
 		bW.newLine();
 	}
-	
+
 	/**
 	 * Graba un registro de tipo Director en el csv de salida
 	 * 
-	 * @param bW BufferedWriter donde debe grabar el director recibido también por parámetros
-	 * @param director Director a grabar en el fichero de salida
+	 * @param bW BufferedWriter con el fichero de salida
+	 * @param pelicula Pelicula a grabar
 	 * @throws IOException
 	 */
 	public void grabarFicheroPelicula (BufferedWriter bW, Pelicula pelicula) throws IOException {
@@ -362,7 +362,7 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 	 * Graba un registro de tipo Interprete en el csv de salida
 	 * 
 	 * @param bW BufferedWriter donde debe grabar el intérprete recibido también por parámetros
-	 * @param interprete Interprete a grabar en el fichero de salida
+	 * @param documental Documental a grabar en el fichero de salida
 	 * @throws IOException
 	 */
 	public void grabarFicheroDocumental (BufferedWriter bW, Documental documental) throws IOException {

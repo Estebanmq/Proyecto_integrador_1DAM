@@ -55,7 +55,7 @@ public class CtrlDirectorModificacion implements ActionListener{
 	
 	/** 
 	 * Método para capturar las acciones del usuario en la interfaz gráfica de modificaicon de directores
-	 * @param ActionEvent
+	 * @param e ActionEvent
 	 * @see java.awt.event.ActionEvent
 	 */
 	@Override

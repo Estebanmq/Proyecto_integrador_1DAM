@@ -130,7 +130,7 @@ public class DialogoInterpreteConsulta extends JDialog{
 	
 	/**
 	 * Método para devolver la busqueda de la BBDD a la ventana
-	 * @param d
+	 * @param interprete Interprete 
 	 */
 	public void mostrarInterprete(Interprete interprete) {
 		

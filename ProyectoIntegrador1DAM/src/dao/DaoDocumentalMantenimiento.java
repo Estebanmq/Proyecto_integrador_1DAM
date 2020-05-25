@@ -146,7 +146,7 @@ public class DaoDocumentalMantenimiento {
 	 * Método que actualiza un documental a partir de su código
 	 * 
 	 * @param d Documental
-	 * @return
+	 * @return número de documentales actualizados
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */

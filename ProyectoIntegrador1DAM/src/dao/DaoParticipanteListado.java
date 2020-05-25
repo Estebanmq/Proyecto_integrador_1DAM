@@ -14,8 +14,6 @@ import modelo.Pais;
 /**
  * Clase que obtiene los participantes para mostrar en pantalla
  * 
- * @see Participante
- * 
  * @author Jose Manuel de Dios
  * @version 1.0
  * @since 10/05/2020
@@ -63,9 +61,7 @@ public class DaoParticipanteListado {
 	/**
 	 * Método que obtiene de BD la lista de participantes
 	 * 
-	 * @see ListaParticipante
-	 * 
-	 * @return ArrayList<ListaParticipante>
+	 * @return Colección de ListaParticipante
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
@@ -96,8 +92,8 @@ public class DaoParticipanteListado {
 	 * 
 	 * Método que obtiene de BD la lista de participantes en función del filtro recibido por parámetros
 	 * 
-	 * @param FiltroParticipanteListado filtro
-	 * @return ArrayList<ListaParticipante>
+	 * @param filtro Filtro del listado de participantes
+	 * @return Colección de ListaParticipante
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
@@ -154,8 +150,8 @@ public class DaoParticipanteListado {
 	 * @see HashMap
 	 * @see Pais
 	 * 
-	 * @param Connection conn
-	 * @return HashMap<Integer, String>
+	 * @param conn Conexión
+	 * @return Colección de países
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
