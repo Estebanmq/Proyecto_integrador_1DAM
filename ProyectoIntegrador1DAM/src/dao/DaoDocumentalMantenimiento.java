@@ -5,11 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.Normalizer;
 
 import modelo.Documental;
 import modelo.GeneroDocumental;
-import modelo.Pelicula;
 /**
  * Esta clase está dedicada al manejo de datos de documentales en la base de datos
  * @author Esteban Martínez

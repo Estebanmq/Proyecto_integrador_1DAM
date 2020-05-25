@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -138,7 +139,7 @@ public class DialogoEjemplarListado extends JDialog {
 		getSpinnerAnyo().setBounds(154, 110, 72, 26);
 		panelFiltro.add(getSpinnerAnyo());
 		
-		scrollPane.setBounds(10, 162, 552, 123);
+		scrollPane.setBounds(10, 162, 578, 123);
 		contentPanel.add(scrollPane);
 		
 		this.setDtmModelo(new DefaultTableModel(this.getNOMCOLUMNAS(), 0));
@@ -153,11 +154,11 @@ public class DialogoEjemplarListado extends JDialog {
 		this.getTablaEjemplares().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.getTablaEjemplares().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		scrollPane.setViewportView(getTablaEjemplares());
-		
-		btnExportar = new JButton("Exportar");
-		btnExportar.setEnabled(false);
-		btnExportar.setBounds(573, 250, 55, 23);
-		btnExportar.setActionCommand("btnExportar");
+
+		this.setBtnExportar(new JButton());
+		this.getBtnExportar().setBounds(600, 257, 42, 38);
+		this.getBtnExportar().setIcon(new ImageIcon("resources/images/icono-excel.gif"));
+		this.getBtnExportar().setActionCommand("btnExportar");
 		contentPanel.add(btnExportar);
 		
 		panelDatos.setBorder(new TitledBorder(null, "Datos del ejemplar audiovisual seleccionado", TitledBorder.LEADING, TitledBorder.TOP, null, null));

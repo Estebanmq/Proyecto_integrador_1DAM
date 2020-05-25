@@ -6,7 +6,7 @@ package modelo;
  * 
  * @author Jose Manuel
  * @version 1.0
- * @since 05/2020
+ * @since 10/05/2020
  */
 public class FiltroParticipanteListado {
 	
@@ -17,8 +17,8 @@ public class FiltroParticipanteListado {
 	private Integer pais;
 	private boolean sexoFemenino;
 	private boolean sexoMasculino;
+	
 	/**
-	 * 
 	 * Constructor del filtro de participantes 
 	 * 
 	 * @param director Booleano que indica si se ha seleccioando director
@@ -41,9 +41,7 @@ public class FiltroParticipanteListado {
 	}
 	
 	/**
-	 * 
 	 * Constructor sin parámetros del filtro de participantes 
-	 * 
 	 */
 	public FiltroParticipanteListado() {
 		this.director = true;

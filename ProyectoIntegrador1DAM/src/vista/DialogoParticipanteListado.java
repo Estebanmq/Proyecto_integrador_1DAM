@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -151,7 +152,7 @@ public class DialogoParticipanteListado extends JDialog {
 		this.btnAplicar.setActionCommand("btnAplicarFiltros");
 		panelFiltro.add(btnAplicar);
 		
-		scrollPane.setBounds(10, 162, 552, 133);
+		scrollPane.setBounds(10, 162, 578, 133);
 		contentPanel.add(scrollPane);
 		
 		this.setDtmModelo(new DefaultTableModel(this.NOMCOLUMNAS, 0));
@@ -168,10 +169,10 @@ public class DialogoParticipanteListado extends JDialog {
 		this.getTablaParticipantes().setToolTipText("Relación de participantes");
 		scrollPane.setViewportView(getTablaParticipantes());
 		
-		btnExportar = new JButton("Exportar");
-		btnExportar.setEnabled(false);
-		btnExportar.setBounds(573, 250, 55, 23);
-		btnExportar.setActionCommand("btnExportar");
+		this.setBtnExportar(new JButton());
+		this.getBtnExportar().setBounds(600, 257, 42, 38);
+		this.getBtnExportar().setIcon(new ImageIcon("resources/images/icono-excel.gif"));
+		this.getBtnExportar().setActionCommand("btnExportar");
 		contentPanel.add(btnExportar);
 		
 		panelDatos.setBorder(new TitledBorder(null, "Datos del participante seleccionado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -266,7 +267,11 @@ public class DialogoParticipanteListado extends JDialog {
 		this.getFieldNacionalidadSelected().setText(director.getNacionalidad().getDescripcion());
 		this.getFieldSexoSelected().setText(director.getSexo().getDescripcion());
 		this.getLabelDinamico().setText("Género:");
-		this.getFieldDinamico().setText(director.getGeneroPreferido().getDescripcion());
+		if (director.getGeneroPreferido()!=null) {
+			this.getFieldDinamico().setText(director.getGeneroPreferido().getDescripcion());			
+		} else {
+			this.getFieldDinamico().setText("");						
+		}
 		
 	}
 	

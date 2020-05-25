@@ -1,18 +1,16 @@
 package modelo;
+
 /** 
  * Esta clase define los atributos y métodos comunes a los documental y pelicula
  * 
  * @author Esteban Martinez Quintanar
- * @see Director
  * @since 01/05/2020
+ * @version 1.0
+ * 
+ * @see Director
  */
-
 public abstract class EjemplarAudiovisual {
-	
-	/**
-	 * Atributos que consideramos importantes para identificar un ejemplar audiovisual
-	 */
-	
+		
 	/**
 	 * Código único del ejemplar
 	 */
@@ -75,8 +73,6 @@ public abstract class EjemplarAudiovisual {
 		this.sinopsis = sinopsis;
 		this.nacionalidad = nacionalidad;
 	}
-
-	
 	
 	/**
 	 * Método para ver los atributos

@@ -2,8 +2,14 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.StringJoiner;
 
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -12,10 +18,11 @@ import javax.swing.event.ListSelectionListener;
 import dao.Conexion;
 import dao.DaoDirectorMantenimiento;
 import dao.DaoInterpreteMantenimiento;
-import dao.DaoParticipanteListado;
 import dao.DaoPaisMantenimiento;
+import dao.DaoParticipanteListado;
 import dao.DaoParticipanteMantenimiento;
 import modelo.Director;
+import modelo.FileChooser;
 import modelo.FiltroParticipanteListado;
 import modelo.Interprete;
 import modelo.ListaParticipante;
@@ -35,7 +42,7 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 	 * 
 	 * @see DialogoParticipanteListado
 	 */
-	private DialogoParticipanteListado dialogoListadoPart;
+	private DialogoParticipanteListado dialogoParticipanteListado;
 
 	/**
 	 * Clase que contiene el acceso a datos de participantes
@@ -97,19 +104,19 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 
 			this.setArrayParticipantes(this.daoListadoPart.obtenerListaParticipantes());
 			
-			this.dialogoListadoPart = new DialogoParticipanteListado();
-			this.dialogoListadoPart.setArrayDatos(this.getArrayParticipantes());
-			this.dialogoListadoPart.crearFilas();
+			this.dialogoParticipanteListado = new DialogoParticipanteListado();
+			this.dialogoParticipanteListado.setArrayDatos(this.getArrayParticipantes());
+			this.dialogoParticipanteListado.crearFilas();
 			
-			this.dialogoListadoPart.getTablaParticipantes().getSelectionModel().addListSelectionListener(this);
+			this.dialogoParticipanteListado.getTablaParticipantes().getSelectionModel().addListSelectionListener(this);
 			
-			this.dialogoListadoPart.getBtnAplicar().addActionListener(this);
-			this.dialogoListadoPart.getBtnExportar().addActionListener(this);
-			this.dialogoListadoPart.getPanelBtnOk().getBtnOk().addActionListener(this);
+			this.dialogoParticipanteListado.getBtnAplicar().addActionListener(this);
+			this.dialogoParticipanteListado.getBtnExportar().addActionListener(this);
+			this.dialogoParticipanteListado.getPanelBtnOk().getBtnOk().addActionListener(this);
 			
-			this.dialogoListadoPart.cargarPaises(arrayPaises);
+			this.dialogoParticipanteListado.cargarPaises(arrayPaises);
 			
-			this.dialogoListadoPart.setVisible(true);
+			this.dialogoParticipanteListado.setVisible(true);
 
 			
 		} catch (ClassNotFoundException | SQLException e) {
@@ -137,7 +144,7 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 		switch (event.getActionCommand()) {
 		
 			case "btnOk" :
-				this.getDialogoListadoPart().dispose();
+				this.getDialogoParticipanteListado().dispose();
 				break;
 				
 			case "btnAplicarFiltros" :
@@ -147,7 +154,11 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 				break;
 				
 			case "btnExportar" :
-//				if this.getDialogoListadoPart().
+				if (!this.getDialogoParticipanteListado().getArrayDatos().isEmpty()) {
+					this.exportarFichero();
+				} else {					
+					JOptionPane.showMessageDialog(null, "No existen datos a exportar.", "Información", JOptionPane.INFORMATION_MESSAGE);
+				}
 				break;
 				
 			default :
@@ -170,17 +181,17 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 		
 		if (event.getValueIsAdjusting()) {			
 			this.setDaoParticipanteMantenimiento(new DaoParticipanteMantenimiento());
-			codigo = (Integer)this.dialogoListadoPart.getTablaParticipantes().getValueAt(this.dialogoListadoPart.getTablaParticipantes().getSelectedRow(), 0);
+			codigo = (Integer)this.dialogoParticipanteListado.getTablaParticipantes().getValueAt(this.dialogoParticipanteListado.getTablaParticipantes().getSelectedRow(), 0);
 			
 			try {
 				if (this.getDaoParticipanteMantenimiento().obtenerTipoParticipante(codigo).equalsIgnoreCase("D")) {
 					this.setDaoDirectorMantenimiento(new DaoDirectorMantenimiento());
 					director = new Director(this.getDaoDirectorMantenimiento().obtenerDirector(codigo));
-					this.getDialogoListadoPart().mostrarDirector(director);
+					this.getDialogoParticipanteListado().mostrarDirector(director);
 				} else {
 					this.setDaoInterpreteMantenimiento(new DaoInterpreteMantenimiento());
 					interprete = new Interprete(this.getDaoInterpreteMantenimiento().obtenerInterprete(codigo));					
-					this.getDialogoListadoPart().mostrarInterprete(interprete);
+					this.getDialogoParticipanteListado().mostrarInterprete(interprete);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
@@ -201,18 +212,18 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 		String validacion;
 		
 		setFiltro(new FiltroParticipanteListado());
-		getFiltro().setDirector(this.dialogoListadoPart.getChkDirectores().isSelected());
-		getFiltro().setInterprete(this.dialogoListadoPart.getChkInterpretes().isSelected());
+		getFiltro().setDirector(this.dialogoParticipanteListado.getChkDirectores().isSelected());
+		getFiltro().setInterprete(this.dialogoParticipanteListado.getChkInterpretes().isSelected());
 //		getFiltro().setEjemplar(this.dialogoListadoPart.getComboEjemplar().getSelectedItem().toString());
-		getFiltro().setNombre(this.dialogoListadoPart.getFieldNombre().getText());
-		getFiltro().setPais(((Pais)this.dialogoListadoPart.getComboNacionalidad().getSelectedItem()).getCodigo());
-		getFiltro().setSexoFemenino(this.dialogoListadoPart.getTglbtnFemenino().isSelected());
-		getFiltro().setSexoMasculino(this.dialogoListadoPart.getTglbtnMasculino().isSelected());
+		getFiltro().setNombre(this.dialogoParticipanteListado.getFieldNombre().getText());
+		getFiltro().setPais(((Pais)this.dialogoParticipanteListado.getComboNacionalidad().getSelectedItem()).getCodigo());
+		getFiltro().setSexoFemenino(this.dialogoParticipanteListado.getTglbtnFemenino().isSelected());
+		getFiltro().setSexoMasculino(this.dialogoParticipanteListado.getTglbtnMasculino().isSelected());
 		if ((validacion = getFiltro().validarDatos()) != null) {
-			this.dialogoListadoPart.getPanelBtnOk().getLabelTextoError().setText(validacion);
+			this.dialogoParticipanteListado.getPanelBtnOk().getLabelTextoError().setText(validacion);
 			return false;
 		} 
-		this.dialogoListadoPart.getPanelBtnOk().getLabelTextoError().setText("");			
+		this.dialogoParticipanteListado.getPanelBtnOk().getLabelTextoError().setText("");			
 		return true;
 		
 	}
@@ -227,8 +238,8 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 
 		try {
 			this.setArrayParticipantes(this.daoListadoPart.obtenerListaParticipantes(this.filtro));
-			this.dialogoListadoPart.setArrayDatos(this.getArrayParticipantes());
-			this.dialogoListadoPart.crearFilas();
+			this.dialogoParticipanteListado.setArrayDatos(this.getArrayParticipantes());
+			this.dialogoParticipanteListado.crearFilas();
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -236,15 +247,147 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 		}
 
 	}
+	
+	/**
+	 * Realiza la exportación de los datos visualizados en la tabla a un fichero csv
+	 * 
+	 * @return boolean indicando si se ha podido ejecutar la exportación del fichero
+	 */
+	public boolean exportarFichero() {
+		
+		File fichero;
+		Iterator<ListaParticipante> iterador ;
+		Integer codigo = 0;
+		Director director = null;
+		Interprete interprete = null;
+		
+		this.setDaoParticipanteMantenimiento(new DaoParticipanteMantenimiento());
+		
+		fichero = FileChooser.escogerFichero();
+		
+		if (fichero!=null) {
+			try (BufferedWriter bW = new BufferedWriter(new FileWriter(fichero, false))) {
+					
+				if (fichero.exists()) {
+					fichero.delete();
+				}
+				fichero.createNewFile();
+				
+				if (fichero.isFile()) {
+					this.grabarCabecera(bW);
+					
+					iterador = this.getArrayParticipantes().iterator();
+					while (iterador.hasNext()) {
+						codigo = iterador.next().getCodigo();
+						
+						if (this.getDaoParticipanteMantenimiento().obtenerTipoParticipante(codigo).equalsIgnoreCase("D")) {
+							this.setDaoDirectorMantenimiento(new DaoDirectorMantenimiento());
+							director = new Director(this.getDaoDirectorMantenimiento().obtenerDirector(codigo));
+							this.grabarFicheroDirector(bW, director);
+						} else {
+							this.setDaoInterpreteMantenimiento(new DaoInterpreteMantenimiento());
+							interprete = new Interprete(this.getDaoInterpreteMantenimiento().obtenerInterprete(codigo));					
+							this.grabarFicheroInterprete(bW, interprete);
+						}
+					}
+					
+					JOptionPane.showMessageDialog(null, "Fichero generado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "No es posible generar el fichero.", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Se ha producido un error al grabar el fichero.", "Error", JOptionPane.ERROR_MESSAGE);
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		
+		return false;
+		
+	}
+	
+	/**
+	 * Graba la cabecera de las columnas en el fichero csv a exportar  
+	 * 
+	 * @param bW BufferedWriter con el fichero de salida donde debe grabar la cabecera de datos 
+	 * @throws IOException
+	 */
+	public void grabarCabecera(BufferedWriter bW) throws IOException {
+		
+		StringJoiner joiner = new StringJoiner(";");
+		
+		bW.write("\ufeff");
+
+		joiner.add("Código");
+		joiner.add("Nombre");
+		joiner.add("FNacimiento");
+		joiner.add("Sexo");
+		joiner.add("Género/Caché");
+		joiner.add("Nacionalidad");
+		
+		bW.write(joiner.toString());
+		bW.newLine();
+	}
+	
+	/**
+	 * Graba un registro de tipo Director en el csv de salida
+	 * 
+	 * @param bW BufferedWriter donde debe grabar el director recibido también por parámetros
+	 * @param director Director a grabar en el fichero de salida
+	 * @throws IOException
+	 */
+	public void grabarFicheroDirector (BufferedWriter bW, Director director) throws IOException {
+		
+		StringJoiner joiner = new StringJoiner(";");
+		
+		joiner.add(director.getCodigo().toString());
+		joiner.add(director.getNombre());
+		joiner.add(director.getFechaNacimiento().toString());
+		joiner.add(director.getSexo().getDescripcion());
+		if (director.getGeneroPreferido()!=null) {
+			joiner.add(director.getGeneroPreferido().getDescripcion());			
+		} else {
+			joiner.add("");						
+		}
+		joiner.add(director.getNacionalidad().getDescripcion());
+		
+		bW.write(joiner.toString());
+		bW.newLine();
+	}
+	
+	/**
+	 * Graba un registro de tipo Interprete en el csv de salida
+	 * 
+	 * @param bW BufferedWriter donde debe grabar el intérprete recibido también por parámetros
+	 * @param interprete Interprete a grabar en el fichero de salida
+	 * @throws IOException
+	 */
+	public void grabarFicheroInterprete (BufferedWriter bW, Interprete interprete) throws IOException {
+		
+		StringJoiner joiner = new StringJoiner(";");
+		
+		joiner.add(interprete.getCodigo().toString());
+		joiner.add(interprete.getNombre());
+		joiner.add(interprete.getFechaNacimiento().toString());
+		joiner.add(interprete.getSexo().getDescripcion());
+		joiner.add(Double.toString(interprete.getCache()));
+		joiner.add(interprete.getNacionalidad().getDescripcion());
+		
+		bW.write(joiner.toString());
+		bW.newLine();
+	}
 
 	// GETTERS & SETTERS
-	public DialogoParticipanteListado getDialogoListadoPart() {
-		return dialogoListadoPart;
+	public DialogoParticipanteListado getDialogoParticipanteListado() {
+		return dialogoParticipanteListado;
 	}
 
 
-	public void setDialogoListadoPart(DialogoParticipanteListado dialogoListadoPart) {
-		this.dialogoListadoPart = dialogoListadoPart;
+	public void setDialogoParticipanteListado(DialogoParticipanteListado dialogoParticipanteListado) {
+		this.dialogoParticipanteListado = dialogoParticipanteListado;
 	}
 
 

@@ -52,16 +52,6 @@ public abstract class Participante {
 		this.nacionalidad = nacionalidad;
 	}
 
-	/**
-	 * Método para ver los atributos
-	 * @returns una cadena de caracteres con todos los atributos
-	 */
-	@Override
-	public String toString() {
-		return "Participante [codigo=" + codigo + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento
-				+ ", sexo=" + sexo + "]";
-	}
-
 	// GETTERS & SETTERS
 	public Integer getCodigo() {
 		return codigo;

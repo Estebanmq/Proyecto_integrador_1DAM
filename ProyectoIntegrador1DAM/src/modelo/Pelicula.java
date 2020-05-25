@@ -1,7 +1,6 @@
 package modelo;
 
 import java.util.HashSet;
-import java.util.LinkedList;
 
 /** 
  * Esta clase define los atributos y métodos que va a tener cada pelicula 
@@ -59,37 +58,10 @@ public class Pelicula extends EjemplarAudiovisual {
 	 * @param nacionalidad
 	 * @param genero
 	 */
-	public Pelicula(Integer codigo, String titulo, int anyo, Director director, String sinopsis, Pais nacionalidad,
-			GeneroPelicula genero) {
+	public Pelicula(Integer codigo, String titulo, int anyo, Director director, String sinopsis, Pais nacionalidad, GeneroPelicula genero) {
 		super(codigo, titulo, anyo, director, sinopsis, nacionalidad);
 		this.genero = genero;
 		this.interpretes = new HashSet<Interprete>();
-	}
-	
-	/**
-	 * Método para añadir un intérprete
-	 * @param i
-	 * @see Interprete
-	 */
-	public void incluirInterprete(Interprete i) {
-		
-	}
-	
-	/**
-	 * Método para eliminar un intérprete
-	 * @param codInter
-	 */
-	public void eliminarInterprete(Integer codInter) {
-		
-	}
-
-	/**
-	 * Método para ver los atributos
-	 * @returns una cadena de caracteres con todos los atributos
-	 */
-	@Override
-	public String toString() {
-		return super.toString() + " Pelicula [genero=" + genero + ", interpretes=" + interpretes + "]";
 	}
 
 	//Métodos Getter y Setter

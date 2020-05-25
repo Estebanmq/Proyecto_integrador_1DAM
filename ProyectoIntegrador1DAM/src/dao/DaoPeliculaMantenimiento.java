@@ -7,11 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.Normalizer;
 
-import modelo.Director;
 import modelo.GeneroPelicula;
-import modelo.Pais;
 import modelo.Pelicula;
-import modelo.Sexo;
 /**
  * Esta clase está dedicada al manejo de datos de películas en la base de datos
  * @author Esteban Martínez

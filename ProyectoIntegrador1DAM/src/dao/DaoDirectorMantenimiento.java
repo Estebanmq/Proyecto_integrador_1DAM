@@ -141,7 +141,7 @@ public class DaoDirectorMantenimiento {
 		rs.next();
 		
 		if (!rs.getString(4).isEmpty()) {
-			generoPreferido = GeneroPelicula.valueOfDescripcion(rs.getString(4));						
+			generoPreferido = GeneroPelicula.valueOf(rs.getString(4));						
 		}
 		
 		direc = new Director(codigo,rs.getString(1),rs.getDate(2),Sexo.valueOf(rs.getString(3).toUpperCase()), generoPreferido ,daoPaisMantenimiento.obtenerPais(rs.getInt(5)));

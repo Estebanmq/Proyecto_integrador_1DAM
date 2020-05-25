@@ -3,17 +3,16 @@ package modelo;
 /** 
  * Esta clase define los atributos y métodos que va a tener cada documental 
  * 
- * @author 
+ * @author Esteban Martinez Quintanar
+ * @since 01/05/2020
+ * @version 1.0
+ *  
  * @see EjemplarAudiovisual
  * @see GeneroDocumental
- * @since 01/05/2020
+
  */
 
 public class Documental extends EjemplarAudiovisual{
-
-	/** 
-	 * Atributos que consideramos importantes para identificar un documental
-	 */
 	
 	/** 
 	 * Genero del documental
@@ -25,13 +24,13 @@ public class Documental extends EjemplarAudiovisual{
 	
 	/**
 	 * Método constructor de documental
-	 * @param codigo
-	 * @param titulo
-	 * @param anyo
-	 * @param director
-	 * @param sinopsis
-	 * @param nacionalidad
-	 * @param genero
+	 * @param codig Código de documental
+	 * @param titulo Título del documental
+	 * @param anyo Año de producción
+	 * @param director Director que lo ha dirigido
+	 * @param sinopsis Sipnosis acerca del documental
+	 * @param nacionalidad País de producción
+	 * @param genero Género al que pertenece el documental
 	 */
 	public Documental(Integer codigo, String titulo, int anyo, Director director, String sinopsis, Pais nacionalidad,
 			GeneroDocumental genero) {
@@ -48,20 +47,11 @@ public class Documental extends EjemplarAudiovisual{
 
 	/**
 	 * Método constructor de copia
-	 * @param p Objeto de tipo documental
+	 * @param d Objeto de tipo documental
 	 */
 	public Documental(Documental d) {
 		super(d.getCodigo(),d.getTitulo(),d.getAnyo(),d.getDirector(),d.getSinopsis(),d.getNacionalidad());
 		this.genero = d.genero;
-	}
-	
-	/**
-	 * Método para ver los atributos
-	 * @returns una cadena de caracteres con todos los atributos
-	 */
-	@Override
-	public String toString() {
-		return super.toString() + " Documental []";
 	}
 
 	//Métodos Getter y Setter
@@ -72,7 +62,5 @@ public class Documental extends EjemplarAudiovisual{
 	public void setGenero(GeneroDocumental genero) {
 		this.genero = genero;
 	}
-	
-	
-	
+		
 }

@@ -1,11 +1,13 @@
 package modelo;
 
 /**
- * Esta clase relaciona los interpretes con las peliculas.
- * @author
+ * Esta clase relaciona los interpretes con las películas.
+ * @author Jose Manuel de Dios
+ * @version 1.0
+ * @since 04/05/2020
+ * 
  * @see Interprete
  * @see Pelicula
- * @since 04/05/2020
  */
 public class Actuacion {
 	

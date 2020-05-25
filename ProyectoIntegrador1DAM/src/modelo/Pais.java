@@ -37,15 +37,6 @@ public class Pais {
 		this.descripcion = descripcion;
 	}
 
-	/**
-	 * Método para ver los atributos
-	 * @returns una cadena de caracteres con todos los atributos
-	 */
-	@Override
-	public String toString() {
-		return "Pais [codigo=" + codigo + ", descripcion=" + descripcion + "]";
-	}
-
 	//Métodos Getter y Setter
 	public Integer getCodigo() {
 		return codigo;

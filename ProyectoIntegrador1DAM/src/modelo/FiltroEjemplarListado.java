@@ -6,7 +6,7 @@ package modelo;
  * 
  * @author Jose Manuel
  * @version 1.0
- * @since 05/2020
+ * @since 20/05/2020
  */
 public class FiltroEjemplarListado {
 	

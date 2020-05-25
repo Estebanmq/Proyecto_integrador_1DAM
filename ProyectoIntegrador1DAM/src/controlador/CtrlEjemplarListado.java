@@ -2,8 +2,14 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.StringJoiner;
 
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -16,6 +22,7 @@ import dao.DaoEjemplarMantenimiento;
 import dao.DaoPaisMantenimiento;
 import dao.DaoPeliculaMantenimiento;
 import modelo.Documental;
+import modelo.FileChooser;
 import modelo.FiltroEjemplarListado;
 import modelo.ListaEjemplar;
 import modelo.ListaParticipante;
@@ -148,6 +155,11 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 				break;
 				
 			case "btnExportar" :
+				if (!this.getDialogoEjemplarListado().getArrayDatos().isEmpty()) {
+					this.exportarFichero();
+				} else {					
+					JOptionPane.showMessageDialog(null, "No existen datos a exportar.", "Información", JOptionPane.INFORMATION_MESSAGE);
+				}
 				break;
 				
 			default :
@@ -234,6 +246,144 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 		}
 
 	}
+	
+	
+	/**
+	 * Realiza la exportación de los datos visualizados en la tabla a un fichero csv
+	 * 
+	 * @return boolean indicando si se ha podido ejecutar la exportación del fichero
+	 */
+	public boolean exportarFichero() {
+		
+		File fichero;
+		Iterator<ListaEjemplar> iterador ;
+		Integer codigo = 0;
+		Pelicula pelicula = null;
+		Documental documental = null;
+		
+		this.setDaoEjemplarMantenimiento(new DaoEjemplarMantenimiento());
+		
+		fichero = FileChooser.escogerFichero();
+		
+		if (fichero!=null) {
+			try (BufferedWriter bW = new BufferedWriter(new FileWriter(fichero, false))) {
+					
+				if (fichero.exists()) {
+					fichero.delete();
+				}
+				fichero.createNewFile();
+				
+				if (fichero.isFile()) {
+					this.grabarCabecera(bW);
+					
+					iterador = this.getArrayEjemplares().iterator();
+					while (iterador.hasNext()) {
+						codigo = iterador.next().getCodigo();
+						
+						if (this.getDaoEjemplarMantenimiento().obtenerTipoEjemplar(codigo).equalsIgnoreCase("P")) {
+							this.setDaoPeliculaMantenimiento(new DaoPeliculaMantenimiento());
+							pelicula = new Pelicula(this.getDaoPeliculaMantenimiento().buscarPeli(codigo));
+							this.grabarFicheroPelicula(bW, pelicula);
+						} else {
+							this.setDaoDocumentalMantenimiento(new DaoDocumentalMantenimiento());
+							documental = new Documental(this.getDaoDocumentalMantenimiento().buscarDocu(codigo));					
+							this.grabarFicheroDocumental(bW, documental);
+						}
+					}
+					
+					JOptionPane.showMessageDialog(null, "Fichero generado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "No es posible generar el fichero.", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Se ha producido un error al grabar el fichero.", "Error", JOptionPane.ERROR_MESSAGE);
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		
+		return false;
+		
+	}
+	
+	/**
+	 * Graba la cabecera de las columnas en el fichero csv a exportar  
+	 * 
+	 * @param bW BufferedWriter con el fichero de salida donde debe grabar la cabecera de datos 
+	 * @throws IOException
+	 */
+	public void grabarCabecera(BufferedWriter bW) throws IOException {
+		
+		StringJoiner joiner = new StringJoiner(";");
+		
+		bW.write("\ufeff");
+
+		joiner.add("Código");
+		joiner.add("Título");
+		joiner.add("Año");
+		joiner.add("Director");
+		joiner.add("Género");
+		joiner.add("Nacionalidad");
+		
+		bW.write(joiner.toString());
+		bW.newLine();
+	}
+	
+	/**
+	 * Graba un registro de tipo Director en el csv de salida
+	 * 
+	 * @param bW BufferedWriter donde debe grabar el director recibido también por parámetros
+	 * @param director Director a grabar en el fichero de salida
+	 * @throws IOException
+	 */
+	public void grabarFicheroPelicula (BufferedWriter bW, Pelicula pelicula) throws IOException {
+		
+		StringJoiner joiner = new StringJoiner(";");
+		
+		joiner.add(pelicula.getCodigo().toString());
+		joiner.add(pelicula.getTitulo());
+		joiner.add(Integer.toString(pelicula.getAnyo()));
+		joiner.add(pelicula.getDirector().getNombre());
+		if (pelicula.getGenero()!=null) {
+			joiner.add(pelicula.getGenero().getDescripcion());			
+		} else {
+			joiner.add("");						
+		}
+		joiner.add(pelicula.getNacionalidad().getDescripcion());
+		
+		bW.write(joiner.toString());
+		bW.newLine();
+	}
+	
+	/**
+	 * Graba un registro de tipo Interprete en el csv de salida
+	 * 
+	 * @param bW BufferedWriter donde debe grabar el intérprete recibido también por parámetros
+	 * @param interprete Interprete a grabar en el fichero de salida
+	 * @throws IOException
+	 */
+	public void grabarFicheroDocumental (BufferedWriter bW, Documental documental) throws IOException {
+		
+		StringJoiner joiner = new StringJoiner(";");
+		
+		joiner.add(documental.getCodigo().toString());
+		joiner.add(documental.getTitulo());
+		joiner.add(Integer.toString(documental.getAnyo()));
+		joiner.add(documental.getDirector().getNombre());
+		if (documental.getGenero()!=null) {
+			joiner.add(documental.getGenero().getDescripcion());			
+		} else {
+			joiner.add("");						
+		}
+		joiner.add(documental.getNacionalidad().getDescripcion());
+		
+		bW.write(joiner.toString());
+		bW.newLine();
+	}
+
 
 	// GETTERS & SETTERS
 

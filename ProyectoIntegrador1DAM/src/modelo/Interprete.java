@@ -1,28 +1,25 @@
 package modelo;
 
 import java.util.Date;
+
 /**
  * Esta clase define los atributos y métodos que va a tener un participante.
- * @author
- * @see GeneroPelicula
+ * @author Esteban Martínez
+ * @author Sergio Fernández
+ * @author Jose Manuel de Dios
  * @since 01/05/2020
  */
-
 public class Interprete extends Participante{
 
 	/**
-	 * Atributos que consideramos importantes para los participantes.
-	 */
-	
-	/**
-	 * Cache del actor
+	 * Caché del actor
 	 */
 	private double cache;
 	
 	/** 
 	 * Método constructor de interprete
 	 * @param codigo Código de intérprete
-	 * @param nombre Nombre de intèrprete
+	 * @param nombre Nombre de intérprete
 	 * @param fechaNacimiento Fecha de nacimiento
 	 * @param sexo Sexo
 	 * @param cache Caché 
@@ -40,15 +37,6 @@ public class Interprete extends Participante{
 	 */
 	public Interprete(Interprete interprete) {
 		this(interprete.getCodigo(), interprete.getNombre(), interprete.getFechaNacimiento(), interprete.getSexo(), interprete.getCache(), interprete.getNacionalidad());
-	}
-
-	/**
-	 * Método para ver los atributos
-	 * @returns una cadena de caracteres con todos los atributos
-	 */
-	@Override
-	public String toString() {
-		return super.toString() + "Interprete [cache=" + cache + "]";
 	}
 
 	//Métodos Getter y Setter
