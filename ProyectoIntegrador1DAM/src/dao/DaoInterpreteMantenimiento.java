@@ -11,6 +11,8 @@ import modelo.Interprete;
 import modelo.ListaInterprete;
 import modelo.Sexo;
 import vista.DialogoInterpreteAlta;
+import vista.DialogoInterpreteBaja;
+import vista.DialogoInterpreteModificacion;
 
 /**
  * Esta clase está dedicada al manejo de datos de intérpretes en la base de datos
@@ -148,6 +150,53 @@ public class DaoInterpreteMantenimiento {
 		
 		return interprete;
 		
+	}
+	
+
+	/**
+	 * Método para dar de baja a un interprete
+	 * @param dialogo
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public void darBajaInterprete (DialogoInterpreteBaja dialogo) throws ClassNotFoundException, SQLException{
+		
+		int codigo = Integer.parseInt(dialogo.getTextFieldCodigo().getText());
+		
+		this.setConn(Conexion.getConexion());
+		st = conn.createStatement();
+		String borrarInterprete = "DELETE FROM INTERPRETE WHERE CODIGO=" + codigo;
+		st.executeUpdate(borrarInterprete);
+		String borrarParticipante = "DELETE FROM PARTICIPANTE WHERE CODIGO=" + codigo;
+		st.executeUpdate(borrarParticipante);
+		st.close();
+		Conexion.cerrar();
+	}
+	
+	/**
+	 * Método para modificar datos a un interprete
+	 * @param dialogo
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public void modificarInterprete(DialogoInterpreteModificacion dialogo) throws ClassNotFoundException, SQLException{
+		
+		int codigo = Integer.parseInt(dialogo.getTextFieldCodigo().getText());
+		
+		String nombre = dialogo.getTextFieldNombre().getText();
+		String fecha = dialogo.getTextFieldFecha().getText();
+		String sexo = dialogo.getBg().getSelection().getActionCommand().toUpperCase();
+		String cacheString = dialogo.getTextFieldCache().getText();
+		String nacionalidad = dialogo.getComboBoxPais().getSelectedItem().toString();
+		
+		this.setConn(Conexion.getConexion());
+		st = conn.createStatement();
+		String modificarParticipante = "UPDATE PARTICIPANTE SET NOMBRE = '" +nombre+ "', FECHANACIMIENTO = DATE('" + fecha + "'),SEXO = '" +sexo+ "', NACIONALIDAD = (SELECT codigo FROM PAIS WHERE descripcion='"+nacionalidad+"') WHERE CODIGO ="+ codigo;
+		st.executeUpdate(modificarParticipante);
+		String modificarDirector = "UPDATE INTERPRETE SET CACHE = '" + cacheString + "' WHERE CODIGO =" + codigo;
+		st.executeUpdate(modificarDirector);
+		st.close();
+		Conexion.cerrar();
 	}
 
 	// GETTERS & SETTERS
