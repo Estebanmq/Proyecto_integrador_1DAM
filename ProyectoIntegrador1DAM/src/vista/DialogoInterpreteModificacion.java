@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -53,7 +54,7 @@ private static final long serialVersionUID = 5913217229440232625L;
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
-		this.setTitle("Modificacion de directores");
+		this.setTitle("Modificacion de intérpretes");
 		setBounds(100, 100, 495, 353);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -61,7 +62,7 @@ private static final long serialVersionUID = 5913217229440232625L;
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JLabel labelCodigo = new JLabel("Código del director:");
+		JLabel labelCodigo = new JLabel("Código del intérprete:");
 		labelCodigo.setBounds(70, 28, 124, 14);
 		contentPanel.add(labelCodigo);
 		
@@ -162,6 +163,9 @@ private static final long serialVersionUID = 5913217229440232625L;
 		}
 	}
 	public void mostrarInterprete(Interprete interprete) {
+				
+		DecimalFormat formateador = new DecimalFormat("############");
+		
 		getPanelBtnsAceptarCancelar().getLabelTextoError().setText("");
 		textFieldNombre.setText(interprete.getNombre());
 		comboBoxPais.setSelectedItem(interprete.getNacionalidad().getDescripcion());
@@ -170,7 +174,9 @@ private static final long serialVersionUID = 5913217229440232625L;
 			rdbtnNewRadioM.setSelected(true);
 		}else
 			rdbtnNewRadioF.setSelected(true);
-		textFieldCache.setText(Double.toString(interprete.getCache()));
+		
+		textFieldCache.setText(formateador.format(interprete.getCache()));
+
 	}
 
 	// GETTERS & SETTERS

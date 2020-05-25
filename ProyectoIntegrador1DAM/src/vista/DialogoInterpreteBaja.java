@@ -3,6 +3,7 @@ package vista;
 import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -21,10 +22,8 @@ import modelo.Interprete;
  *
  */
 public class DialogoInterpreteBaja extends JDialog{
-	
-	/**
-	 *Atributos de la interfaz
-	 */
+
+	private static final long serialVersionUID = 2089480937214925088L;
 	
 	private final JPanel contentPanel = new JPanel();
 	private JPanel panel;
@@ -135,12 +134,16 @@ public class DialogoInterpreteBaja extends JDialog{
 	 * @param interprete
 	 */
 	public void mostrarInterprete(Interprete interprete) {
+		
+		DecimalFormat formateador = new DecimalFormat("###,###,###,###");
+
 		getPanelBtnsAceptarCancelar().getLabelTextoError().setText("");
 		LabelCampoNombre.setText(interprete.getNombre());
 		LabelCampoPais.setText(interprete.getNacionalidad().getDescripcion());
 		LabelCampoFecha.setText(interprete.getFechaNacimiento().toString());
 		LabelCampoSexo.setText(interprete.getSexo().toString());
-		LabelCampoCache.setText(Double.toString(interprete.getCache()));
+		LabelCampoCache.setText(formateador.format(interprete.getCache()));
+
 	}
 	
 	//Getters and setters

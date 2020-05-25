@@ -3,6 +3,7 @@ package vista;
 import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -43,7 +44,7 @@ public class DialogoInterpreteConsulta extends JDialog{
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-		this.setTitle("Consulta de directores");
+		this.setTitle("Consulta de intérpretes");
 		this.setBounds(100, 100, 537, 400);
 		this.setLocationRelativeTo(null);
 		getContentPanel().setLayout(new FlowLayout());
@@ -132,11 +133,15 @@ public class DialogoInterpreteConsulta extends JDialog{
 	 * @param d
 	 */
 	public void mostrarInterprete(Interprete interprete) {
+		
+		DecimalFormat formateador = new DecimalFormat("###,###,###,###");
+		
 		LabelCampoNombre.setText(interprete.getNombre());
 		LabelCampoPais.setText(interprete.getNacionalidad().getDescripcion());
 		LabelCampoFecha.setText(interprete.getFechaNacimiento().toString());
 		LabelCampoSexo.setText(interprete.getSexo().toString());
-		labelCampoCache.setText(Double.toString(interprete.getCache()));
+		labelCampoCache.setText(formateador.format(interprete.getCache()));
+
 	}
 
 	public JPanel getPanel() {

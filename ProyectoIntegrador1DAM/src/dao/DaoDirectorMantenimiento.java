@@ -207,12 +207,14 @@ public class DaoDirectorMantenimiento {
 	 * @throws SQLException
 	 */
 	public int buscarCodDirector (String nombre) throws ClassNotFoundException, SQLException{
-		int codigo;
+		int codigo = 0;
 		this.setConn(Conexion.getConexion());
 		st = conn.createStatement();
 		rs = st.executeQuery("SELECT codigo FROM PARTICIPANTE WHERE NOMBRE = '"+nombre+"'");
-		rs.next();
-		codigo=rs.getInt(1);
+		
+		if (rs.next()) {
+			codigo=rs.getInt(1);			
+		}
 		st.close();
 		Conexion.cerrar();
 		return codigo;

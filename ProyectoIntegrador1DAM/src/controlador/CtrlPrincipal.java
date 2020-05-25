@@ -84,7 +84,7 @@ public class CtrlPrincipal implements ActionListener {
 				new CtrlInterpreteModificacion();
 				break;
 			case "menuInterpreteConsulta" :
-				new CtrlInterpreteModificacion();
+				new CtrlInterpreteConsulta();
 				break;
 			case "menuPeliculaAlta" :
 				new CtrlPeliculaAlta();
