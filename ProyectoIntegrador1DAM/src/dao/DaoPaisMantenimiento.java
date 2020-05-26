@@ -55,8 +55,8 @@ public class DaoPaisMantenimiento {
 	 * @see Pais
 	 * 
 	 * @return Colección de países
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public ArrayList<Pais> obtenerListaPaises () throws ClassNotFoundException, SQLException {
 		
@@ -89,8 +89,8 @@ public class DaoPaisMantenimiento {
 	 * 
 	 * @param codigo Código del país a localizar 
 	 * @return Pais
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public Pais obtenerPais(Integer codigo) throws ClassNotFoundException, SQLException {
 		
@@ -124,8 +124,8 @@ public class DaoPaisMantenimiento {
 	 * 
 	 * @param p Nombre del país 
 	 * @return Código de pais
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public int obtenerCodPais(String p) throws ClassNotFoundException, SQLException {
 		

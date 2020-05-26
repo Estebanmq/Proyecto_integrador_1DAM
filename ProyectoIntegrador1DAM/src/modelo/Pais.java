@@ -1,7 +1,7 @@
 package modelo;
 /**
  * Esta clase define los atributos y métodos que va a tener un país
- * @author 
+ * @author Jose Manuel de Dios 
  * @since 01/05/2020
  */
 public class Pais {
@@ -29,8 +29,8 @@ public class Pais {
 	}
 	/**
 	 * Método constructor de país
-	 * @param codigo
-	 * @param descripcion
+	 * @param codigo de país
+	 * @param descripcion descripción de país
 	 */
 	public Pais(Integer codigo, String descripcion) {
 		this.codigo = codigo;

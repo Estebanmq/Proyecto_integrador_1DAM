@@ -31,9 +31,9 @@ public class Conexion {
 	/**
 	 * Método que genera una nueva conexión y la retorna
 	 * 
-	 * @return Connection
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @return Retorna la conexión
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public static Connection getConexion() throws ClassNotFoundException, SQLException {
 		
@@ -45,7 +45,7 @@ public class Conexion {
 	/**
 	 * Método para cerrar la conexión
 	 * 
-	 * @throws SQLException
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public static void cerrar() throws SQLException {
 		conexion.close();

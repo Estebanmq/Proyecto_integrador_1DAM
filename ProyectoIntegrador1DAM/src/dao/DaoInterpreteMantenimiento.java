@@ -52,8 +52,8 @@ public class DaoInterpreteMantenimiento {
 	 * Método para dar de alta a un interprete
 	 * 
 	 * @param iAlta Dialogo de alta de intérpretes
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public void darAltaInterprete (DialogoInterpreteAlta iAlta) throws ClassNotFoundException, SQLException {
 		
@@ -95,8 +95,8 @@ public class DaoInterpreteMantenimiento {
 	 * Método que obtiene de BD la lista de intérpretes
 	 * 
 	 * @return Colección de ListaIntetprete
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public HashSet<ListaInterprete> obtenerListaInterpretes() throws ClassNotFoundException, SQLException {
 
@@ -127,8 +127,8 @@ public class DaoInterpreteMantenimiento {
 	 * Método que busca el intérprete con un código específico y lo devuelve creando un objeto
 	 * @param codigo Código del intérprete
 	 * @return Un objeto interprete con los datos de la consulta
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public Interprete obtenerInterprete(Integer codigo) throws ClassNotFoundException, SQLException {
 		DaoPaisMantenimiento daoPaisMantenimiento = new DaoPaisMantenimiento();
@@ -150,9 +150,9 @@ public class DaoInterpreteMantenimiento {
 
 	/**
 	 * Método para dar de baja a un interprete
-	 * @param dialogo
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @param dialogo Diálogo de baja de intérpretes
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public void darBajaInterprete (DialogoInterpreteBaja dialogo) throws ClassNotFoundException, SQLException{
 		
@@ -170,9 +170,9 @@ public class DaoInterpreteMantenimiento {
 	
 	/**
 	 * Método para modificar datos a un interprete
-	 * @param dialogo
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @param dialogo Diálogo de modificación de intérpretes
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public void modificarInterprete(DialogoInterpreteModificacion dialogo) throws ClassNotFoundException, SQLException{
 		

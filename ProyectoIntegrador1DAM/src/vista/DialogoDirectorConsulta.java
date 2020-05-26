@@ -130,7 +130,7 @@ public class DialogoDirectorConsulta extends JDialog{
 	
 	/**
 	 * Método para devolver la busqueda de la BBDD a la ventana
-	 * @param d
+	 * @param d Director
 	 */
 	public void mostrarDirector(Director d) {
 		LabelCampoNombre.setText(d.getNombre());

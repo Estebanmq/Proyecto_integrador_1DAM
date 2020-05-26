@@ -131,7 +131,7 @@ public class DialogoInterpreteBaja extends JDialog{
 	
 	/**
 	 * Método que devuelve los atributos de la base de datos y la introduce en pantalla
-	 * @param interprete
+	 * @param interprete Intérprete
 	 */
 	public void mostrarInterprete(Interprete interprete) {
 		

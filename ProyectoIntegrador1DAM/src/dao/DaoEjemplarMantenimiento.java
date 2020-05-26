@@ -52,8 +52,8 @@ public class DaoEjemplarMantenimiento {
 	 * 
 	 * @param codigo Código de ejemplar a localizar
 	 * @return String Tipo de ejemplar: P para película, D para documental
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public String obtenerTipoEjemplar(Integer codigo) throws ClassNotFoundException, SQLException {
 		

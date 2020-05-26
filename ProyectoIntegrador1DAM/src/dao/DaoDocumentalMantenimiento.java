@@ -57,8 +57,8 @@ public class DaoDocumentalMantenimiento {
 	 * 
 	 * @return True cuando inserta todos los datos correctamente
 	 * 
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public boolean insertarDocumental(String titulo,int anyo,String director,String nacionalidad,String sinopsis,String genero) throws SQLException, ClassNotFoundException {
 		int maxCod;
@@ -88,8 +88,8 @@ public class DaoDocumentalMantenimiento {
 	 * Método que devuelve un documental a partir de su código
 	 * @param codigo Código de la documental
 	 * @return El objeto de tipo documental con los datos recuperados de la BBDD
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public Documental buscarDocu(Integer codigo) throws ClassNotFoundException, SQLException {
 		
@@ -127,8 +127,8 @@ public class DaoDocumentalMantenimiento {
 	 * Método que elimina un documental a partir de su código
 	 * @param codigo Código del documental
 	 * @return El número de filas actualizadas
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public int borrarDocumental(int codigo) throws ClassNotFoundException, SQLException {
 		int result = 0;
@@ -147,12 +147,10 @@ public class DaoDocumentalMantenimiento {
 	 * 
 	 * @param d Documental
 	 * @return número de documentales actualizados
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public int actualizarDocumental(Documental d) throws ClassNotFoundException, SQLException {
-		DaoPaisMantenimiento daoPaisMantenimiento = new DaoPaisMantenimiento();
-		DaoDirectorMantenimiento daoDirectorMantenimiento = new DaoDirectorMantenimiento();
 		int result = 0;
 		conn=Conexion.getConexion();
 		st=conn.createStatement();

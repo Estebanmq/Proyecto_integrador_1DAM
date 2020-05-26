@@ -313,7 +313,7 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 	 * Graba la cabecera de las columnas en el fichero csv a exportar  
 	 * 
 	 * @param bW BufferedWriter con el fichero de salida donde debe grabar la cabecera de datos 
-	 * @throws IOException
+	 * @throws IOException si no se puede grabar el fichero
 	 */
 	public void grabarCabecera(BufferedWriter bW) throws IOException {
 		
@@ -337,7 +337,7 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 	 * 
 	 * @param bW BufferedWriter donde debe grabar el director recibido también por parámetros
 	 * @param director Director a grabar en el fichero de salida
-	 * @throws IOException
+	 * @throws IOException si no se puede grabar el fichero
 	 */
 	public void grabarFicheroDirector (BufferedWriter bW, Director director) throws IOException {
 		
@@ -363,7 +363,7 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 	 * 
 	 * @param bW BufferedWriter donde debe grabar el intérprete recibido también por parámetros
 	 * @param interprete Interprete a grabar en el fichero de salida
-	 * @throws IOException
+	 * @throws IOException si no se puede grabar el fichero
 	 */
 	public void grabarFicheroInterprete (BufferedWriter bW, Interprete interprete) throws IOException {
 		

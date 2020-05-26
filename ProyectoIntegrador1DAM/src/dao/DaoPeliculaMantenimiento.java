@@ -56,8 +56,8 @@ public class DaoPeliculaMantenimiento {
 	 * @param sinopsis Sinopsis de la película
 	 * @param genero Genero al que pertenece la película
 	 * @return True cuando inserta todos los datos correctamente
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public boolean insertarPelicula(String titulo,int anyo,String director,String nacionalidad,String sinopsis,String genero) throws SQLException, ClassNotFoundException {
 		int maxCod;
@@ -85,8 +85,8 @@ public class DaoPeliculaMantenimiento {
 	 * Método que devuelve una película a partir de su código
 	 * @param cod Código de la película
 	 * @return El objeto de tipo pelicula con los datos recuperados de la BBDD
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public Pelicula buscarPeli(int cod) throws ClassNotFoundException, SQLException {
 		DaoPaisMantenimiento daoPaisMantenimiento = new DaoPaisMantenimiento();
@@ -130,8 +130,8 @@ public class DaoPeliculaMantenimiento {
 	 * Método que elimina una película a partir de su código
 	 * @param cod Código de la película∫
 	 * @return El número de filas actualizadas
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public int borrarPelicula(int cod) throws ClassNotFoundException, SQLException {
 		int result = 0;
@@ -150,12 +150,11 @@ public class DaoPeliculaMantenimiento {
 	 * 
 	 * @param p Película a actualizar
 	 * @return número de películas actualizadas
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public int actualizarPelicula(Pelicula p) throws ClassNotFoundException, SQLException {
-		DaoPaisMantenimiento daoPaisMantenimiento = new DaoPaisMantenimiento();
-		DaoDirectorMantenimiento daoDirectorMantenimiento = new DaoDirectorMantenimiento();
+
 		int result = 0;
 		conn=Conexion.getConexion();
 		st=conn.createStatement();

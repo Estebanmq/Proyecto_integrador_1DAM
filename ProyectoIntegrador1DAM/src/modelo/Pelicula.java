@@ -5,10 +5,10 @@ import java.util.HashSet;
 /** 
  * Esta clase define los atributos y métodos que va a tener cada pelicula 
  * 
- * @author 
+ * @author Jose Manuel de Dios
  * @see EjemplarAudiovisual
  * @see GeneroPelicula
- * @see Interprete
+ * @see Director
  * @since 01/05/2020
  */
 public class Pelicula extends EjemplarAudiovisual {
@@ -50,13 +50,13 @@ public class Pelicula extends EjemplarAudiovisual {
 	
 	/**
 	 * Método constructor de película
-	 * @param codigo
-	 * @param titulo
-	 * @param anyo
-	 * @param director
-	 * @param sinopsis
-	 * @param nacionalidad
-	 * @param genero
+	 * @param codigo Código identificativo de Película
+	 * @param titulo Título de la película
+	 * @param anyo Año de producción
+	 * @param director Director de la película
+	 * @param sinopsis Sipnosis
+	 * @param nacionalidad Nacionalidad de producción
+	 * @param genero Género al que pertenece
 	 */
 	public Pelicula(Integer codigo, String titulo, int anyo, Director director, String sinopsis, Pais nacionalidad, GeneroPelicula genero) {
 		super(codigo, titulo, anyo, director, sinopsis, nacionalidad);

@@ -55,7 +55,7 @@ public class DaoEjemplarListado {
 	/**
 	 * Método constructor al que se le pasa la conexión a utilizar en la instancia
 	 * 
-	 * @param conn
+	 * @param conn Conexión con la base de datos a utilizar
 	 */
 	public DaoEjemplarListado(Connection conn) {
 		this.setConn(conn);
@@ -67,8 +67,8 @@ public class DaoEjemplarListado {
 	 * @see ListaEjemplar
 	 * 
 	 * @return Colección de ListaEjemplar
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public ArrayList<ListaEjemplar> obtenerListaEjemplares() throws ClassNotFoundException, SQLException {
 		
@@ -101,8 +101,8 @@ public class DaoEjemplarListado {
 	 * 
 	 * @return Colección de ListaEjemplar
 	 * 
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public ArrayList<ListaEjemplar> obtenerListaEjemplares(FiltroEjemplarListado filtro) throws ClassNotFoundException, SQLException {
 		
@@ -153,8 +153,8 @@ public class DaoEjemplarListado {
 	 * 
 	 * @param conn Conexión
 	 * @return Coleccion de paises
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public HashMap<Integer, String> obtenerPaises(Connection conn) throws ClassNotFoundException, SQLException {
 		

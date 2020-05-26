@@ -54,8 +54,8 @@ public class DaoDirectorMantenimiento {
 	 * Método para insertar un director en la BBDD
 	 * 
 	 * @param dAlta Dialogo de alta de directores
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public void darAltaDirector (DialogoDirectorAlta dAlta) throws ClassNotFoundException, SQLException {
 		
@@ -95,8 +95,8 @@ public class DaoDirectorMantenimiento {
 	/** 
 	 * Método que busca el código del director y lo guarda
 	 * @return Array con los directores
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public ArrayList<String> obtenerNombreDirectores () throws ClassNotFoundException, SQLException {
 		
@@ -122,8 +122,8 @@ public class DaoDirectorMantenimiento {
 	 * Método que busca el director con un codigo especifico y lo devuelve creando un objeto
 	 * @param codigo del director
 	 * @return Un objeto director con los datos de la consulta
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public Director obtenerDirector(int codigo) throws ClassNotFoundException, SQLException {
 		DaoPaisMantenimiento daoPaisMantenimiento = new DaoPaisMantenimiento();
@@ -152,8 +152,8 @@ public class DaoDirectorMantenimiento {
 	/**
 	 * Método para modificar datos a un director
 	 * @param dialogo Diálogo de modificación de directores
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public void modificarDirector(DialogoDirectorModificacion dialogo) throws ClassNotFoundException, SQLException{
 		
@@ -177,9 +177,9 @@ public class DaoDirectorMantenimiento {
 	
 	/**
 	 * Método para dar de baja a un director
-	 * @param dialogo
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @param dialogo Diálogo de baja de directores
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public void darBajaDirector (DialogoDirectorBaja dialogo) throws ClassNotFoundException, SQLException{
 	
@@ -200,8 +200,8 @@ public class DaoDirectorMantenimiento {
 	 * Método para buscar el codigo de un director
 	 * @param nombre Nombre del director
 	 * @return Código de director localizado 
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public int buscarCodDirector (String nombre) throws ClassNotFoundException, SQLException{
 		int codigo = 0;

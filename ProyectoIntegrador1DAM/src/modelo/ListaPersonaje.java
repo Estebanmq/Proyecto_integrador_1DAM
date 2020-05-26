@@ -28,7 +28,7 @@ public class ListaPersonaje {
 	 * Método constructor de ListaPersonaje
 	 * @param codigo Código de intérprete
 	 * @param nombre Nombre del intérprete
-	 * @param nombre Nombre del personaje que interpreta
+	 * @param nombrePersonaje Nombre del personaje que interpreta
 	 */	
 	public ListaPersonaje(Integer codigo, String nombre, String nombrePersonaje) {
 		this.setCodigo(codigo);

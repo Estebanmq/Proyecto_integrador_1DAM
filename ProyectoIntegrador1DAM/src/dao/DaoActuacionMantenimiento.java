@@ -44,8 +44,8 @@ public class DaoActuacionMantenimiento {
 	 * 
 	 * @param codigo Código de película
 	 * @return Colección de ListaPersonaje
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public HashSet<ListaPersonaje> obtenerActuaciones(Integer codigo) throws ClassNotFoundException, SQLException {
 

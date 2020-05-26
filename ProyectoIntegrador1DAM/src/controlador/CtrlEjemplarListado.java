@@ -313,7 +313,7 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 	 * Graba la cabecera de las columnas en el fichero csv a exportar  
 	 * 
 	 * @param bW BufferedWriter con el fichero de salida donde debe grabar la cabecera de datos 
-	 * @throws IOException
+	 * @throws IOException si el fichero no puede ser grabado
 	 */
 	public void grabarCabecera(BufferedWriter bW) throws IOException {
 		
@@ -337,7 +337,7 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 	 * 
 	 * @param bW BufferedWriter con el fichero de salida
 	 * @param pelicula Pelicula a grabar
-	 * @throws IOException
+	 * @throws IOException si no se puede grabar el fichero
 	 */
 	public void grabarFicheroPelicula (BufferedWriter bW, Pelicula pelicula) throws IOException {
 		
@@ -363,7 +363,7 @@ public class CtrlEjemplarListado implements ActionListener, ListSelectionListene
 	 * 
 	 * @param bW BufferedWriter donde debe grabar el intérprete recibido también por parámetros
 	 * @param documental Documental a grabar en el fichero de salida
-	 * @throws IOException
+	 * @throws IOException si no se puede grabar el fichero
 	 */
 	public void grabarFicheroDocumental (BufferedWriter bW, Documental documental) throws IOException {
 		

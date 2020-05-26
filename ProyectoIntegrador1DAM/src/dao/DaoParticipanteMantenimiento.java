@@ -52,8 +52,8 @@ public class DaoParticipanteMantenimiento {
 	 * 
 	 * @param codigo Código de participante a localizar
 	 * @return String Tipo de participante
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public String obtenerTipoParticipante(Integer codigo) throws ClassNotFoundException, SQLException {
 		

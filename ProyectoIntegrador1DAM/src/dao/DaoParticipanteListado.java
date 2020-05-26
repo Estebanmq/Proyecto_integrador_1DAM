@@ -52,7 +52,7 @@ public class DaoParticipanteListado {
 	/**
 	 * Método constructor al que se le pasa la conexión a utilizar en la instancia
 	 * 
-	 * @param conn
+	 * @param conn Conexión con la base de datos a utilizar 
 	 */
 	public DaoParticipanteListado(Connection conn) {
 		this.setConn(conn);
@@ -62,8 +62,8 @@ public class DaoParticipanteListado {
 	 * Método que obtiene de BD la lista de participantes
 	 * 
 	 * @return Colección de ListaParticipante
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public ArrayList<ListaParticipante> obtenerListaParticipantes() throws ClassNotFoundException, SQLException {
 		
@@ -94,8 +94,8 @@ public class DaoParticipanteListado {
 	 * 
 	 * @param filtro Filtro del listado de participantes
 	 * @return Colección de ListaParticipante
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public ArrayList<ListaParticipante> obtenerListaParticipantes(FiltroParticipanteListado filtro) throws ClassNotFoundException, SQLException {
 		
@@ -152,8 +152,8 @@ public class DaoParticipanteListado {
 	 * 
 	 * @param conn Conexión
 	 * @return Colección de países
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
+	 * @throws ClassNotFoundException si la clase no es localizada 
+	 * @throws SQLException si el acceso a la base de datos ha generado un error
 	 */
 	public HashMap<Integer, String> obtenerPaises(Connection conn) throws ClassNotFoundException, SQLException {
 		

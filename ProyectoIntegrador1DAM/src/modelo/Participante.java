@@ -4,9 +4,9 @@ import java.util.Date;
 /** 
  * Esta clase define los atributos y métodos comunes a Director e Interprete.
  * 
- * @author 
- * @see Sexo
+ * @author Jose Manuel de Dios 
  * @since 01/05/2020
+ * @version 1.0
  */
 public abstract class Participante {
 
@@ -39,10 +39,11 @@ public abstract class Participante {
 	
 	/**
 	 * Método constructor de participante
-	 * @param codigo
-	 * @param nombre
-	 * @param fechaNacimiento
-	 * @param sexo
+	 * @param codigo Código identificativo de participante
+	 * @param nombre Nombre de participante
+	 * @param fechaNacimiento Fecha de nacimiento
+	 * @param sexo Sexo
+	 * @param nacionalidad Nacionalidad
 	 */
 	public Participante(int codigo, String nombre, Date fechaNacimiento, Sexo sexo, Pais nacionalidad) {
 		this.codigo = codigo;
