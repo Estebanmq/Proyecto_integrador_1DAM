@@ -66,7 +66,6 @@ public class CtrlDirectorModificacion implements ActionListener{
 			int cod = Integer.parseInt(dialogoDirectorModificacion.getTextFieldCodigo().getText());
 			try {
 				Director d = daoDirectorMantenimiento.obtenerDirector(cod);
-				System.out.format("%s\n", d.toString());
 				dialogoDirectorModificacion.mostrarDirector(d);
 			} catch (ClassNotFoundException | SQLException i) {
 	            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.PLAIN_MESSAGE);
@@ -81,7 +80,6 @@ public class CtrlDirectorModificacion implements ActionListener{
 	            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.ERROR_MESSAGE);
 	            ex.printStackTrace();
 	        }
-			System.out.format("Ha pulsado: %s\n", e.getActionCommand());
 			dialogoDirectorModificacion.dispose();
 			break;
 		case "btnCancelar" :

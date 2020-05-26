@@ -93,7 +93,6 @@ public class CtrlPaisMantenimiento implements ActionListener  {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		System.out.format("Se ha pulsado: %s\n", e.getActionCommand());
 		if (e.getActionCommand().equals("btnOk")) {
 			this.getDialogoPaisMant().dispose();			
 		}

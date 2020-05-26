@@ -54,7 +54,6 @@ public class CtrlPeliculaConsulta implements ActionListener{
 		Pelicula p;
 		switch (e.getActionCommand()) {			
 			case "btnOk":
-				System.out.format("%s\n", "Boton de aceptar");
 				try {
 					lblCod = dialogoConsultaPelicula.getTextFieldBuscarCodigo().getText();
 					if (lblCod.equals(""))

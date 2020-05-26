@@ -61,7 +61,6 @@ public class CtrlDirectorConsulta implements ActionListener{
 				int cod = Integer.parseInt(dialogoDirectorConsulta.getTextFieldCodigo().getText());
 				try {
 					Director d = daoDirectorMantenimiento.obtenerDirector(cod);
-					System.out.format("%s\n", d.toString());
 					dialogoDirectorConsulta.mostrarDirector(d);
 				} catch (ClassNotFoundException | SQLException i) {
 		            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.PLAIN_MESSAGE);

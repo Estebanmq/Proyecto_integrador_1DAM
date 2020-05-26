@@ -75,7 +75,6 @@ public class CtrlPeliculaBaja implements ActionListener{
 	            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.PLAIN_MESSAGE);
 	            i.printStackTrace();
 	        }
-			System.out.format("%s\n", "Boton de aceptar");
 			
 			break;
 		case "btnCancelar":

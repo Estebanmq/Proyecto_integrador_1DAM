@@ -60,7 +60,6 @@ public class CtrlInterpreteConsulta implements ActionListener{
 			int cod = Integer.parseInt(dialogoInterpreteConsulta.getTextFieldCodigo().getText());
 			try {
 				Interprete in = daoInterpreteMantenimiento.obtenerInterprete(cod);
-				System.out.format("%s\n", in.toString());
 				dialogoInterpreteConsulta.mostrarInterprete(in);
 			} catch (ClassNotFoundException | SQLException i) {
 	            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.PLAIN_MESSAGE);

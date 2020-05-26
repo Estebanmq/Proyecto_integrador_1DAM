@@ -81,7 +81,6 @@ public class CtrlInterpreteAlta implements ActionListener{
 	            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.ERROR_MESSAGE);
 	            ex.printStackTrace();
 	        }
-			System.out.format("Ha pulsado: %s\n", e.getActionCommand());
 			this.getDialogoInterpreteAlta().dispose();
 			break;
 		case "btnCancelar" :

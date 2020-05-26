@@ -54,7 +54,6 @@ public class CtrlDocumentalConsulta implements ActionListener{
 		Documental p;
 		switch (e.getActionCommand()) {			
 			case "btnOk":
-				System.out.format("%s\n", "Boton de aceptar");
 				try {
 					lblCod = dialogoConsultaDocumental.getTextFieldBuscarCodigo().getText();
 					if (lblCod.equals(""))

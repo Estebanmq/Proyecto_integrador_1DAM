@@ -56,7 +56,6 @@ public class CtrlInterpreteBaja implements ActionListener{
 			int cod = Integer.parseInt(dialogoInterpreteBaja.getTextFieldCodigo().getText());
 			try {
 				Interprete in = daoInterpreteMantenimiento.obtenerInterprete(cod);
-				System.out.format("%s\n", in.toString());
 				dialogoInterpreteBaja.mostrarInterprete(in);
 			} catch (ClassNotFoundException | SQLException i) {
 	            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.PLAIN_MESSAGE);
@@ -71,7 +70,6 @@ public class CtrlInterpreteBaja implements ActionListener{
 	            JOptionPane.showMessageDialog(null, "Error de conexión.", "Error", JOptionPane.ERROR_MESSAGE);
 	            ex.printStackTrace();
 	        }
-			System.out.format("Ha pulsado: %s\n", e.getActionCommand());
 			dialogoInterpreteBaja.dispose();
 			break;
 		case "btnCancelar" :

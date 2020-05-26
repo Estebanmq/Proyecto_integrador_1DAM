@@ -75,7 +75,6 @@ public class CtrlActuacionMantenimiento implements ActionListener, ListSelection
 				this.validarNombrePersonaje();
 				break;
 			default :
-				System.out.println(event.getActionCommand());
 				JOptionPane.showMessageDialog(null, "Opción no disponible.", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	
