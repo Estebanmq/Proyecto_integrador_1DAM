@@ -38,7 +38,7 @@ public class CtrlInterpreteBaja implements ActionListener{
 	 */
 	public CtrlInterpreteBaja() {
 		
-		daoPaisMantenimiento = new DaoPaisMantenimiento();
+		setDaoPaisMantenimiento(new DaoPaisMantenimiento());
 		daoInterpreteMantenimiento = new DaoInterpreteMantenimiento();
 		
 		dialogoInterpreteBaja = (new DialogoInterpreteBaja());
@@ -77,6 +77,14 @@ public class CtrlInterpreteBaja implements ActionListener{
 			break;
 		}
 		
+	}
+
+	public DaoPaisMantenimiento getDaoPaisMantenimiento() {
+		return daoPaisMantenimiento;
+	}
+
+	public void setDaoPaisMantenimiento(DaoPaisMantenimiento daoPaisMantenimiento) {
+		this.daoPaisMantenimiento = daoPaisMantenimiento;
 	}
 
 }

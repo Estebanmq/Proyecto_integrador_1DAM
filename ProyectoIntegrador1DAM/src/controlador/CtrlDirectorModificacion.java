@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import dao.DaoDirectorMantenimiento;
 import dao.DaoPaisMantenimiento;
 import modelo.Director;
-import vista.DialogoDirectorBaja;
 import vista.DialogoDirectorModificacion;
 
 public class CtrlDirectorModificacion implements ActionListener{
@@ -87,6 +86,14 @@ public class CtrlDirectorModificacion implements ActionListener{
 			break;
 	}
 		
+	}
+
+	public Director getDirector() {
+		return Director;
+	}
+
+	public void setDirector(Director director) {
+		Director = director;
 	}
 
 }

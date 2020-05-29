@@ -6,12 +6,9 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import dao.DaoDirectorMantenimiento;
 import dao.DaoInterpreteMantenimiento;
 import dao.DaoPaisMantenimiento;
-import modelo.Director;
 import modelo.Interprete;
-import vista.DialogoDirectorModificacion;
 import vista.DialogoInterpreteModificacion;
 
 public class CtrlInterpreteModificacion implements ActionListener {
@@ -20,10 +17,7 @@ public class CtrlInterpreteModificacion implements ActionListener {
 	 * Ventana DialogoInterprete
 	 */
 	private DialogoInterpreteModificacion dialogoInterpreteModificacion;
-	/**
-	 * Objeto para interprete
-	 */
-	private Interprete interprete;
+
 	/**
 	 * Atributo para trabajar con los datos de interprete
 	 */

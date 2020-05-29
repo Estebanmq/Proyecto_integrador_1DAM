@@ -23,10 +23,6 @@ public class CtrlPeliculaConsulta implements ActionListener{
 	 */
 	private DialogoPeliculaConsulta dialogoConsultaPelicula;
 	
-	/**
-	 * Atributo para trabajar con los datos de peliculas
-	 */
-	private DaoPeliculaMantenimiento daoPeliculaMantenimiento;
 	
 	/**
 	 * Método constructor del control para dar de consulta películas

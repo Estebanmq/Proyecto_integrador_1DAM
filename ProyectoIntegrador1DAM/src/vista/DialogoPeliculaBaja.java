@@ -31,13 +31,12 @@ public class DialogoPeliculaBaja extends JDialog {
 	private JTextField textFieldBuscarCodigo;
 	private JButton btnBuscar;
 	private JPanel panelResultado;
-	
-	private JLabel labelTitResul;
-	private JLabel labelPaisResul;
-	private JLabel labelAnyoResul;
-	private JLabel labelDirectorResul;
-	private JLabel labelGeneroResul;
 	private JTextArea textAreaSinopsisResul;
+	private JTextField textFieldTitResul;
+	private JTextField textFieldPaisResul;
+	private JTextField textFieldAnyoResul;
+	private JTextField textFieldDirectorResul;
+	private JTextField textFieldGeneroResul;
 	
 	public DialogoPeliculaBaja() {
 		//Panel para buscar por codigo
@@ -49,15 +48,15 @@ public class DialogoPeliculaBaja extends JDialog {
 		//Panel resultado
 		panelResultado = new JPanel();
 		JLabel labelTitulo = new JLabel("Título: ");
-		labelTitResul = new JLabel("");
+		textFieldTitResul = new JTextField();
 		JLabel labelPais = new JLabel("País: ");
-		labelPaisResul = new JLabel("");
+		textFieldPaisResul = new JTextField();
 		JLabel labelAnyo = new JLabel("Año: ");
-		labelAnyoResul = new JLabel("");
+		textFieldAnyoResul = new JTextField();
 		JLabel labelDirector = new JLabel("Director: ");
-		labelDirectorResul = new JLabel("");
+		textFieldDirectorResul = new JTextField();
 		JLabel labelGenero = new JLabel("Género: ");
-		labelGeneroResul = new JLabel("");
+		textFieldGeneroResul = new JTextField();
 		JLabel labelSinopsis = new JLabel("Sinopsis: ");
 		textAreaSinopsisResul = new JTextArea();
 		
@@ -103,43 +102,51 @@ public class DialogoPeliculaBaja extends JDialog {
 		panelResultado.setLayout(null);
 		
 		
-		labelTitulo.setBounds(6, 6, 61, 16);
+		labelTitulo.setBounds(37, 11, 61, 16);
 		panelResultado.add(labelTitulo);
 		
-		labelPais.setBounds(6, 34, 61, 16);
-		panelResultado.add(labelPais);
+		textFieldTitResul.setBounds(110, 6, 296, 26);
+		panelResultado.add(textFieldTitResul);
+		textFieldTitResul.setColumns(10);
+		textFieldTitResul.setEditable(false);
 		
-		labelAnyo.setBounds(6, 62, 61, 16);
+		labelPais.setBounds(37, 39, 61, 16);
+		panelResultado.add(labelPais);
+				
+		textFieldPaisResul.setBounds(110, 34, 296, 26);
+		panelResultado.add(textFieldPaisResul);
+		textFieldPaisResul.setColumns(10);
+		textFieldPaisResul.setEditable(false);
+		
+		labelAnyo.setBounds(37, 67, 61, 16);
 		panelResultado.add(labelAnyo);
 		
-		labelDirector.setBounds(6, 90, 61, 16);
+		textFieldAnyoResul.setBounds(110, 62, 296, 26);
+		panelResultado.add(textFieldAnyoResul);
+		textFieldAnyoResul.setColumns(10);
+		textFieldAnyoResul.setEditable(false);
+		
+		labelDirector.setBounds(37, 95, 61, 16);
 		panelResultado.add(labelDirector);
 		
-		labelGenero.setBounds(6, 118, 61, 16);
+		textFieldDirectorResul.setBounds(110, 90, 296, 26);
+		panelResultado.add(textFieldDirectorResul);
+		textFieldDirectorResul.setColumns(10);
+		textFieldDirectorResul.setEditable(false);
+		
+		labelGenero.setBounds(37, 123, 61, 16);
 		panelResultado.add(labelGenero);
+		textFieldGeneroResul.setBounds(110, 118, 296, 26);
+		panelResultado.add(textFieldGeneroResul);
+		textFieldGeneroResul.setColumns(10);
+		textFieldGeneroResul.setEditable(false);
 		
-		labelSinopsis.setBounds(6, 146, 61, 16);
+		labelSinopsis.setBounds(37, 151, 61, 16);
 		panelResultado.add(labelSinopsis);
-		
-		labelTitResul.setBounds(79, 6, 296, 16);
-		panelResultado.add(labelTitResul);
-		
-		labelPaisResul.setBounds(79, 34, 296, 16);
-		panelResultado.add(labelPaisResul);
-		
-		labelAnyoResul.setBounds(79, 62, 296, 16);
-		panelResultado.add(labelAnyoResul);
-		
-		labelDirectorResul.setBounds(79, 90, 296, 16);
-		panelResultado.add(labelDirectorResul);
-		
-		
-		labelGeneroResul.setBounds(79, 118, 296, 16);
-		panelResultado.add(labelGeneroResul);
 		
 		textAreaSinopsisResul.setEditable(false);
 		textAreaSinopsisResul.setLineWrap(true);
-		textAreaSinopsisResul.setBounds(89, 146, 345, 100);
+		textAreaSinopsisResul.setBounds(110, 151, 400, 113);
 		panelResultado.add(textAreaSinopsisResul);
 		
 		panelBtnsAceptarCancelar.setBounds(0, 320, 541, 39);
@@ -155,11 +162,11 @@ public class DialogoPeliculaBaja extends JDialog {
 		} else {
 			getPanelBtnsAceptarCancelar().getLabelTextoError().setText("");
 			getPanelResultado().setVisible(true);
-			labelTitResul.setText(p.getTitulo());
-			labelPaisResul.setText(p.getNacionalidad().getDescripcion());
-			labelAnyoResul.setText(Integer.toString(p.getAnyo()));
-			labelDirectorResul.setText(p.getDirector().getNombre());
-			labelGeneroResul.setText(p.getGenero().getDescripcion());
+			textFieldTitResul.setText(p.getTitulo());
+			textFieldPaisResul.setText(p.getNacionalidad().getDescripcion());
+			textFieldAnyoResul.setText(Integer.toString(p.getAnyo()));
+			textFieldDirectorResul.setText(p.getDirector().getNombre());
+			textFieldGeneroResul.setText(p.getGenero().getDescripcion());
 			textAreaSinopsisResul.setText(p.getSinopsis());
 		}
 	}

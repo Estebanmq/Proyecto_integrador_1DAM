@@ -7,8 +7,7 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import dao.DaoDirectorMantenimiento;
-import dao.DaoPaisMantenimiento;
+
 import dao.DaoDocumentalMantenimiento;
 import modelo.Documental;
 import vista.DialogoDocumentalBaja;
@@ -24,11 +23,7 @@ public class CtrlDocumentalBaja implements ActionListener{
 	 * Ventana DialogoBajaDocumental 
 	 */
 	private DialogoDocumentalBaja dialogoBajaDocumental;
-	
-	/**
-	 * Atributo para trabajar con los datos de Documentales
-	 */
-	private DaoDocumentalMantenimiento daoDocumentalMantenimiento;
+
 	
 	/**
 	 * Método constructor del control para dar de baja documentales
@@ -53,7 +48,6 @@ public class CtrlDocumentalBaja implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		DaoDocumentalMantenimiento daoDocumentalMantenimiento = new DaoDocumentalMantenimiento();
-		int cod=0;
 		switch (e.getActionCommand()) {
 		case "btnBuscar":
 			try {

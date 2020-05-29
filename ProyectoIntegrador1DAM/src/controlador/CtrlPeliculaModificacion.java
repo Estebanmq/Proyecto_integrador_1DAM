@@ -3,7 +3,6 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.text.Normalizer;
 
 import javax.swing.JOptionPane;
 
@@ -104,14 +103,18 @@ public class CtrlPeliculaModificacion implements ActionListener{
 					try {
 						codDirec = daoDirectorMantenimiento.buscarCodDirector(dialogoModificacionPelicula.getComboBoxDirector().getSelectedItem().toString());
 						codPais = daoPaisMantenimiento.obtenerCodPais(dialogoModificacionPelicula.getComboBoxPais().getSelectedItem().toString());
-						
-						if (daoPeliculaMantenimiento.actualizarPelicula(new Pelicula(Integer.parseInt(dialogoModificacionPelicula.getTextFieldBuscarCodigo().getText()),
-								dialogoModificacionPelicula.getTextFieldTitResul().getText(),Integer.parseInt(dialogoModificacionPelicula.getTextFieldAnyoResul().getText()),
-								new Director(codDirec,null,null,null,null,null),dialogoModificacionPelicula.getTextAreaSinopsisResul().getText(),new Pais(codPais,null),
-								GeneroPelicula.valueOfDescripcion(dialogoModificacionPelicula.getComboBoxGenero().getSelectedItem().toString()))) != 0)
-							JOptionPane.showMessageDialog(null, "Pelicula actualizada correctamente");
-						else
-							JOptionPane.showMessageDialog(null, "La pelicula no se ha podido actualizar", "Error", JOptionPane.PLAIN_MESSAGE);
+						dialogoModificacionPelicula.getPanelBtnsAceptarCancelar().getLabelTextoError().setText("");
+						if (!dialogoModificacionPelicula.getTextFieldTitResul().getText().equalsIgnoreCase("")) {
+							if (daoPeliculaMantenimiento.actualizarPelicula(new Pelicula(Integer.parseInt(dialogoModificacionPelicula.getTextFieldBuscarCodigo().getText()),
+									dialogoModificacionPelicula.getTextFieldTitResul().getText(),Integer.parseInt(dialogoModificacionPelicula.getTextFieldAnyoResul().getText()),
+									new Director(codDirec,null,null,null,null,null),dialogoModificacionPelicula.getTextAreaSinopsisResul().getText(),new Pais(codPais,null),
+									GeneroPelicula.valueOfDescripcion(dialogoModificacionPelicula.getComboBoxGenero().getSelectedItem().toString()))) != 0)
+								JOptionPane.showMessageDialog(null, "Pelicula actualizada correctamente");
+							else
+								JOptionPane.showMessageDialog(null, "La pelicula no se ha podido actualizar", "Error", JOptionPane.PLAIN_MESSAGE);
+						} else {
+							dialogoModificacionPelicula.getPanelBtnsAceptarCancelar().getLabelTextoError().setText("El título no puede estar vacío");
+						}
 					} catch (NumberFormatException | ClassNotFoundException | SQLException e1) {
 						e1.printStackTrace();
 					};

@@ -7,8 +7,6 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import dao.DaoDirectorMantenimiento;
-import dao.DaoPaisMantenimiento;
 import dao.DaoPeliculaMantenimiento;
 import modelo.Pelicula;
 import vista.DialogoPeliculaBaja;
@@ -24,11 +22,6 @@ public class CtrlPeliculaBaja implements ActionListener{
 	 * Ventana DialogoBajaPelicula 
 	 */
 	private DialogoPeliculaBaja dialogoBajaPelicula;
-	
-	/**
-	 * Atributo para trabajar con los datos de peliculas
-	 */
-	private DaoPeliculaMantenimiento daoPeliculaMantenimiento;
 	
 	/**
 	 * Método constructor del control para dar de baja películas
@@ -53,7 +46,6 @@ public class CtrlPeliculaBaja implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		DaoPeliculaMantenimiento daoPeliculaMantenimiento = new DaoPeliculaMantenimiento();
-		int cod=0;
 		switch (e.getActionCommand()) {
 		case "btnBuscar":
 			try {

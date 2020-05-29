@@ -8,9 +8,7 @@ import javax.swing.JOptionPane;
 
 import dao.DaoDirectorMantenimiento;
 import dao.DaoPaisMantenimiento;
-import dao.DaoPeliculaMantenimiento;
 import modelo.Director;
-import modelo.Pelicula;
 import vista.DialogoDirectorBaja;
 
 /**
@@ -41,7 +39,7 @@ public class CtrlDirectorBaja implements ActionListener{
 	 */
 	public CtrlDirectorBaja () {
 		
-		daoPaisMantenimiento = new DaoPaisMantenimiento();
+		setDaoPaisMantenimiento(new DaoPaisMantenimiento());
 		daoDirectorMantenimiento = new DaoDirectorMantenimiento();
 		
 		dialogoDirectorBaja = (new DialogoDirectorBaja());
@@ -86,6 +84,14 @@ public class CtrlDirectorBaja implements ActionListener{
 				break;
 		}
 
+	}
+
+	public DaoPaisMantenimiento getDaoPaisMantenimiento() {
+		return daoPaisMantenimiento;
+	}
+
+	public void setDaoPaisMantenimiento(DaoPaisMantenimiento daoPaisMantenimiento) {
+		this.daoPaisMantenimiento = daoPaisMantenimiento;
 	}
 
 }

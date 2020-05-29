@@ -6,11 +6,9 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import dao.DaoDirectorMantenimiento;
 import dao.DaoInterpreteMantenimiento;
 import dao.DaoPaisMantenimiento;
 import modelo.Interprete;
-import vista.DialogoInterpreteAlta;
 import vista.DialogoInterpreteAlta;
 
 /**

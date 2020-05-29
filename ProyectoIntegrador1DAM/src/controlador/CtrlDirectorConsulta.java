@@ -39,7 +39,7 @@ public class CtrlDirectorConsulta implements ActionListener{
 
 	public CtrlDirectorConsulta() {
 		
-		daoPaisMantenimiento = new DaoPaisMantenimiento();
+		setDaoPaisMantenimiento(new DaoPaisMantenimiento());
 		daoDirectorMantenimiento = new DaoDirectorMantenimiento();
 		
 		dialogoDirectorConsulta = (new DialogoDirectorConsulta());
@@ -71,5 +71,13 @@ public class CtrlDirectorConsulta implements ActionListener{
 				dialogoDirectorConsulta.dispose();
 				break;
 		}
+	}
+
+	public DaoPaisMantenimiento getDaoPaisMantenimiento() {
+		return daoPaisMantenimiento;
+	}
+
+	public void setDaoPaisMantenimiento(DaoPaisMantenimiento daoPaisMantenimiento) {
+		this.daoPaisMantenimiento = daoPaisMantenimiento;
 	}
 }

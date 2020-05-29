@@ -3,7 +3,6 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.text.Normalizer;
 
 import javax.swing.JOptionPane;
 
@@ -102,17 +101,21 @@ public class CtrlDocumentalModificacion implements ActionListener{
 			        }
 					break;
 				case "btnAceptar":
+					dialogoModificacionDocumental.getPanelBtnsAceptarCancelar().getLabelTextoError().setText("");
 					try {
 						codDirec = daoDirectorMantenimiento.buscarCodDirector(dialogoModificacionDocumental.getComboBoxDirector().getSelectedItem().toString());
 						codPais = daoPaisMantenimiento.obtenerCodPais(dialogoModificacionDocumental.getComboBoxPais().getSelectedItem().toString());
-						
-						if (daoDocumentalMantenimiento.actualizarDocumental(new Documental(Integer.parseInt(dialogoModificacionDocumental.getTextFieldBuscarCodigo().getText()),
-								dialogoModificacionDocumental.getTextFieldTitResul().getText(),Integer.parseInt(dialogoModificacionDocumental.getTextFieldAnyoResul().getText()),
-								new Director(codDirec,null,null,null,null,null),dialogoModificacionDocumental.getTextAreaSinopsisResul().getText(),new Pais(codPais,null),
-								GeneroDocumental.valueOfDescripcion(dialogoModificacionDocumental.getComboBoxGenero().getSelectedItem().toString()))) != 0)
-							JOptionPane.showMessageDialog(null, "Documental actualizado correctamente");
-						else
-							JOptionPane.showMessageDialog(null, "El documental no se ha podido actualizar", "Error", JOptionPane.PLAIN_MESSAGE);
+						if (!dialogoModificacionDocumental.getTextFieldTitResul().getText().equalsIgnoreCase("")) {
+							if (daoDocumentalMantenimiento.actualizarDocumental(new Documental(Integer.parseInt(dialogoModificacionDocumental.getTextFieldBuscarCodigo().getText()),
+									dialogoModificacionDocumental.getTextFieldTitResul().getText(),Integer.parseInt(dialogoModificacionDocumental.getTextFieldAnyoResul().getText()),
+									new Director(codDirec,null,null,null,null,null),dialogoModificacionDocumental.getTextAreaSinopsisResul().getText(),new Pais(codPais,null),
+									GeneroDocumental.valueOfDescripcion(dialogoModificacionDocumental.getComboBoxGenero().getSelectedItem().toString()))) != 0)
+								JOptionPane.showMessageDialog(null, "Documental actualizado correctamente");
+							else
+								JOptionPane.showMessageDialog(null, "El documental no se ha podido actualizar", "Error", JOptionPane.PLAIN_MESSAGE);
+						} else {
+							dialogoModificacionDocumental.getPanelBtnsAceptarCancelar().getLabelTextoError().setText("El título no puede estar vacío");
+						}
 					} catch (NumberFormatException | ClassNotFoundException | SQLException e1) {
 						e1.printStackTrace();
 					};

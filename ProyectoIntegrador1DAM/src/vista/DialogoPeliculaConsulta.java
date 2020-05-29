@@ -29,13 +29,12 @@ public class DialogoPeliculaConsulta extends JDialog {
 
 	private JTextField textFieldBuscarCodigo;
 	private JPanel panelResultado;
-	
-	private JLabel labelTitResul;
-	private JLabel labelPaisResul;
-	private JLabel labelAnyoResul;
-	private JLabel labelDirectorResul;
-	private JLabel labelGeneroResul;
 	private JTextArea textAreaSinopsisResul;
+	private JTextField textFieldTitResul;
+	private JTextField textFieldAnyoResul;
+	private JTextField textFieldGenResul;
+	private JTextField textFieldPaisResul;
+	private JTextField textFieldDirecResul;
 	
 	public DialogoPeliculaConsulta() {
 		//Panel para buscar por codigo
@@ -46,15 +45,15 @@ public class DialogoPeliculaConsulta extends JDialog {
 		//Panel resultado
 		panelResultado = new JPanel();
 		JLabel labelTitulo = new JLabel("Título: ");
-		labelTitResul = new JLabel("");
+		textFieldTitResul = new JTextField();
 		JLabel labelPais = new JLabel("País: ");
-		labelPaisResul = new JLabel("");
+		textFieldPaisResul = new JTextField();
 		JLabel labelAnyo = new JLabel("Año: ");
-		labelAnyoResul = new JLabel("");
+		textFieldAnyoResul = new JTextField();
 		JLabel labelDirector = new JLabel("Director: ");
-		labelDirectorResul = new JLabel("");
+		textFieldDirecResul = new JTextField();
 		JLabel labelGenero = new JLabel("Género: ");
-		labelGeneroResul = new JLabel("");
+		textFieldGenResul = new JTextField();
 		JLabel labelSinopsis = new JLabel("Sinopsis: ");
 		textAreaSinopsisResul = new JTextArea();
 		
@@ -98,40 +97,49 @@ public class DialogoPeliculaConsulta extends JDialog {
 		labelTitulo.setBounds(6, 6, 61, 16);
 		panelResultado.add(labelTitulo);
 		
-		labelPais.setBounds(270, 6, 61, 16);
-		panelResultado.add(labelPais);
+		textFieldTitResul.setBounds(79, 1, 179, 26);
+		panelResultado.add(textFieldTitResul);
+		textFieldTitResul.setColumns(10);
+		textFieldTitResul.setEditable(false);
 		
 		labelAnyo.setBounds(6, 34, 61, 16);
 		panelResultado.add(labelAnyo);
 		
+		textFieldAnyoResul.setBounds(79, 29, 179, 26);
+		panelResultado.add(textFieldAnyoResul);
+		textFieldAnyoResul.setColumns(10);
+		textFieldAnyoResul.setEditable(false);
+		
+		labelPais.setBounds(270, 6, 61, 16);
+		panelResultado.add(labelPais);
+
+		textFieldPaisResul.setBounds(338, 1, 179, 26);
+		panelResultado.add(textFieldPaisResul);
+		textFieldPaisResul.setColumns(10);
+		textFieldPaisResul.setEditable(false);
+
+		labelGenero.setBounds(6, 62, 61, 16);
+		panelResultado.add(labelGenero);
+		
+		textFieldGenResul.setBounds(79, 57, 179, 26);
+		panelResultado.add(textFieldGenResul);
+		textFieldGenResul.setColumns(10);
+		textFieldGenResul.setEditable(false);
+		
 		labelDirector.setBounds(270, 34, 61, 16);
 		panelResultado.add(labelDirector);
 		
-		labelGenero.setBounds(6, 62, 61, 16);
-		panelResultado.add(labelGenero);
+		textFieldDirecResul.setBounds(338, 29, 179, 26);
+		panelResultado.add(textFieldDirecResul);
+		textFieldDirecResul.setColumns(10);
+		textFieldDirecResul.setEditable(false);
 		
 		labelSinopsis.setBounds(6, 90, 61, 16);
 		panelResultado.add(labelSinopsis);
 		
-		labelTitResul.setBounds(79, 6, 179, 16);
-		panelResultado.add(labelTitResul);
-		
-		labelPaisResul.setBounds(328, 6, 179, 16);
-		panelResultado.add(labelPaisResul);
-		
-		labelAnyoResul.setBounds(79, 34, 179, 16);
-		panelResultado.add(labelAnyoResul);
-		
-		labelDirectorResul.setBounds(328, 34, 179, 16);
-		panelResultado.add(labelDirectorResul);
-		
-		
-		labelGeneroResul.setBounds(79, 62, 179, 16);
-		panelResultado.add(labelGeneroResul);
-		
 		textAreaSinopsisResul.setEditable(false);
 		textAreaSinopsisResul.setLineWrap(true);
-		textAreaSinopsisResul.setBounds(79, 90, 359, 148);
+		textAreaSinopsisResul.setBounds(79, 90, 438, 148);
 		panelResultado.add(textAreaSinopsisResul);
 		
 		panelBtnOk.setBounds(0, 320, 541, 39);
@@ -142,11 +150,11 @@ public class DialogoPeliculaConsulta extends JDialog {
 	}
 
 	public void mostrarPelicula(Pelicula p) {
-		labelTitResul.setText(p.getTitulo());
-		labelPaisResul.setText(p.getNacionalidad().getDescripcion());
-		labelAnyoResul.setText(Integer.toString(p.getAnyo()));
-		labelDirectorResul.setText(p.getDirector().getNombre());
-		labelGeneroResul.setText(p.getGenero().getDescripcion());
+		textFieldTitResul.setText(p.getTitulo());
+		textFieldPaisResul.setText(p.getNacionalidad().getDescripcion());
+		textFieldAnyoResul.setText(Integer.toString(p.getAnyo()));
+		textFieldDirecResul.setText(p.getDirector().getNombre());
+		textFieldGenResul.setText(p.getGenero().getDescripcion());
 		textAreaSinopsisResul.setText(p.getSinopsis());
 	}
 	

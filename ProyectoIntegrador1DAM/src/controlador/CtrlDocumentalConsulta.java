@@ -24,11 +24,6 @@ public class CtrlDocumentalConsulta implements ActionListener{
 	private DialogoDocumentalConsulta dialogoConsultaDocumental;
 	
 	/**
-	 * Atributo para trabajar con los datos de documentales
-	 */
-	private DaoDocumentalMantenimiento daoDocumentalMantenimiento;
-	
-	/**
 	 * Método constructor del control para dar de consulta documentales
 	 */
 	public CtrlDocumentalConsulta() {

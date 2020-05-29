@@ -51,15 +51,15 @@ public class DialogoDocumentalModificacion extends JDialog {
 		
 		//Panel resultado
 		panelResultado = new JPanel();
-		JLabel labelTitulo = new JLabel("Título: ");
+		JLabel labelTitulo = new JLabel("Título*: ");
 		textFieldTitResul = new JTextField();
-		JLabel labelPais = new JLabel("País: ");
+		JLabel labelPais = new JLabel("País*: ");
 		comboBoxPais = new JComboBox();
-		JLabel labelAnyo = new JLabel("Año: ");
+		JLabel labelAnyo = new JLabel("Año*: ");
 		textFieldAnyoResul = new JTextField();
-		JLabel labelDirector = new JLabel("Director: ");
+		JLabel labelDirector = new JLabel("Director*: ");
 		comboBoxDirector = new JComboBox();
-		JLabel labelGenero = new JLabel("Género: ");
+		JLabel labelGenero = new JLabel("Género*: ");
 		comboBoxGenero = new JComboBox();
 		JLabel labelSinopsis = new JLabel("Sinopsis: ");
 		textAreaSinopsisResul = new JTextArea();
@@ -106,12 +106,12 @@ public class DialogoDocumentalModificacion extends JDialog {
 		labelTitulo.setBounds(6, 6, 61, 16);
 		panelResultado.add(labelTitulo);
 	
-		textFieldTitResul.setBounds(71, 1, 187, 26);
+		textFieldTitResul.setBounds(71, 1, 181, 26);
 		panelResultado.add(textFieldTitResul);
 		textFieldTitResul.setColumns(10);
 		textFieldTitResul.setEditable(false);
 		
-		labelPais.setBounds(270, 6, 61, 16);
+		labelPais.setBounds(264, 6, 61, 16);
 		panelResultado.add(labelPais);
 		
 		comboBoxPais.setBounds(338, 2, 190, 27);
@@ -120,7 +120,7 @@ public class DialogoDocumentalModificacion extends JDialog {
 		labelAnyo.setBounds(6, 34, 61, 16);
 		panelResultado.add(labelAnyo);
 		
-		textFieldAnyoResul.setBounds(71, 29, 187, 26);
+		textFieldAnyoResul.setBounds(71, 29, 181, 26);
 		panelResultado.add(textFieldAnyoResul);
 		textFieldAnyoResul.setColumns(10);
 		textFieldAnyoResul.addKeyListener(new KeyAdapter() {
@@ -133,16 +133,16 @@ public class DialogoDocumentalModificacion extends JDialog {
 			   }
 		});
 		
-		labelDirector.setBounds(270, 34, 61, 16);
+		labelDirector.setBounds(264, 34, 76, 16);
 		panelResultado.add(labelDirector);
 		
-		comboBoxDirector.setBounds(338, 29, 177, 26);
+		comboBoxDirector.setBounds(338, 29, 190, 26);
 		panelResultado.add(comboBoxDirector);
 		
 		labelGenero.setBounds(6, 62, 61, 16);
 		panelResultado.add(labelGenero);
 		
-		comboBoxGenero.setBounds(71, 57, 187, 26);
+		comboBoxGenero.setBounds(71, 57, 181, 26);
 		panelResultado.add(comboBoxGenero);
 		
 		labelSinopsis.setBounds(6, 90, 61, 16);
@@ -150,7 +150,7 @@ public class DialogoDocumentalModificacion extends JDialog {
 		
 		textAreaSinopsisResul.setLineWrap(true);
 		textAreaSinopsisResul.setRows(1);
-		textAreaSinopsisResul.setBounds(71, 90, 218, 109);
+		textAreaSinopsisResul.setBounds(71, 90, 454, 169);
 		panelResultado.add(textAreaSinopsisResul);
 		textAreaSinopsisResul.addKeyListener(new KeyAdapter() {
 			 public void keyTyped(KeyEvent e) {

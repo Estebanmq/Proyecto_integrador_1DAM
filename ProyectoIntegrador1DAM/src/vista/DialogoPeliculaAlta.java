@@ -57,15 +57,15 @@ public class DialogoPeliculaAlta extends JDialog {
 		int max = Calendar.getInstance().get(Calendar.YEAR);
 		SpinnerModel model = new SpinnerNumberModel(1900,1900,max,1);
 		setFieldTitulo(new JTextField());
-		JLabel labelTitulo = new JLabel("Título:");
-		JLabel labelDirector = new JLabel("Director:");
+		JLabel labelTitulo = new JLabel("Título*:");
+		JLabel labelDirector = new JLabel("Director*:");
 		comboBoxDirector = new JComboBox();
-		JLabel labelAnyo = new JLabel("Año:");
+		JLabel labelAnyo = new JLabel("Año*:");
 		spinnerAnyo = new JSpinner(model);
-		JLabel labelPais = new JLabel("País:");
+		JLabel labelPais = new JLabel("País*:");
 		comboBoxPais = new JComboBox();
 		
-		JLabel labelGenero = new JLabel("Género:");
+		JLabel labelGenero = new JLabel("Género*:");
 		comboBoxGenero = new JComboBox();
 		JLabel labelSinopsis = new JLabel("Sinopsis: ");
 		textAreaSinopsis = new JTextArea();
@@ -87,15 +87,15 @@ public class DialogoPeliculaAlta extends JDialog {
 		contentPanel.add(labelTitulo);
 		
 	
-		getFieldTitulo().setBounds(80, 18, 188, 28);
+		getFieldTitulo().setBounds(96, 18, 188, 28);
 		contentPanel.add(getFieldTitulo());
 		getFieldTitulo().setColumns(33);
 		
-		labelDirector.setBounds(16, 127, 55, 16);
+		labelDirector.setBounds(16, 127, 66, 16);
 		contentPanel.add(labelDirector);
 		
 		
-		comboBoxDirector.setBounds(78, 123, 190, 26);
+		comboBoxDirector.setBounds(94, 123, 190, 26);
 		contentPanel.add(comboBoxDirector);
 		comboBoxDirector.addItem("--Seleccionar Director--");
 		comboBoxDirector.setSelectedItem("--Seleccionar Director--");
@@ -103,14 +103,14 @@ public class DialogoPeliculaAlta extends JDialog {
 		labelAnyo.setBounds(16, 62, 44, 16);
 		contentPanel.add(labelAnyo);
 	
-		spinnerAnyo.setBounds(78, 57, 72, 26);
+		spinnerAnyo.setBounds(94, 57, 72, 26);
 		spinnerAnyo.setValue(2020);
 		contentPanel.add(spinnerAnyo);
 		
 		labelPais.setBounds(16, 95, 61, 16);
 		contentPanel.add(labelPais);
 		
-		comboBoxPais.setBounds(78, 88, 190, 27);
+		comboBoxPais.setBounds(94, 88, 190, 27);
 		contentPanel.add(comboBoxPais);
 		comboBoxPais.addItem("--Seleccionar País--");
 		comboBoxPais.setSelectedItem("--Seleccionar País--");
@@ -121,7 +121,7 @@ public class DialogoPeliculaAlta extends JDialog {
 		
 		textAreaSinopsis.setLineWrap(true);
 		textAreaSinopsis.setRows(1);
-		textAreaSinopsis.setBounds(80, 192, 218, 109);
+		textAreaSinopsis.setBounds(80, 192, 349, 111);
 		contentPanel.add(textAreaSinopsis);
 		textAreaSinopsis.addKeyListener(new KeyAdapter() {
 			 public void keyTyped(KeyEvent e) {
@@ -143,7 +143,7 @@ public class DialogoPeliculaAlta extends JDialog {
 		labelGenero.setBounds(16, 157, 61, 16);
 		contentPanel.add(labelGenero);
 		
-		comboBoxGenero.setBounds(78, 153, 190, 27);
+		comboBoxGenero.setBounds(94, 153, 190, 27);
 		contentPanel.add(comboBoxGenero);
 		comboBoxGenero.addItem("--Seleccionar Género--");
 		comboBoxGenero.setSelectedItem("--Seleccionar Género--");
@@ -170,7 +170,7 @@ public class DialogoPeliculaAlta extends JDialog {
 		for (int i = 0; i < directores.size(); i++) {
 			comboBoxDirector.addItem(directores.get(i));
 		}
-	}
+	} 
 	
 	public JTextArea getTextAreaSinopsis() {
 		return textAreaSinopsis;

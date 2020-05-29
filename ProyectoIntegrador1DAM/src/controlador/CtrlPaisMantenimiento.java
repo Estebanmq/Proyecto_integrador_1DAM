@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import dao.Conexion;
-import dao.DaoParticipanteListado;
 import dao.DaoPaisMantenimiento;
 import modelo.Pais;
-import vista.DialogoParticipanteListado;
 import vista.DialogoPaisMantenimiento;
 
 /**
