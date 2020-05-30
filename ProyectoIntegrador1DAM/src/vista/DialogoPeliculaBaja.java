@@ -22,9 +22,6 @@ import javax.swing.JTextArea;
 public class DialogoPeliculaBaja extends JDialog {
 	private static final long serialVersionUID = 1L;
 
-	private Pelicula pelicula;
-	
-	private JButton btnAceptar;
 	private JButton btnCancelar;
 	private PanelBtnsAceptarCancelar panelBtnsAceptarCancelar;
 
@@ -196,7 +193,6 @@ public class DialogoPeliculaBaja extends JDialog {
 
 
 	public void setBtnAceptar(JButton btnAceptar) {
-		this.btnAceptar = btnAceptar;
 	}
 
 	public JButton getBtnCancelar() {

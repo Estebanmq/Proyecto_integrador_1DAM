@@ -211,14 +211,6 @@ public class DaoInterpreteMantenimiento {
 		this.query = query;
 	}
 
-	private Statement getSt() {
-		return st;
-	}
-
-	private void setSt(Statement st) {
-		this.st = st;
-	}
-
 	private PreparedStatement getPs() {
 		return ps;
 	}

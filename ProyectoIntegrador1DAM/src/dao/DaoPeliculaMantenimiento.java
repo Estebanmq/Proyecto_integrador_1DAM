@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,10 +17,6 @@ import modelo.Pelicula;
  */
 public class DaoPeliculaMantenimiento {
 
-	/**
-	 * Query a ejecutar 
-	 */
-	private String query;
 	
 	/**
 	 * Conexión a la BBDD
@@ -34,12 +29,6 @@ public class DaoPeliculaMantenimiento {
 	 * @see java.sql.Statement 
 	 */
 	private Statement st;
-	
-	/**
-	 * PreparedStatement para ejecutar comandos SQL ya precompilados
-	 * @see java.sql.PreparedStatement
-	 */
-	private PreparedStatement ps;
 	
 	/**
 	 * ResultSet para almacenar el resultado de la sentencia SQL
@@ -166,47 +155,6 @@ public class DaoPeliculaMantenimiento {
 		Conexion.cerrar();
 		st.close();
 		return result;
-	}
-	
-	// GETTERS & SETTERS
-	private Connection getConn() {
-		return conn;
-	}
-
-	private void setConn(Connection conn) {
-		this.conn = conn;
-	}
-
-	private String getQuery() {
-		return query;
-	}
-
-	private void setQuery(String query) {
-		this.query = query;
-	}
-
-	private Statement getSt() {
-		return st;
-	}
-
-	private void setSt(Statement st) {
-		this.st = st;
-	}
-
-	private PreparedStatement getPs() {
-		return ps;
-	}
-
-	private void setPs(PreparedStatement ps) {
-		this.ps = ps;
-	}
-
-	private ResultSet getRs() {
-		return rs;
-	}
-
-	private void setRs(ResultSet rs) {
-		this.rs = rs;
 	}
 	
 }

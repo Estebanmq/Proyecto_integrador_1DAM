@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -30,12 +29,6 @@ public class DaoParticipanteListado {
 	 * @see java.sql.Connection
 	 */
 	private Connection conn;
-	
-	/**
-	 * Statement para ejecutar sentencias SQL
-	 * @see java.sql.Statement 
-	 */
-	private Statement st;
 	
 	/**
 	 * PreparedStatement para ejecutar comandos SQL ya precompilados
@@ -187,14 +180,6 @@ public class DaoParticipanteListado {
 
 	private void setConn(Connection conn) {
 		this.conn = conn;
-	}
-
-	private Statement getSt() {
-		return st;
-	}
-
-	private void setSt(Statement st) {
-		this.st = st;
 	}
 
 	private PreparedStatement getPs() {

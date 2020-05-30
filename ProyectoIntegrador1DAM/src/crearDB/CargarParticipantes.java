@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import dao.Conexion;
 
@@ -29,9 +28,9 @@ public class CargarParticipantes {
 	public static void borrarDatos() {
 
 		Connection conexion;			
-		Statement st;
+
 		PreparedStatement ps;
-		int resultado;
+
 		String query;
 
 		try  {
@@ -61,9 +60,9 @@ public class CargarParticipantes {
 	public static void cargarParticipantes(File fichero) {
 
 		Connection conexion;			
-		Statement st;
+
 		PreparedStatement ps;
-		int resultado;
+
 		String query;
 
 		String linea;
@@ -105,9 +104,9 @@ public class CargarParticipantes {
 	public static void cargarDirectores(File fichero) {
 
 		Connection conexion;			
-		Statement st;
+		
 		PreparedStatement ps;
-		int resultado;
+
 		String query;
 
 		String linea;
@@ -146,9 +145,9 @@ public class CargarParticipantes {
 	public static void cargarInterpretes(File fichero) {
 
 		Connection conexion;			
-		Statement st;
+	
 		PreparedStatement ps;
-		int resultado;
+		
 		String query;
 
 		String linea;

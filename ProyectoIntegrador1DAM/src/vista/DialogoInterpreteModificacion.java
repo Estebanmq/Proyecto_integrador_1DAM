@@ -46,7 +46,7 @@ private static final long serialVersionUID = 5913217229440232625L;
 	private ButtonGroup bg;
 	private JRadioButton rdbtnNewRadioM;
 	private JRadioButton rdbtnNewRadioF;
-	private JComboBox comboBoxPais;
+	private JComboBox<String> comboBoxPais;
 	private JButton btnBuscar;
 	private JTextField textFieldCache;
 	
@@ -99,7 +99,7 @@ private static final long serialVersionUID = 5913217229440232625L;
 		labelPais.setBounds(229, 70, 46, 14);
 		contentPanel.add(labelPais);
 		
-		comboBoxPais = new JComboBox();
+		comboBoxPais = new JComboBox<String>();
 		comboBoxPais.setEditable(true);
 		comboBoxPais.setBounds(285, 66, 160, 22);
 		contentPanel.add(comboBoxPais);
@@ -251,11 +251,11 @@ private static final long serialVersionUID = 5913217229440232625L;
 		this.rdbtnNewRadioF = rdbtnNewRadioF;
 	}
 
-	public JComboBox getComboBoxPais() {
+	public JComboBox<String> getComboBoxPais() {
 		return comboBoxPais;
 	}
 
-	public void setComboBoxPais(JComboBox comboBoxPais) {
+	public void setComboBoxPais(JComboBox<String> comboBoxPais) {
 		this.comboBoxPais = comboBoxPais;
 	}
 

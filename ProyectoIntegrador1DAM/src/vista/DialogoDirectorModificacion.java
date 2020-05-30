@@ -43,8 +43,8 @@ public class DialogoDirectorModificacion extends JDialog {
 	private ButtonGroup bg;
 	private JRadioButton rdbtnNewRadioM;
 	private JRadioButton rdbtnNewRadioF;
-	private JComboBox comboBoxPais;
-	private JComboBox comboBoxGenero;
+	private JComboBox<String> comboBoxPais;
+	private JComboBox<String> comboBoxGenero;
 	private JButton btnBuscar;
 
 	/**
@@ -99,7 +99,7 @@ public class DialogoDirectorModificacion extends JDialog {
 		labelPais.setBounds(229, 70, 46, 14);
 		contentPanel.add(labelPais);
 		
-		comboBoxPais = new JComboBox();
+		comboBoxPais = new JComboBox<String>();
 		comboBoxPais.setEditable(true);
 		comboBoxPais.setBounds(285, 66, 160, 22);
 		contentPanel.add(comboBoxPais);
@@ -128,7 +128,7 @@ public class DialogoDirectorModificacion extends JDialog {
 		bg.add(rdbtnNewRadioM);
 		bg.add(rdbtnNewRadioF);
 		
-		comboBoxGenero = new JComboBox();
+		comboBoxGenero = new JComboBox<String>();
 		comboBoxGenero.setEditable(true);
 		comboBoxGenero.setBounds(321, 107, 148, 22);
 		contentPanel.add(comboBoxGenero);
@@ -258,19 +258,19 @@ public class DialogoDirectorModificacion extends JDialog {
 		this.rdbtnNewRadioF = rdbtnNewRadioF;
 	}
 
-	public JComboBox getComboBoxPais() {
+	public JComboBox<String> getComboBoxPais() {
 		return comboBoxPais;
 	}
 
-	public void setComboBoxPais(JComboBox comboBoxPais) {
+	public void setComboBoxPais(JComboBox<String> comboBoxPais) {
 		this.comboBoxPais = comboBoxPais;
 	}
 
-	public JComboBox getComboBoxGenero() {
+	public JComboBox<String> getComboBoxGenero() {
 		return comboBoxGenero;
 	}
 
-	public void setComboBoxGenero(JComboBox comboBoxGenero) {
+	public void setComboBoxGenero(JComboBox<String> comboBoxGenero) {
 		this.comboBoxGenero = comboBoxGenero;
 	}
 

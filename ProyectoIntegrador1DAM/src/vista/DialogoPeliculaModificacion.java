@@ -1,6 +1,5 @@
 package vista;
 
-import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ import javax.swing.JComboBox;
 public class DialogoPeliculaModificacion extends JDialog {
 	private static final long serialVersionUID = 1L;
 
-	private Pelicula pelicula;
 	
 	private JButton btnAceptar;
 	private JButton btnCancelar;
@@ -38,8 +36,8 @@ public class DialogoPeliculaModificacion extends JDialog {
 	private JTextField textFieldTitResul;
 	private JTextField textFieldAnyoResul;
 	private JComboBox<String> comboBoxPais;
-	private JComboBox comboBoxGenero;
-	private JComboBox comboBoxDirector;
+	private JComboBox<String> comboBoxGenero;
+	private JComboBox<String> comboBoxDirector;
 	private JTextArea textAreaSinopsisResul;
 	
 	public DialogoPeliculaModificacion() {
@@ -54,13 +52,13 @@ public class DialogoPeliculaModificacion extends JDialog {
 		JLabel labelTitulo = new JLabel("Título*: ");
 		textFieldTitResul = new JTextField();
 		JLabel labelPais = new JLabel("País*: ");
-		comboBoxPais = new JComboBox();
+		comboBoxPais = new JComboBox<String>();
 		JLabel labelAnyo = new JLabel("Año*: ");
 		textFieldAnyoResul = new JTextField();
 		JLabel labelDirector = new JLabel("Director*: ");
-		comboBoxDirector = new JComboBox();
+		comboBoxDirector = new JComboBox<String>();
 		JLabel labelGenero = new JLabel("Género*: ");
-		comboBoxGenero = new JComboBox();
+		comboBoxGenero = new JComboBox<String>();
 		JLabel labelSinopsis = new JLabel("Sinopsis: ");
 		textAreaSinopsisResul = new JTextArea();
 		
@@ -234,19 +232,19 @@ public class DialogoPeliculaModificacion extends JDialog {
 		this.comboBoxPais = comboBoxPais;
 	}
 
-	public JComboBox getComboBoxGenero() {
+	public JComboBox<String> getComboBoxGenero() {
 		return comboBoxGenero;
 	}
 
-	public void setComboBoxGenero(JComboBox comboBoxGenero) {
+	public void setComboBoxGenero(JComboBox<String> comboBoxGenero) {
 		this.comboBoxGenero = comboBoxGenero;
 	}
 
-	public JComboBox getComboBoxDirector() {
+	public JComboBox<String> getComboBoxDirector() {
 		return comboBoxDirector;
 	}
 
-	public void setComboBoxDirector(JComboBox comboBoxDirector) {
+	public void setComboBoxDirector(JComboBox<String> comboBoxDirector) {
 		this.comboBoxDirector = comboBoxDirector;
 	}
 

@@ -23,11 +23,11 @@ import modelo.Pais;
  *
  */
 public class DialogoDirectorAlta extends JDialog {
+	
+	private static final long serialVersionUID = 5428825630214882590L;
 	/**
 	 * Atributos de la interfaz
 	 */
-	private static final long serialVersionUID = 5428825630214882590L;
-
 	private final JPanel contentPanel = new JPanel();
 
 	private JPanel panel;
@@ -40,7 +40,7 @@ public class DialogoDirectorAlta extends JDialog {
 	private JTextField textFecha;
 	private JTextField textGenero;
 	private ButtonGroup bg;
-	private JComboBox comboBoxPais;
+	private JComboBox<String> comboBoxPais;
 
 
 	/**
@@ -96,7 +96,7 @@ public class DialogoDirectorAlta extends JDialog {
 		bg.add(rdbtnSexoM);
 		bg.add(rdbtnSexoF);
 
-		comboBoxPais = new JComboBox();
+		comboBoxPais = new JComboBox<String>();
 		comboBoxPais.setEditable(true);
 		comboBoxPais.setBounds(103, 169, 158, 26);
 		panel.add(comboBoxPais);
@@ -206,11 +206,11 @@ public class DialogoDirectorAlta extends JDialog {
 	public void setPanelBtnsAceptarCancelar(PanelBtnsAceptarCancelar panelBtnsAceptarCancelar) {
 		this.panelBtnsAceptarCancelar = panelBtnsAceptarCancelar;
 	}
-	public JComboBox getComboBoxPais() {
+	public JComboBox<String> getComboBoxPais() {
 		return comboBoxPais;
 	}
 
-	public void setComboBoxPais(JComboBox comboBoxPais) {
+	public void setComboBoxPais(JComboBox<String> comboBoxPais) {
 		this.comboBoxPais = comboBoxPais;
 	}
 

@@ -1,6 +1,5 @@
 package vista;
 
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -15,6 +14,8 @@ import javax.swing.border.EmptyBorder;
 import modelo.Director;
 
 public class DialogoDirectorBaja extends JDialog{
+	
+	private static final long serialVersionUID = -2723167155489403976L;
 	
 	private final JPanel contentPanel = new JPanel();
 	private JPanel panel;

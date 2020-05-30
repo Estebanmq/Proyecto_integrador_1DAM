@@ -23,6 +23,7 @@ import modelo.Interprete;
  */
 public class DialogoInterpreteConsulta extends JDialog{
 
+	private static final long serialVersionUID = -6010688314909964444L;
 	/**
 	 * Atributos de la interfaz
 	 */

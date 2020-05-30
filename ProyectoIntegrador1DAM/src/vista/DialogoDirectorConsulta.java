@@ -21,6 +21,8 @@ import modelo.Director;
  *
  */
 public class DialogoDirectorConsulta extends JDialog{
+
+	private static final long serialVersionUID = 1906416306403163381L;
 	
 	/**
 	 * Atributos de la interfaz

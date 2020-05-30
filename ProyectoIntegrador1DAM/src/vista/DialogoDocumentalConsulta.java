@@ -1,10 +1,8 @@
 package vista;
 
-import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,10 +19,9 @@ import javax.swing.JTextArea;
  * @version 1.0
  */
 public class DialogoDocumentalConsulta extends JDialog {
-	private static final long serialVersionUID = 1L;
 
-	private Documental documental;
-	
+	private static final long serialVersionUID = -7814143616008863714L;
+
 	private PanelBtnOk panelBtnOk;
 
 	private JTextField textFieldBuscarCodigo;

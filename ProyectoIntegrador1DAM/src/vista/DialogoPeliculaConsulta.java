@@ -1,10 +1,8 @@
 package vista;
 
-import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,7 +21,6 @@ import javax.swing.JTextArea;
 public class DialogoPeliculaConsulta extends JDialog {
 	private static final long serialVersionUID = 1L;
 
-	private Pelicula pelicula;
 	
 	private PanelBtnOk panelBtnOk;
 

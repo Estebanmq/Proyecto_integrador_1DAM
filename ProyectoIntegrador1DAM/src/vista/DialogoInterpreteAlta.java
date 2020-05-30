@@ -40,7 +40,7 @@ public class DialogoInterpreteAlta extends JDialog {
 	private JTextField textFecha;
 	private JTextField textCache;
 	private ButtonGroup bg;
-	private JComboBox comboBoxPais;
+	private JComboBox<String> comboBoxPais;
 
 
 	/**
@@ -96,7 +96,7 @@ public class DialogoInterpreteAlta extends JDialog {
 		bg.add(rdbtnSexoM);
 		bg.add(rdbtnSexoF);
 
-		comboBoxPais = new JComboBox();
+		comboBoxPais = new JComboBox<String>();
 		comboBoxPais.setEditable(true);
 		comboBoxPais.setBounds(103, 169, 158, 26);
 		panel.add(comboBoxPais);
@@ -206,11 +206,11 @@ public class DialogoInterpreteAlta extends JDialog {
 	public void setPanelBtnsAceptarCancelar(PanelBtnsAceptarCancelar panelBtnsAceptarCancelar) {
 		this.panelBtnsAceptarCancelar = panelBtnsAceptarCancelar;
 	}
-	public JComboBox getComboBoxPais() {
+	public JComboBox<String> getComboBoxPais() {
 		return comboBoxPais;
 	}
 
-	public void setComboBoxPais(JComboBox comboBoxPais) {
+	public void setComboBoxPais(JComboBox<String> comboBoxPais) {
 		this.comboBoxPais = comboBoxPais;
 	}
 

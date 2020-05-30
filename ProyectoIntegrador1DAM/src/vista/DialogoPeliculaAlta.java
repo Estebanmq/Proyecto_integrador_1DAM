@@ -5,14 +5,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -46,27 +45,27 @@ public class DialogoPeliculaAlta extends JDialog {
 	private JTextField fieldTitulo;
 	private JLabel labelMensaje;
 	private JSpinner spinnerAnyo;
-	private JComboBox comboBoxGenero;
+	private JComboBox<String> comboBoxGenero;
 	private JComboBox<String> comboBoxPais;
 	private JTextArea textAreaSinopsis;
 	private JComboBox<String> comboBoxDirector; 
 	
 
 	public DialogoPeliculaAlta() {
-		Date sysDate = new Date();
+
 		int max = Calendar.getInstance().get(Calendar.YEAR);
 		SpinnerModel model = new SpinnerNumberModel(1900,1900,max,1);
 		setFieldTitulo(new JTextField());
 		JLabel labelTitulo = new JLabel("Título*:");
 		JLabel labelDirector = new JLabel("Director*:");
-		comboBoxDirector = new JComboBox();
+		comboBoxDirector = new JComboBox<String>();
 		JLabel labelAnyo = new JLabel("Año*:");
 		spinnerAnyo = new JSpinner(model);
 		JLabel labelPais = new JLabel("País*:");
-		comboBoxPais = new JComboBox();
+		comboBoxPais = new JComboBox<String>();
 		
 		JLabel labelGenero = new JLabel("Género*:");
-		comboBoxGenero = new JComboBox();
+		comboBoxGenero = new JComboBox<String>();
 		JLabel labelSinopsis = new JLabel("Sinopsis: ");
 		textAreaSinopsis = new JTextArea();
 		
@@ -188,19 +187,19 @@ public class DialogoPeliculaAlta extends JDialog {
 		this.spinnerAnyo = spinnerAnyo;
 	}
 
-	public JComboBox getComboBoxPais() {
+	public JComboBox<String> getComboBoxPais() {
 		return comboBoxPais;
 	}
 
-	public void setComboBoxPais(JComboBox comboBoxPais) {
+	public void setComboBoxPais(JComboBox<String> comboBoxPais) {
 		this.comboBoxPais = comboBoxPais;
 	}
 
-	public JComboBox getComboBoxDirector() {
+	public JComboBox<String> getComboBoxDirector() {
 		return comboBoxDirector;
 	}
 
-	public void setComboBoxDirector(JComboBox comboBoxDirector) {
+	public void setComboBoxDirector(JComboBox<String> comboBoxDirector) {
 		this.comboBoxDirector = comboBoxDirector;
 	}
 	
@@ -252,11 +251,11 @@ public class DialogoPeliculaAlta extends JDialog {
 		this.labelMensaje = labelMensaje;
 	}
 	
-	public JComboBox getComboBoxGenero() {
+	public JComboBox<String> getComboBoxGenero() {
 		return comboBoxGenero;
 	}
 
-	public void setComboBoxGenero(JComboBox comboBoxGenero) {
+	public void setComboBoxGenero(JComboBox<String> comboBoxGenero) {
 		this.comboBoxGenero = comboBoxGenero;
 	}
 }

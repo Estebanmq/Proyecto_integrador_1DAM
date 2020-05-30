@@ -21,11 +21,9 @@ import modelo.Documental;
  * @version 1.0
  */
 public class DialogoDocumentalBaja extends JDialog {
-	private static final long serialVersionUID = 1L;
-
-	private Documental documental;
 	
-	private JButton btnAceptar;
+	private static final long serialVersionUID = -8011581073722444154L;
+	
 	private JButton btnCancelar;
 	private PanelBtnsAceptarCancelar panelBtnsAceptarCancelar;
 
@@ -198,7 +196,6 @@ public class DialogoDocumentalBaja extends JDialog {
 
 
 	public void setBtnAceptar(JButton btnAceptar) {
-		this.btnAceptar = btnAceptar;
 	}
 
 	public JButton getBtnCancelar() {

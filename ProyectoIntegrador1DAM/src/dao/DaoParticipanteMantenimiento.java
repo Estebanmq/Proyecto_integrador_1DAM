@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import modelo.Participante;
 /**
@@ -29,12 +28,6 @@ public class DaoParticipanteMantenimiento {
 	 */
 	private Connection conn;
 
-	/**
-	 * Statement para ejecutar sentencias SQL
-	 * @see java.sql.Statement 
-	 */
-	private Statement st;
-	
 	/**
 	 * PreparedStatement para ejecutar comandos SQL ya precompilados
 	 * @see java.sql.PreparedStatement
@@ -95,15 +88,7 @@ public class DaoParticipanteMantenimiento {
 	private void setQuery(String query) {
 		this.query = query;
 	}
-
-	private Statement getSt() {
-		return st;
-	}
-
-	private void setSt(Statement st) {
-		this.st = st;
-	}
-
+	
 	private PreparedStatement getPs() {
 		return ps;
 	}
