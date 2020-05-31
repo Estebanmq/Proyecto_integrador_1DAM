@@ -21,7 +21,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import modelo.Actuacion;
 import modelo.Director;
 import modelo.Interprete;
 import modelo.ListaParticipante;
@@ -53,7 +52,6 @@ public class DialogoParticipanteListado extends JDialog {
 
 	private JCheckBox chkDirectores;
 	private JCheckBox chkInterpretes;
-	private JComboBox<Actuacion> comboPelicula;
 	private JTextField fieldNombre;
 	private JComboBox<PaisComboBox> comboNacionalidad;
 	private JToggleButton tglbtnFemenino;
@@ -74,7 +72,6 @@ public class DialogoParticipanteListado extends JDialog {
 		JPanel panelSexo = new JPanel();
 		JPanel panelFiltro = new JPanel();
 		JLabel labelNombre = new JLabel("Nombre:");
-		JLabel labelEjemplar = new JLabel("Ejemplar audiovisual:");
 		JLabel labelNacionalidad = new JLabel("Nacionalidad:");
 		JPanel panelDatos = new JPanel();
 		JLabel labelCodigoSelected = new JLabel("Código:");
@@ -98,61 +95,53 @@ public class DialogoParticipanteListado extends JDialog {
 		contentPanel.setLayout(null);
 		
 		panelFiltro.setBorder(new TitledBorder(null, "Filtrar por...", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelFiltro.setBounds(10, 11, 599, 148);
+		panelFiltro.setBounds(10, 11, 599, 119);
 		contentPanel.add(panelFiltro);
 		panelFiltro.setLayout(null);
 		
-		setChkDirectores(new JCheckBox("Directores."));
-		getChkDirectores().setSelected(true);
-		getChkDirectores().setBounds(27, 17, 104, 23);
+		this.setChkDirectores(new JCheckBox("Directores."));
+		this.getChkDirectores().setSelected(true);
+		this.getChkDirectores().setBounds(27, 17, 104, 23);
 		panelFiltro.add(getChkDirectores());
 		
-		setChkInterpretes(new JCheckBox("Intérpretes."));
-		getChkInterpretes().setSelected(true);
-		getChkInterpretes().setBounds(154, 17, 117, 23);
+		this.setChkInterpretes(new JCheckBox("Intérpretes."));
+		this.getChkInterpretes().setSelected(true);
+		this.getChkInterpretes().setBounds(154, 17, 117, 23);
 		panelFiltro.add(getChkInterpretes());
 		
-		labelNombre.setBounds(27, 80, 127, 14);
+		labelNombre.setBounds(27, 50, 127, 14);
 		panelFiltro.add(labelNombre);
 		
-		labelEjemplar.setBounds(27, 47, 127, 14);
-		panelFiltro.add(labelEjemplar);
-		
-		setComboPelicula(new JComboBox<Actuacion>());
-		getComboPelicula().setEnabled(false);
-		getComboPelicula().setBounds(154, 40, 187, 28);
-		panelFiltro.add(getComboPelicula());
-		
 		this.setFieldNombre(new JTextField());
-		this.getFieldNombre().setBounds(154, 73, 187, 28);
+		this.getFieldNombre().setBounds(154, 43, 187, 28);
 		panelFiltro.add(getFieldNombre());
 		this.getFieldNombre().setColumns(10);
 		
-		labelNacionalidad.setBounds(27, 113, 127, 14);
+		labelNacionalidad.setBounds(27, 83, 127, 14);
 		panelFiltro.add(labelNacionalidad);
 		
-		setComboNacionalidad(new JComboBox<PaisComboBox>());
-		getComboNacionalidad().setBounds(154, 106, 187, 28);
+		this.setComboNacionalidad(new JComboBox<PaisComboBox>());
+		this.getComboNacionalidad().setBounds(154, 76, 187, 28);
 		panelFiltro.add(getComboNacionalidad());
 		
 		panelSexo.setBorder(new TitledBorder(null, "Sexo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelSexo.setBounds(365, 33, 211, 61);
+		panelSexo.setBounds(364, 17, 211, 61);
 		panelFiltro.add(panelSexo);
 		
-		setTglbtnFemenino(new JToggleButton("Femenino"));
-		getTglbtnFemenino().setSelected(true);
+		this.setTglbtnFemenino(new JToggleButton("Femenino"));
+		this.getTglbtnFemenino().setSelected(true);
 		panelSexo.add(getTglbtnFemenino());
 		
-		setTglbtnMasculino(new JToggleButton("Masculino"));
-		getTglbtnMasculino().setSelected(true);
+		this.setTglbtnMasculino(new JToggleButton("Masculino"));
+		this.getTglbtnMasculino().setSelected(true);
 		panelSexo.add(getTglbtnMasculino());		
 		
 		this.btnAplicar = new JButton("Aplicar filtros");
-		this.btnAplicar.setBounds(471, 109, 104, 23);
+		this.btnAplicar.setBounds(471, 79, 104, 23);
 		this.btnAplicar.setActionCommand("btnAplicarFiltros");
 		panelFiltro.add(btnAplicar);
 		
-		scrollPane.setBounds(10, 162, 578, 133);
+		scrollPane.setBounds(20, 128, 578, 167);
 		contentPanel.add(scrollPane);
 		
 		this.setDtmModelo(new DefaultTableModel(this.NOMCOLUMNAS, 0));
@@ -365,14 +354,6 @@ public class DialogoParticipanteListado extends JDialog {
 
 	public void setChkInterpretes(JCheckBox chkInterpretes) {
 		this.chkInterpretes = chkInterpretes;
-	}
-
-	public JComboBox<Actuacion> getComboPelicula() {
-		return comboPelicula;
-	}
-
-	public void setComboPelicula(JComboBox<Actuacion> comboPelicula) {
-		this.comboPelicula = comboPelicula;
 	}
 
 	public JToggleButton getTglbtnFemenino() {

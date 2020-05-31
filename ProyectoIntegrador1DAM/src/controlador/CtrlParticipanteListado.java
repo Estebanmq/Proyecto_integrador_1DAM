@@ -214,7 +214,6 @@ public class CtrlParticipanteListado implements ActionListener, ListSelectionLis
 		setFiltro(new FiltroParticipanteListado());
 		getFiltro().setDirector(this.dialogoParticipanteListado.getChkDirectores().isSelected());
 		getFiltro().setInterprete(this.dialogoParticipanteListado.getChkInterpretes().isSelected());
-//		getFiltro().setEjemplar(this.dialogoListadoPart.getComboEjemplar().getSelectedItem().toString());
 		getFiltro().setNombre(this.dialogoParticipanteListado.getFieldNombre().getText());
 		getFiltro().setPais(((Pais)this.dialogoParticipanteListado.getComboNacionalidad().getSelectedItem()).getCodigo());
 		getFiltro().setSexoFemenino(this.dialogoParticipanteListado.getTglbtnFemenino().isSelected());

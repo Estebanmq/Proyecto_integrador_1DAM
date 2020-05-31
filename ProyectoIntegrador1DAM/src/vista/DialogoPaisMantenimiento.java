@@ -62,6 +62,11 @@ public class DialogoPaisMantenimiento extends JDialog {
 		this.setDtmModelo(new DefaultTableModel(this.getNOMCOLUMNAS(), 0));
 
 		this.setTablaPaises(new JTable(this.getDtmModelo()));
+		this.getTablaPaises().getColumnModel().getColumn(0).setResizable(false);
+		this.getTablaPaises().getColumnModel().getColumn(0).setPreferredWidth(60);
+		this.getTablaPaises().getColumnModel().getColumn(1).setResizable(false);
+		this.getTablaPaises().getColumnModel().getColumn(1).setPreferredWidth(270);
+		this.getTablaPaises().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		this.getTablaPaises().setToolTipText("Relación de países");
 		
 		scrollPane.add(this.getTablaPaises());
