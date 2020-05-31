@@ -146,7 +146,7 @@ private static final long serialVersionUID = 5913217229440232625L;
 			      char caracter = e.getKeyChar();
 			      // Verifico si la tecla pulsada no es un digito
 			      if((caracter < '0') || (caracter > '9')) {
-			         e.consume();  // No escribe el caracter
+			         e.consume();   // No escribe el caracter
 			      }
 			   }
 		});

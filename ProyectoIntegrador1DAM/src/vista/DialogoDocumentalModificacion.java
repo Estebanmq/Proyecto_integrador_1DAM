@@ -91,7 +91,7 @@ public class DialogoDocumentalModificacion extends JDialog {
 			      char caracter = e.getKeyChar();
 			      // Verifico si la tecla pulsada no es un digito
 			      if((caracter < '0') || (caracter > '9')) {
-			         e.consume();  // No escribe el caracter
+			         e.consume();   // No escribe el caracter
 			      }
 			   }
 		});
