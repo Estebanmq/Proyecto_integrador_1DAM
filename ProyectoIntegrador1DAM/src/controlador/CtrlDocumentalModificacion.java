@@ -118,7 +118,7 @@ public class CtrlDocumentalModificacion implements ActionListener{
 						}
 					} catch (NumberFormatException | ClassNotFoundException | SQLException e1) {
 						e1.printStackTrace();
-					};
+					}
 					break;
 				case "btnCancelar" :
 					dialogoModificacionDocumental.dispose(); //Cierro la ventana si pulsa el boton de cancelar

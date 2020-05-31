@@ -43,6 +43,7 @@ public class CtrlDirectorBaja implements ActionListener{
 		daoDirectorMantenimiento = new DaoDirectorMantenimiento();
 		
 		dialogoDirectorBaja = (new DialogoDirectorBaja());
+		dialogoDirectorBaja.getTextFieldCodigo().setBounds(228, 34, 86, 22);
 		dialogoDirectorBaja.getPanelBtnsAceptarCancelar().getBtnAceptar().addActionListener(this);
 		dialogoDirectorBaja.getPanelBtnsAceptarCancelar().getBtnCancelar().addActionListener(this);
 		dialogoDirectorBaja.getBtnBuscar().addActionListener(this);

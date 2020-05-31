@@ -92,7 +92,7 @@ public class PantallaPrincipal extends JFrame {
 		getMntmDirectorConsulta().setActionCommand("menuDirectorConsulta");
 		mnDirectores.add(getMntmDirectorConsulta());
 		
-		JMenu mnInterpretes = new JMenu("Interpretes");
+		JMenu mnInterpretes = new JMenu("Intérpretes");
 		mnInterpretes.setActionCommand("Interpretes");
 		mnParticipantes.add(mnInterpretes);
 		

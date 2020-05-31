@@ -40,7 +40,6 @@ public class CtrlActuacionMantenimiento implements ActionListener, ListSelection
 		
 		this.setDialogoActuacionMantenimiento(new DialogoActuacionMantenimiento());
 		
-//		this.getDialogoActuacionMantenimiento().getTablaInterprete().getSelectionModel().addListSelectionListener(this);
 		this.getDialogoActuacionMantenimiento().getTablaPersonaje().getSelectionModel().addListSelectionListener(this);
 
 		this.getDialogoActuacionMantenimiento().getBtnBuscar().addActionListener(this);
@@ -96,7 +95,6 @@ public class CtrlActuacionMantenimiento implements ActionListener, ListSelection
 			this.setDaoPeliculaMantenimiento(new DaoPeliculaMantenimiento());
 			
 			this.setPelicula(this.getDaoPeliculaMantenimiento().buscarPeli(this.getCodigoPelicula()));
-//			if (this.getPelicula()!=null) {
 			if (!this.getPelicula().getTitulo().equals("Pelicula no existe")) {
 				this.congigurarActuacion();
 			} else {
